@@ -1,0 +1,26 @@
+version: "2"
+services:
+    mssql:
+      image: "mcr.microsoft.com/mssql/server:2019"
+      ports:
+        - "1433:1433"
+      networks:
+        - asnet
+    web:
+      image: "mcr.microsoft.com/dotnet/aspnet:5.0"
+      working_dir: "/src"
+      build: .
+      ports:
+        - "80:49155"
+        - "443:49156"
+      env_file:
+        - connection-strings.env
+      depends_on:
+        - mssql
+      networks:
+        - asnet
+
+networks:
+  asnet:
+    external:
+      name: nat
