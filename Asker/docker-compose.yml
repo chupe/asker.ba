@@ -1,19 +1,13 @@
 version: "2"
 services:
     mssql:
-      image: "mcr.microsoft.com/mssql/server:2019"
+      image: "mcr.microsoft.com/mssql/server:2019-latest"
       ports:
         - "1433:1433"
       networks:
         - asnet
     web:
       build: .
-      working_dir: "/src"
-      ports:
-        - "80:49155"
-        - "443:49156"
-      env_file:
-        - connection-strings.env
       depends_on:
         - mssql
       networks:
@@ -21,5 +15,4 @@ services:
 
 networks:
   asnet:
-    external:
-      name: nat
+    name: nat
