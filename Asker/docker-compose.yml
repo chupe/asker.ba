@@ -7,9 +7,8 @@ services:
       networks:
         - asnet
     web:
-      image: "mcr.microsoft.com/dotnet/aspnet:5.0"
-      working_dir: "/src"
       build: .
+      working_dir: "/src"
       ports:
         - "80:49155"
         - "443:49156"
