@@ -1,25 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-
 using Asker.Resources.Localization;
 
 
 namespace Asker.Models
 {
-    public class ASquad : BaseModel
+    public class ASquad : EntityModel
     {
         public ASquad() : base() { }
 
-
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(MemberId))]
-
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
-        public Guid MemberId { get; set; }
+        public Member Member { get; set; }
 
-
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(TestingId))]
-
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Testing))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TestingRequired")]
-        public Guid TestingId { get; set; }
+        public TestingEvent Testing { get; set; }
     }
 }

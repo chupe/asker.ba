@@ -4,7 +4,7 @@ using Asker.Resources.Localization;
 
 namespace Asker.Models
 {
-    public class ItemTransaction : BaseModel
+    public class ItemTransaction : EntityModel
     {
         public ItemTransaction() : base() { }
 
@@ -26,10 +26,10 @@ namespace Asker.Models
         [Display(ResourceType = typeof(UILocalization), Name = nameof(OwnershipChange))]
         public bool OwnershipChange { get; set; } = false;
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(LenderId))]
-        public Guid LenderId { get; set; }
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Lender))]
+        public Member Lender { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(OwnerId))]
-        public Guid OwnerId { get; set; }
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Owner))]
+        public Member Owner { get; set; }
     }
 }

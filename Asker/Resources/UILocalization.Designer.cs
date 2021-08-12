@@ -61,7 +61,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Količina.
+        ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
             get {
@@ -70,7 +70,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Iznos je izvan granica.
+        ///   Looks up a localized string similar to Amount is out of range.
         /// </summary>
         public static string AmountOutOfRange {
             get {
@@ -79,7 +79,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Količina je obavezna.
+        ///   Looks up a localized string similar to Amount is required.
         /// </summary>
         public static string AmountRequired {
             get {
@@ -88,7 +88,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Komentar.
+        ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comment {
             get {
@@ -97,7 +97,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opis.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
@@ -106,7 +106,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ime.
+        ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
             get {
@@ -115,7 +115,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klupska imovina.
+        ///   Looks up a localized string similar to Team property.
         /// </summary>
         public static string IsTeamProperty {
             get {
@@ -124,7 +124,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prezime.
+        ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string LastName {
             get {
@@ -133,7 +133,16 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nalazi se kod.
+        ///   Looks up a localized string similar to Lender.
+        /// </summary>
+        public static string Lender {
+            get {
+                return ResourceManager.GetString("Lender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lender ID.
         /// </summary>
         public static string LenderId {
             get {
@@ -142,7 +151,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dozvoljena dužina je od 3 do 1000 karaktera.
+        ///   Looks up a localized string similar to Length out of range (3 - 1000).
         /// </summary>
         public static string Length3to1000 {
             get {
@@ -151,7 +160,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dozvoljena dužina je od 3 do 15 karaktera.
+        ///   Looks up a localized string similar to Length out of range (3 - 15).
         /// </summary>
         public static string Length3to15 {
             get {
@@ -160,7 +169,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dozvoljena dužina je od 3 do 200 karaktera.
+        ///   Looks up a localized string similar to Length out of range (3 - 200).
         /// </summary>
         public static string Length3to200 {
             get {
@@ -169,7 +178,16 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ime.
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
@@ -178,7 +196,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ime je obavezno.
+        ///   Looks up a localized string similar to Name is required.
         /// </summary>
         public static string NameRequired {
             get {
@@ -187,7 +205,16 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vlasnik.
+        ///   Looks up a localized string similar to Nickname.
+        /// </summary>
+        public static string Nickname {
+            get {
+                return ResourceManager.GetString("Nickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Owner ID.
         /// </summary>
         public static string OwnerId {
             get {
@@ -196,7 +223,7 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Obavezno označiti da li pripada klubu.
+        ///   Looks up a localized string similar to Team property (true/false) required.
         /// </summary>
         public static string TeamPropertyRequired {
             get {
@@ -205,7 +232,25 @@ namespace Asker.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vrijednost.
+        ///   Looks up a localized string similar to Training Type.
+        /// </summary>
+        public static string TrainingType {
+            get {
+                return ResourceManager.GetString("TrainingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Date.
+        /// </summary>
+        public static string TransactionDate {
+            get {
+                return ResourceManager.GetString("TransactionDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
         /// </summary>
         public static string Value {
             get {

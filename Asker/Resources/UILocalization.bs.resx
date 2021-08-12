@@ -120,6 +120,12 @@
   <data name="Amount" xml:space="preserve">
     <value>Količina</value>
   </data>
+  <data name="AmountOutOfRange" xml:space="preserve">
+    <value>Iznos je izvan granica</value>
+  </data>
+  <data name="AmountRequired" xml:space="preserve">
+    <value>Količina je obavezna</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Komentar</value>
   </data>
@@ -138,11 +144,26 @@
   <data name="LenderId" xml:space="preserve">
     <value>Nalazi se kod</value>
   </data>
+  <data name="Length3to1000" xml:space="preserve">
+    <value>Dozvoljena dužina je od 3 do 1000 karaktera</value>
+  </data>
+  <data name="Length3to15" xml:space="preserve">
+    <value>Dozvoljena dužina je od 3 do 15 karaktera</value>
+  </data>
+  <data name="Length3to200" xml:space="preserve">
+    <value>Dozvoljena dužina je od 3 do 200 karaktera</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Ime</value>
   </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Ime je obavezno</value>
+  </data>
   <data name="OwnerId" xml:space="preserve">
     <value>Vlasnik</value>
+  </data>
+  <data name="TeamPropertyRequired" xml:space="preserve">
+    <value>Obavezno označiti da li pripada klubu</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Vrijednost</value>

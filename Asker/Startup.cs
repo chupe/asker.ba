@@ -26,8 +26,7 @@ namespace Asker
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    //Configuration["ConnectionStrings:DefaultConnection"]));
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("LocalConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -52,8 +51,7 @@ namespace Asker
                 app.UseHsts();
             }
 
-            var supportedCultures = new[] { "en-US" };
-            //var supportedCultures = new[] { "bs" };
+            var supportedCultures = new[] { "en-US", "bs-BA" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);

@@ -1,73 +1,82 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Asker.Resources;
-
+using Asker.Types;
 
 namespace Asker.Models
 {
-    public class Member : BaseModel
+    public class Member : EntityModel
     {
         public Member() : base() { }
 
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
-
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]
-        [StringLength(15, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to15", MinimumLength = 3)]
+        [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
         public string FirstName { get; set; }
 
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(LastName))]
-
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "LastNameRequired")]
-        [StringLength(15, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to15", MinimumLength = 3)]
+        [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
         public string LastName { get; set; }
 
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Nickname))]
+        [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
+        public string Nickname { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
-
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(JoinedDate))]
-
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(DateJoined))]
         [DataType(DataType.Date)]
-        public DateTime JoinedDate { get; set; }
+        public DateTime DateJoined { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(DateLeft))]
+        [DataType(DataType.Date)]
+        public DateTime DateLeft { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
         [Display(ResourceType = typeof(UILocalization), Name = nameof(BirthDate))]
-
         [DataType(DataType.Date)]
         [DisplayFormat()]
         public DateTime BirthDate { get; set; }
 
-        [EmailAddress]
         [DataType(DataType.EmailAddress)]
-        [StringLength(40, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to40", MinimumLength = 3)]
+        [StringLength(50, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to50", MinimumLength = 3)]
         public string Email { get; set; }
 
-        [Phone]
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PhoneRequired")]
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(PhoneNumber))]
-
-        public int PhoneNumber { get; set; }
-
+        public string PhoneNumber { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
-
-        [EnumDataType(typeof(TrainingType))]
+        [EnumDataType(typeof(BloodType))]
         public BloodType BloodType { get; set; }
+
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
+        public bool Active { get; set; }
+
+        private string jmbg;
 
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PersonalIdRequired")]
         [StringLength(13, ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(JMBG))]
-
-        public string JMBG { get; set; }
+        public string JMBG
+        {
+            get
+            {
+                return jmbg;
+            }
+            set
+            {
+                if (value.Length != 13)
+                    throw new Exception();
+                else jmbg = value;
+            }
+        }
 
         [ScaffoldColumn(false)]
-
+        [Required]
         [Display(ResourceType = typeof(UILocalization), Name = nameof(FullName))]
-
         public string FullName
         {
             get

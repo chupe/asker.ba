@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Asker.Resources;
 
-namespace Asker.Resources
+namespace Asker.Types
 {
     public enum BloodType
     {

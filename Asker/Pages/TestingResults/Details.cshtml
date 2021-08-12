@@ -1,0 +1,61 @@
+﻿@page
+@model Asker.Pages.TestingResults.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TestingResult</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.TotalScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.TotalScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.MaximumDeadliftWeight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.MaximumDeadliftWeight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.StandingPowerThrow)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.StandingPowerThrow)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.HandReleasePushup)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.HandReleasePushup)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.SprintDragCarry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.SprintDragCarry)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.LegTuck)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.LegTuck)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.TwoMileRun)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.TwoMileRun)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TestingResult.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

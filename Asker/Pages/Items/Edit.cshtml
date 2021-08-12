@@ -38,16 +38,6 @@
                 <input asp-for="Item.Value" class="form-control" />
                 <span asp-validation-for="Item.Value" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Item.LenderId" class="control-label"></label>
-                <input asp-for="Item.LenderId" class="form-control" />
-                <span asp-validation-for="Item.LenderId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Item.OwnerId" class="control-label"></label>
-                <input asp-for="Item.OwnerId" class="form-control" />
-                <span asp-validation-for="Item.OwnerId" class="text-danger"></span>
-            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Item.IsTeamProperty" /> @Html.DisplayNameFor(model => model.Item.IsTeamProperty)
