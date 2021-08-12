@@ -219,21 +219,6 @@ namespace Asker.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Asker.Models.Item", b =>
-                {
-                    b.HasOne("Asker.Models.Member", "Lender")
-                        .WithMany()
-                        .HasForeignKey("LenderId");
-
-                    b.HasOne("Asker.Models.Member", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-
-                    b.Navigation("Lender");
-
-                    b.Navigation("Owner");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -283,11 +268,6 @@ namespace Asker.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Asker.Models.EventParticipation", b =>
-                {
-                    b.Navigation("List");
                 });
 #pragma warning restore 612, 618
         }
