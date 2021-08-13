@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Asker.Models.Scoring;
 using Asker.Resources.Localization;
@@ -12,11 +13,17 @@ namespace Asker.Models
     {
         public TestingResult() : base() { }
 
+        [ForeignKey("Event")]
+        public Guid EventId { get; set; }
+
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Event))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
         public TestingEvent Event { get; set; }
 
         private Member member;
+
+        [ForeignKey("Member")]
+        public Guid MemberId { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
@@ -24,7 +31,7 @@ namespace Asker.Models
             get => member; 
             set 
             {
-                if (!Event.Participants.List.Contains(value))
+                if (!Event.Participants.List.Contains(value.Id))
                     throw new Exception("Member not found in the list of event participants");
                 else
                     member = value;

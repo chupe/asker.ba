@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Asker.Resources.Localization;
 
 namespace Asker.Models
@@ -26,8 +27,14 @@ namespace Asker.Models
         [Display(ResourceType = typeof(UILocalization), Name = nameof(OwnershipChange))]
         public bool OwnershipChange { get; set; } = false;
 
+        [ForeignKey("Lender")]
+        public Guid? LenderId { get; set; }
+
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Lender))]
         public Member Lender { get; set; }
+
+        [ForeignKey("Owner")]
+        public Guid? OwnerId { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Owner))]
         public Member Owner { get; set; }

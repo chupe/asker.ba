@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Asker.Resources;
 
 
@@ -34,10 +35,16 @@ namespace Asker.Models
         [DataType(DataType.Currency)]
         public double Value { get; set; }
 
+        [ForeignKey("Lender")]
+        public Guid? LenderId { get; set; }
+
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Lender))]
         public Member Lender { get; set; }
 
         private Member owner;
+
+        [ForeignKey("Owner")]
+        public Guid? OwnerId { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Owner))]
         public Member Owner

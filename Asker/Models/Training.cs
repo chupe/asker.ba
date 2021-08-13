@@ -8,7 +8,6 @@ namespace Asker.Models
     {
         public Training() : base() { }
 
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(TrainingType))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingTypeRequired")]
         [EnumDataType(typeof(TrainingType))]

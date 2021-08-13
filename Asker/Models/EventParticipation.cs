@@ -11,13 +11,8 @@ namespace Asker.Models
     {
         public EventParticipation() : base() { }
 
-        [ForeignKey("EventId")]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(EventId))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
-        public Guid EventId { get; set; }
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(List))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ParticipantsRequired")]
-        public HashSet<Member> List { get; set; }
+        public HashSet<Guid> List { get; set; }
     }
 }

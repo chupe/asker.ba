@@ -15,7 +15,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[0],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[0],
                     MaximumDeadliftWeight = 200,
                     StandingPowerThrow = 7.8,
                     HandReleasePushup = 60,
@@ -26,7 +26,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[1],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[1],
                     MaximumDeadliftWeight = 220,
                     StandingPowerThrow = 6.5,
                     HandReleasePushup = 20,
@@ -37,7 +37,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[2],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[2],
                     MaximumDeadliftWeight = 240,
                     StandingPowerThrow = 12,
                     HandReleasePushup = 30,
@@ -48,7 +48,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[3],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[3],
                     MaximumDeadliftWeight = 340,
                     StandingPowerThrow = 4.5,
                     HandReleasePushup = 25,
@@ -59,7 +59,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[4],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[4],
                     MaximumDeadliftWeight = 280,
                     StandingPowerThrow = 9.9,
                     HandReleasePushup = 30,
@@ -70,7 +70,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[0],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[5],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[5],
                     MaximumDeadliftWeight = 210,
                     StandingPowerThrow = 5,
                     HandReleasePushup = 60,
@@ -82,7 +82,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[1],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[0],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[0],
                     MaximumDeadliftWeight = 200,
                     StandingPowerThrow = 7.8,
                     HandReleasePushup = 60,
@@ -93,7 +93,7 @@ namespace Asker.Models.Seed.Data
                 new TestingResult
                 {
                     Event = TestingEventSeed.Entries()[1],
-                    Member = TestingEventSeed.Entries()[0].Participants.List.ToList()[1],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.List.ToList()[1],
                     MaximumDeadliftWeight = 200,
                     StandingPowerThrow = 7.8,
                     HandReleasePushup = 60,

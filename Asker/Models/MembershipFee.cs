@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using Asker.Resources.Localization;
 
 
@@ -20,6 +20,9 @@ namespace Asker.Models
         [Range(1, 10000, ErrorMessageResourceName = "AmountOutOfRange")]
         [DataType(DataType.Currency)]
         public int Amount { get; set; }
+
+        [ForeignKey("Member")]
+        public Guid MemberId { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
