@@ -19,13 +19,14 @@ namespace Asker.Models
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
         [Display(ResourceType = typeof(UILocalization), Name = nameof(DateHeld))]
         [DataType(DataType.Date)]
-        public DateTime DateHeld { get; set; }
+        public DateTime DateHeld{ get; set; }
 
         private EventParticipation participantsList;
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Participants))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ParticipantsRequired")]
-        public EventParticipation Participants {
+        public EventParticipation Participants
+        {
             get
             {
                 return participantsList;

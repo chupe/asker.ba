@@ -18,6 +18,6 @@ namespace Asker.Models
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(List))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ParticipantsRequired")]
-        public IEnumerable<Member> List { get; set; }
+        public HashSet<Member> List { get; set; }
     }
 }

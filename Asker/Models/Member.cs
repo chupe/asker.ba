@@ -69,7 +69,7 @@ namespace Asker.Models
             set
             {
                 if (value.Length != 13)
-                    throw new Exception();
+                    throw new Exception("Unique identifier (JMBG) needs to have 13 digit value");
                 else jmbg = value;
             }
         }

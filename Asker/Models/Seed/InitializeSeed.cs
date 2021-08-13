@@ -40,17 +40,17 @@ namespace Asker.Models.Seed
                 if (context.Training.Any())
                     return;
                 else
-                    context.Training.AddRange(TrainingSeed.Entries);
+                    context.Training.AddRange(TrainingSeed.Entries());
 
                 if (context.TestingEvent.Any())
                     return;
                 else
-                    context.TestingEvent.AddRange(TestingEventSeed.Entries);
+                    context.TestingEvent.AddRange(TestingEventSeed.Entries());
 
                 if (context.TestingResult.Any())
                     return;
                 else
-                    context.TestingResult.AddRange(TestingResultSeed.Entries);
+                    context.TestingResult.AddRange(TestingResultSeed.Entries());
 
                 context.SaveChanges();
             }
