@@ -17,7 +17,6 @@ namespace Asker.Data
         public DbSet<Asker.Models.TestingEvent> TestingEvent { get; set; }
         public DbSet<Asker.Models.TestingResult> TestingResult { get; set; }
         public DbSet<Asker.Models.EventLocation> EventLocation { get; set; }
-        public DbSet<Asker.Models.EventParticipation> EventParticipation { get; set; }
         public DbSet<Asker.Models.ItemTransaction> ItemTransaction { get; set; }
         public DbSet<Asker.Models.ASquad> ASquad { get; set; }
     }

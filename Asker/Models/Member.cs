@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Asker.Resources;
 using Asker.Types;
 
@@ -7,7 +9,10 @@ namespace Asker.Models
 {
     public class Member : EntityModel
     {
-        public Member() : base() { }
+        public Member() : base() 
+        {
+            Trainings = new HashSet<Training>();
+        }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]
@@ -54,6 +59,10 @@ namespace Asker.Models
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
         public bool Active { get; set; }
+
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(Trainings))]
+        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingsRequired")]
+        public ICollection<Training> Trainings { get; set; }
 
         private string jmbg;
 

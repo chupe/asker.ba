@@ -11,7 +11,7 @@ namespace Asker.Models.Scoring
             TimeSpan temp = new TimeSpan(0, 3, 35);
             foreach (var key in scoringTable.Keys)
             {
-                if (key < count)
+                if (key <= count)
                 {
                     temp = key;
                     continue;

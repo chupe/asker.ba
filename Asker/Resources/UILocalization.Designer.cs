@@ -97,6 +97,15 @@ namespace Asker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Joined.
+        /// </summary>
+        public static string DateJoined {
+            get {
+                return ResourceManager.GetString("DateJoined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {

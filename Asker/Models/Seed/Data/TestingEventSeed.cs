@@ -25,21 +25,47 @@ namespace Asker.Models.Seed.Data
                     Id = TestingIds[0],
                     DateHeld = new DateTime(2018, 10, 2),
                     Location = EventLocationSeed.Entries[0],
-                    Participants = EventParticipationSeed.Entries[4]
+                    Participants = new HashSet<Member>()
+                    {
+                        MemberSeed.Entries[3],
+                        MemberSeed.Entries[4],
+                        MemberSeed.Entries[5],
+                        MemberSeed.Entries[6],
+                        MemberSeed.Entries[7],
+                        MemberSeed.Entries[8]
+                    }
                 },
                 new TestingEvent
                 {
                     Id = TestingIds[1],
                     DateHeld = new DateTime(2019, 1, 26),
                     Location = EventLocationSeed.Entries[1],
-                    Participants = EventParticipationSeed.Entries[5]
+                    Participants = new HashSet<Member>()
+                    {
+                        MemberSeed.Entries[1],
+                        MemberSeed.Entries[2],
+                        MemberSeed.Entries[3],
+                        MemberSeed.Entries[4]
+                    }
                 },
                 new TestingEvent
                 {
                     Id = TestingIds[2],
                     DateHeld = new DateTime(2020, 12, 2),
                     Location = EventLocationSeed.Entries[2],
-                    Participants = EventParticipationSeed.Entries[6]
+                    Participants = new HashSet<Member>()
+                    {
+                        MemberSeed.Entries[0],
+                        MemberSeed.Entries[1],
+                        MemberSeed.Entries[2],
+                        MemberSeed.Entries[3],
+                        MemberSeed.Entries[4],
+                        MemberSeed.Entries[5],
+                        MemberSeed.Entries[6],
+                        MemberSeed.Entries[7],
+                        MemberSeed.Entries[8],
+                        MemberSeed.Entries[9]
+                    }
                 }
             };
         }

@@ -27,11 +27,12 @@ namespace Asker.Models
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
-        public Member Member { 
-            get => member; 
-            set 
+        public Member Member
+        {
+            get => member;
+            set
             {
-                if (!Event.Participants.List.Contains(value.Id))
+                if (!Event.Participants.Contains(value))
                     throw new Exception("Member not found in the list of event participants");
                 else
                     member = value;
@@ -43,16 +44,17 @@ namespace Asker.Models
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
-        public int WeakestDisciplinePoints {
+        public int WeakestDisciplinePoints
+        {
             get
             {
                 var disciplines = new List<int>() {
-                    mdlPoints,
-                    sptPoints,
-                    hrpPoints,
-                    sdcPoints,
-                    ltkPoints,
-                    tmrPoints
+                    mdlPoints.GetValueOrDefault(),
+                    sptPoints.GetValueOrDefault(),
+                    hrpPoints.GetValueOrDefault(),
+                    sdcPoints.GetValueOrDefault(),
+                    ltkPoints.GetValueOrDefault(),
+                    tmrPoints.GetValueOrDefault()
                 };
 
                 return disciplines.Min();
@@ -84,29 +86,54 @@ namespace Asker.Models
         public TimeSpan TwoMileRun { get; set; }
 
         [ScaffoldColumn(false)]
-        private int mdlPoints;
+        private int? mdlPoints;
 
         [ScaffoldColumn(false)]
-        private int sptPoints;
+        private int? sptPoints;
 
         [ScaffoldColumn(false)]
-        private int hrpPoints;
+        private int? hrpPoints;
 
         [ScaffoldColumn(false)]
-        private int sdcPoints;
+        private int? sdcPoints;
 
         [ScaffoldColumn(false)]
-        private int ltkPoints;
+        private int? ltkPoints;
 
         [ScaffoldColumn(false)]
-        private int tmrPoints;
-        
+        private int? tmrPoints;
+
+        public List<int?> GetPoints()
+        {
+            return new()
+            {
+                mdlPoints,
+                sptPoints,
+                hrpPoints,
+                sdcPoints,
+                ltkPoints,
+                tmrPoints
+            };
+        }
+
         public int CalculateTotal()
         {
-            CalculatePoints();
-            TotalScore = mdlPoints + sptPoints + hrpPoints + sdcPoints + ltkPoints + tmrPoints;
+            foreach (var pts in GetPoints())
+            {
+                if (!pts.HasValue)
+                {
+                    CalculatePoints();
+                    break;
+                }
+            }
 
-            return TotalScore;
+            int total = 0;
+            foreach (var pts in GetPoints())
+            {
+                total += pts.GetValueOrDefault();
+            }
+
+            return total;
         }
 
         public void CalculatePoints()

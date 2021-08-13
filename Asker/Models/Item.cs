@@ -12,7 +12,7 @@ namespace Asker.Models
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Name))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "NameRequired")]
-        [StringLength(15, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to15", MinimumLength = 3)]
+        [StringLength(40, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to40", MinimumLength = 3)]
         public string Name { get; set; }
 
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Description))]

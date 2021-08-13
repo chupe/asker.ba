@@ -9,7 +9,10 @@ namespace Asker.Models
 {
     public class EventModel : EntityModel
     {
-        public EventModel() : base() { }
+        public EventModel() : base() 
+        {
+            Participants = new HashSet<Member>();
+        }
 
         [ForeignKey("Location")]
         public Guid LocationId { get; set; }
@@ -24,11 +27,8 @@ namespace Asker.Models
         [DataType(DataType.Date)]
         public DateTime DateHeld{ get; set; }
 
-        [ForeignKey("Participants")]
-        public Guid ParticipantsId { get; set; }
-
         [Display(ResourceType = typeof(UILocalization), Name = nameof(Participants))]
         [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ParticipantsRequired")]
-        public EventParticipation Participants { get; set; }
+        public ICollection<Member> Participants { get; set; }
     }
 }

@@ -32,11 +32,6 @@ namespace Asker.Models.Seed
                 else
                     context.EventLocation.AddRange(EventLocationSeed.Entries);
 
-                if (context.EventParticipation.Any())
-                    return;
-                else
-                    context.EventParticipation.AddRange(EventParticipationSeed.Entries);
-
                 if (context.Training.Any())
                     return;
                 else
