@@ -70,7 +70,7 @@ namespace Asker.Data.Migrations
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Nickname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     DateJoined = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateLeft = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateLeft = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),

@@ -166,7 +166,7 @@ namespace Asker.Data.Migrations
                     b.Property<DateTime>("DateJoined")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateLeft")
+                    b.Property<DateTime?>("DateLeft")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

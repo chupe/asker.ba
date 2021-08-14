@@ -32,7 +32,6 @@ namespace Asker.Models
         [DataType(DataType.Date)]
         public DateTime DateJoined { get; set; }
 
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(DateLeft))]
         [DataType(DataType.Date)]
         public DateTime? DateLeft { get; set; }
@@ -51,7 +50,7 @@ namespace Asker.Models
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(PhoneNumber))]
         public string PhoneNumber { get; set; }
 
-         [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
+        [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
         [EnumDataType(typeof(BloodType))]
         public BloodType BloodType { get; set; }
 
