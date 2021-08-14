@@ -19,7 +19,7 @@ namespace Asker.Models
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Location))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "LocationRequired")]
-        [StringLength(15, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to15", MinimumLength = 3)]
+        [StringLength(50, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to50", MinimumLength = 3)]
         public EventLocation Location { get; set; }
 
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]

@@ -57,9 +57,8 @@ namespace Asker.Models
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
         public bool Active { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Trainings))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingsRequired")]
-        public ICollection<Training> Trainings { get; set; }
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Transactions))]
+        public ICollection<MembershipFee> Fees { get; set; }
 
         private string jmbg;
 

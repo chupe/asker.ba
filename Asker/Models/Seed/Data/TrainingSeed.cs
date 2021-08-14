@@ -45,10 +45,14 @@ namespace Asker.Models.Seed.Data
                     TrainingType = TrainingType.Cooperation,
                     Participants = new HashSet<Member>()
                     {
+                        MemberSeed.Entries[0],
                         MemberSeed.Entries[1],
                         MemberSeed.Entries[2],
-                        MemberSeed.Entries[3],
                         MemberSeed.Entries[4],
+                        MemberSeed.Entries[5],
+                        MemberSeed.Entries[6],
+                        MemberSeed.Entries[8],
+                        MemberSeed.Entries[9]
                     }
                 },
                 new Training
@@ -74,7 +78,7 @@ namespace Asker.Models.Seed.Data
                 new Training
                 {
                     Id = TrainingIds[3],
-                    DateHeld = new DateTime(2021, 4, 30),
+                    DateHeld = new DateTime(2021, 7, 30),
                     Location = EventLocationSeed.Entries[3],
                     TrainingType = TrainingType.Match,
                     Participants = new HashSet<Member>()
@@ -83,11 +87,7 @@ namespace Asker.Models.Seed.Data
                         MemberSeed.Entries[2],
                         MemberSeed.Entries[3],
                         MemberSeed.Entries[4],
-                        MemberSeed.Entries[5],
-                        MemberSeed.Entries[6],
-                        MemberSeed.Entries[7],
-                        MemberSeed.Entries[8],
-                        MemberSeed.Entries[9]
+                        MemberSeed.Entries[5]
                     }
                 },
             };
