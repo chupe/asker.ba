@@ -33,6 +33,16 @@
                     <input class="form-check-input" asp-for="ItemTransaction.OwnershipChange" /> @Html.DisplayNameFor(model => model.ItemTransaction.OwnershipChange)
                 </label>
             </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.LenderId" class="control-label"></label>
+                <select asp-for="ItemTransaction.LenderId" class="form-control" asp-items="ViewBag.LenderId"></select>
+                <span asp-validation-for="ItemTransaction.LenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.OwnerId" class="control-label"></label>
+                <select asp-for="ItemTransaction.OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+                <span asp-validation-for="ItemTransaction.OwnerId" class="text-danger"></span>
+            </div>
             <input type="hidden" asp-for="ItemTransaction.Id" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

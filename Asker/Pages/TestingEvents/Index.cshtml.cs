@@ -23,7 +23,8 @@ namespace Asker.Pages.TestingEvents
 
         public async Task OnGetAsync()
         {
-            TestingEvent = await _context.TestingEvent.ToListAsync();
+            TestingEvent = await _context.TestingEvent
+                .Include(t => t.Location).ToListAsync();
         }
     }
 }

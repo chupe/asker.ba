@@ -118,72 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Amount" xml:space="preserve">
-    <value>Amount</value>
+    <value>Količina</value>
   </data>
   <data name="AmountOutOfRange" xml:space="preserve">
-    <value>Amount is out of range</value>
+    <value>Iznos je izvan granica</value>
   </data>
   <data name="AmountRequired" xml:space="preserve">
-    <value>Amount is required</value>
+    <value>Količina je obavezna</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Datum rođenja</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+    <value>Komentar</value>
   </data>
   <data name="DateJoined" xml:space="preserve">
-    <value>Date Joined</value>
+    <value>Datum pristupanja</value>
+  </data>
+  <data name="DateLeft" xml:space="preserve">
+    <value>Datum napustanja</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Opis</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Događaj</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>Ime</value>
   </data>
   <data name="IsTeamProperty" xml:space="preserve">
-    <value>Team property</value>
+    <value>Klupska imovina</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Prezime</value>
   </data>
   <data name="Lender" xml:space="preserve">
-    <value>Lender</value>
+    <value>Nalazi se kod</value>
   </data>
   <data name="LenderId" xml:space="preserve">
-    <value>Lender ID</value>
+    <value>Nalazi se kod (Id)</value>
   </data>
   <data name="Length3to1000" xml:space="preserve">
-    <value>Length out of range (3 - 1000)</value>
+    <value>Dozvoljena dužina je od 3 do 1000 karaktera</value>
   </data>
-  <data name="Length3to15" xml:space="preserve">
-    <value>Length out of range (3 - 15)</value>
+  <data name="Length3to20" xml:space="preserve">
+    <value>Dozvoljena dužina je od 3 do 20 karaktera</value>
   </data>
   <data name="Length3to200" xml:space="preserve">
-    <value>Length out of range (3 - 200)</value>
+    <value>Dozvoljena dužina je od 3 do 200 karaktera</value>
+  </data>
+  <data name="Length3to40" xml:space="preserve">
+    <value>Dozvoljena dužina je od 3 do 40 karaktera</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Location</value>
+    <value>Lokacija</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Član</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Ime</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>Name is required</value>
+    <value>Ime je obavezno</value>
   </data>
-  <data name="Nickname" xml:space="preserve">
-    <value>Nickname</value>
+  <data name="Owner" xml:space="preserve">
+    <value>Vlasnik</value>
   </data>
   <data name="OwnerId" xml:space="preserve">
-    <value>Owner ID</value>
+    <value>Vlasnik (Id)</value>
   </data>
   <data name="TeamPropertyRequired" xml:space="preserve">
-    <value>Team property (true/false) required</value>
+    <value>Obavezno označiti da li pripada klubu</value>
   </data>
   <data name="TrainingType" xml:space="preserve">
-    <value>Training Type</value>
+    <value>Tip treninga</value>
   </data>
   <data name="TransactionDate" xml:space="preserve">
-    <value>Transaction Date</value>
+    <value>Datum uplate</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>Vrijednost</value>
   </data>
 </root>

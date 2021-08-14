@@ -14,6 +14,12 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.TestingResult[0].Event)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestingResult[0].Member)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.TestingResult[0].TotalScore)
             </th>
             <th>
@@ -40,6 +46,12 @@
     <tbody>
 @foreach (var item in Model.TestingResult) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.FirstName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalScore)
             </td>

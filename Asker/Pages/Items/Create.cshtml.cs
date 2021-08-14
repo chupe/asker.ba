@@ -21,6 +21,8 @@ namespace Asker.Pages.Items
 
         public IActionResult OnGet()
         {
+        ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
+        ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 

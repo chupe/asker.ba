@@ -23,7 +23,9 @@ namespace Asker.Pages.TestingResults
 
         public async Task OnGetAsync()
         {
-            TestingResult = await _context.TestingResult.ToListAsync();
+            TestingResult = await _context.TestingResult
+                .Include(t => t.Event)
+                .Include(t => t.Member).ToListAsync();
         }
     }
 }

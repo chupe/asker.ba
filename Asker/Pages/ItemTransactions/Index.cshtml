@@ -25,6 +25,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.ItemTransaction[0].OwnershipChange)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemTransaction[0].Lender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemTransaction[0].Owner)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -42,6 +48,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OwnershipChange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lender.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.FirstName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

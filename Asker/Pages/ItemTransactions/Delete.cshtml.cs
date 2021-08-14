@@ -29,7 +29,9 @@ namespace Asker.Pages.ItemTransactions
                 return NotFound();
             }
 
-            ItemTransaction = await _context.ItemTransaction.FirstOrDefaultAsync(m => m.Id == id);
+            ItemTransaction = await _context.ItemTransaction
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
             if (ItemTransaction == null)
             {

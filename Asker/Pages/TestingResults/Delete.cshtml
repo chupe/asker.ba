@@ -13,6 +13,18 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.Event)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.Event.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.Member)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.Member.FirstName)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TestingResult.TotalScore)
         </dt>
         <dd class="col-sm-10">

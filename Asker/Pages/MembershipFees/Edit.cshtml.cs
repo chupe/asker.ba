@@ -30,12 +30,14 @@ namespace Asker.Pages.MembershipFees
                 return NotFound();
             }
 
-            MembershipFee = await _context.MembershipFee.FirstOrDefaultAsync(m => m.Id == id);
+            MembershipFee = await _context.MembershipFee
+                .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
 
             if (MembershipFee == null)
             {
                 return NotFound();
             }
+           ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 

@@ -14,6 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="TestingEvent.LocationId" class="control-label"></label>
+                <select asp-for="TestingEvent.LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
+                <span asp-validation-for="TestingEvent.LocationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="TestingEvent.DateHeld" class="control-label"></label>
                 <input asp-for="TestingEvent.DateHeld" class="form-control" />
                 <span asp-validation-for="TestingEvent.DateHeld" class="text-danger"></span>

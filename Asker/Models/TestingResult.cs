@@ -16,8 +16,8 @@ namespace Asker.Models
         [ForeignKey("Event")]
         public Guid EventId { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(Event))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Event))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
         public TestingEvent Event { get; set; }
 
         private Member member;
@@ -25,8 +25,8 @@ namespace Asker.Models
         [ForeignKey("Member")]
         public Guid MemberId { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
         public Member Member
         {
             get => member;
@@ -39,11 +39,11 @@ namespace Asker.Models
             }
         }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
         public int TotalScore { get => CalculateTotal(); private set { } }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public int WeakestDisciplinePoints
         {
             get
@@ -61,28 +61,28 @@ namespace Asker.Models
             }
         }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(MaximumDeadliftWeight))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(MaximumDeadliftWeight))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public int MaximumDeadliftWeight { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(StandingPowerThrow))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(StandingPowerThrow))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public double StandingPowerThrow { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(HandReleasePushup))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(HandReleasePushup))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public int HandReleasePushup { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(SprintDragCarry))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(SprintDragCarry))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public TimeSpan SprintDragCarry { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(LegTuck))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(LegTuck))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public int LegTuck { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(TwoMileRun))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TwoMileRun))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public TimeSpan TwoMileRun { get; set; }
 
         [ScaffoldColumn(false)]

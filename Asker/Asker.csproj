@@ -27,14 +27,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Resources\UILocalization.bs.resx">
+		<EmbeddedResource Update="Resources\Localization\UILocalization.bs.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>UILocalization.bs.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Resources\UILocalization.Designer.cs">
+		<Compile Update="Resources\Localization\UILocalization.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>UILocalization.resx</DependentUpon>
@@ -42,7 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Resources\UILocalization.resx">
+		<EmbeddedResource Update="Resources\Localization\UILocalization.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>UILocalization.Designer.cs</LastGenOutput>
 		</EmbeddedResource>

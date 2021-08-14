@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Asker.Resources;
+using Asker.Resources.Localization;
 using Asker.Types;
 
 namespace Asker.Models
@@ -14,34 +13,33 @@ namespace Asker.Models
             Trainings = new HashSet<Training>();
         }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]
         [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
         public string FirstName { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(LastName))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "LastNameRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(LastName))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "LastNameRequired")]
         [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
         public string LastName { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(Nickname))]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Nickname))]
         [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20", MinimumLength = 3)]
         public string Nickname { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(DateJoined))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(DateJoined))]
         [DataType(DataType.Date)]
         public DateTime DateJoined { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(DateLeft))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(DateLeft))]
         [DataType(DataType.Date)]
-        public DateTime DateLeft { get; set; }
+        public DateTime? DateLeft { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(BirthDate))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "DateRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(BirthDate))]
         [DataType(DataType.Date)]
-        [DisplayFormat()]
         public DateTime BirthDate { get; set; }
 
         [DataType(DataType.EmailAddress)]
@@ -49,26 +47,26 @@ namespace Asker.Models
         public string Email { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PhoneRequired")]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(PhoneNumber))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PhoneRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(PhoneNumber))]
         public string PhoneNumber { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
+         [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
         [EnumDataType(typeof(BloodType))]
         public BloodType BloodType { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
         public bool Active { get; set; }
 
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(Trainings))]
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingsRequired")]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Trainings))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingsRequired")]
         public ICollection<Training> Trainings { get; set; }
 
         private string jmbg;
 
-        [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PersonalIdRequired")]
-        [StringLength(13, ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(JMBG))]
+        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PersonalIdRequired")]
+        [StringLength(13, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(JMBG))]
         public string JMBG
         {
             get
@@ -85,7 +83,7 @@ namespace Asker.Models
 
         [ScaffoldColumn(false)]
         [Required]
-        [Display(ResourceType = typeof(UILocalization), Name = nameof(FullName))]
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(FullName))]
         public string FullName
         {
             get

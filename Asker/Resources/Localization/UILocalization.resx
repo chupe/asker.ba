@@ -118,54 +118,201 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Amount" xml:space="preserve">
-    <value>Količina</value>
+    <value>Amount</value>
   </data>
   <data name="AmountOutOfRange" xml:space="preserve">
-    <value>Iznos je izvan granica</value>
+    <value>Amount is out of range</value>
   </data>
   <data name="AmountRequired" xml:space="preserve">
-    <value>Količina je obavezna</value>
+    <value>Amount is required</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Date of birth</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Komentar</value>
+    <value>Comment</value>
+  </data>
+  <data name="DateHeld" xml:space="preserve">
+    <value>Date held</value>
+  </data>
+  <data name="DateJoined" xml:space="preserve">
+    <value>Date joined</value>
+  </data>
+  <data name="DateLeft" xml:space="preserve">
+    <value>Date left</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Opis</value>
+    <value>Description</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>Ime</value>
+    <value>First name</value>
   </data>
   <data name="IsTeamProperty" xml:space="preserve">
-    <value>Klupska imovina</value>
+    <value>Team property</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Prezime</value>
+    <value>Last name</value>
+  </data>
+  <data name="Lender" xml:space="preserve">
+    <value>Lender</value>
   </data>
   <data name="LenderId" xml:space="preserve">
-    <value>Nalazi se kod</value>
+    <value>Lender ID</value>
   </data>
   <data name="Length3to1000" xml:space="preserve">
-    <value>Dozvoljena dužina je od 3 do 1000 karaktera</value>
+    <value>Length out of range (3 - 1000)</value>
   </data>
-  <data name="Length3to15" xml:space="preserve">
-    <value>Dozvoljena dužina je od 3 do 15 karaktera</value>
+  <data name="Length3to20" xml:space="preserve">
+    <value>Length out of range (3 - 20)</value>
   </data>
   <data name="Length3to200" xml:space="preserve">
-    <value>Dozvoljena dužina je od 3 do 200 karaktera</value>
+    <value>Length out of range (3 - 200)</value>
+  </data>
+  <data name="Length3to40" xml:space="preserve">
+    <value>Length out of range (3 - 40)</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Ime</value>
+    <value>Name</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>Ime je obavezno</value>
+    <value>Name is required</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>Nickname</value>
+  </data>
+  <data name="Owner" xml:space="preserve">
+    <value>Owner</value>
   </data>
   <data name="OwnerId" xml:space="preserve">
-    <value>Vlasnik</value>
+    <value>Owner ID</value>
+  </data>
+  <data name="OwnershipChange" xml:space="preserve">
+    <value>Ownership changed</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Participants</value>
   </data>
   <data name="TeamPropertyRequired" xml:space="preserve">
-    <value>Obavezno označiti da li pripada klubu</value>
+    <value>Team property (true/false) required</value>
+  </data>
+  <data name="TotalScore" xml:space="preserve">
+    <value>Total score</value>
+  </data>
+  <data name="TrainingType" xml:space="preserve">
+    <value>Training type</value>
+  </data>
+  <data name="TransactionDate" xml:space="preserve">
+    <value>Transaction date</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Vrijednost</value>
+    <value>Phone number</value>
+  </data>
+  <data name="MaximumDeadliftWeight" xml:space="preserve">
+    <value>Maximum Deadlift Weight</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="Internal" xml:space="preserve">
+    <value>Internal</value>
+  </data>
+  <data name="Testing" xml:space="preserve">
+    <value>Testing</value>
+  </data>
+  <data name="WeakestDisciplinePoints" xml:space="preserve">
+    <value>Weakest Discipline Points</value>
+  </data>
+  <data name="StandingPowerThrow" xml:space="preserve">
+    <value>Standing Power Throw</value>
+  </data>
+  <data name="HandReleasePushup" xml:space="preserve">
+    <value>Hand Release Pushup</value>
+  </data>
+  <data name="SprintDragCarry" xml:space="preserve">
+    <value>Sprint Drag Carry</value>
+  </data>
+  <data name="LegTuck" xml:space="preserve">
+    <value>Leg Tuck</value>
+  </data>
+  <data name="TwoMileRun" xml:space="preserve">
+    <value>Two Mile Run</value>
+  </data>
+  <data name="BloodType" xml:space="preserve">
+    <value>Blood type</value>
+  </data>
+  <data name="Cooperation" xml:space="preserve">
+    <value>Cooperation</value>
+  </data>
+  <data name="OPositive" xml:space="preserve">
+    <value>0+</value>
+  </data>
+  <data name="APositive" xml:space="preserve">
+    <value>A+</value>
+  </data>
+  <data name="BPositive" xml:space="preserve">
+    <value>B+</value>
+  </data>
+  <data name="ABPositive" xml:space="preserve">
+    <value>AB+</value>
+  </data>
+  <data name="ABNegative" xml:space="preserve">
+    <value>AB-</value>
+  </data>
+  <data name="ANegative" xml:space="preserve">
+    <value>A-</value>
+  </data>
+  <data name="BNegative" xml:space="preserve">
+    <value>B-</value>
+  </data>
+  <data name="ONegative" xml:space="preserve">
+    <value>0-</value>
+  </data>
+  <data name="Match" xml:space="preserve">
+    <value>Match</value>
+  </data>
+  <data name="Hiking" xml:space="preserve">
+    <value>Hiking</value>
+  </data>
+  <data name="Combat" xml:space="preserve">
+    <value>Combat</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Camping" xml:space="preserve">
+    <value>Camping</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Trainings" xml:space="preserve">
+    <value>Trainings</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="JMBG" xml:space="preserve">
+    <value>JMBG</value>
+  </data>
+  <data name="Length3to15" xml:space="preserve">
+    <value>Length out of range (3 - 15)</value>
+  </data>
+  <data name="Length3to50" xml:space="preserve">
+    <value>Length out of range (3 - 50)</value>
+  </data>
+  <data name="PersonalIdMinLengthIs13" xml:space="preserve">
+    <value>Personal ID length is 13</value>
   </data>
 </root>

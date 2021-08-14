@@ -30,12 +30,16 @@ namespace Asker.Pages.Items
                 return NotFound();
             }
 
-            Item = await _context.Item.FirstOrDefaultAsync(m => m.Id == id);
+            Item = await _context.Item
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Item == null)
             {
                 return NotFound();
             }
+           ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
+           ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 

@@ -23,7 +23,9 @@ namespace Asker.Pages.Items
 
         public async Task OnGetAsync()
         {
-            Item = await _context.Item.ToListAsync();
+            Item = await _context.Item
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).ToListAsync();
         }
     }
 }

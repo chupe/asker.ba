@@ -23,7 +23,8 @@ namespace Asker.Pages.MembershipFees
 
         public async Task OnGetAsync()
         {
-            MembershipFee = await _context.MembershipFee.ToListAsync();
+            MembershipFee = await _context.MembershipFee
+                .Include(m => m.Member).ToListAsync();
         }
     }
 }

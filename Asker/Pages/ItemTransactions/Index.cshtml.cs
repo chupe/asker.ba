@@ -23,7 +23,9 @@ namespace Asker.Pages.ItemTransactions
 
         public async Task OnGetAsync()
         {
-            ItemTransaction = await _context.ItemTransaction.ToListAsync();
+            ItemTransaction = await _context.ItemTransaction
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).ToListAsync();
         }
     }
 }

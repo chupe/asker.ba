@@ -51,7 +51,8 @@ namespace Asker
                 app.UseHsts();
             }
 
-            var supportedCultures = new[] { "en-US", "bs-BA" };
+            var supportedCultures = new[] { "en-US" };
+            //, "bs-BA" };
             var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);

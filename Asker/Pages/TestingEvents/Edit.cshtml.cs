@@ -30,12 +30,14 @@ namespace Asker.Pages.TestingEvents
                 return NotFound();
             }
 
-            TestingEvent = await _context.TestingEvent.FirstOrDefaultAsync(m => m.Id == id);
+            TestingEvent = await _context.TestingEvent
+                .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
             if (TestingEvent == null)
             {
                 return NotFound();
             }
+           ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
             return Page();
         }
 

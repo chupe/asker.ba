@@ -14,6 +14,16 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="TestingResult.EventId" class="control-label"></label>
+                <select asp-for="TestingResult.EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                <span asp-validation-for="TestingResult.EventId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.MemberId" class="control-label"></label>
+                <select asp-for="TestingResult.MemberId" class="form-control" asp-items="ViewBag.MemberId"></select>
+                <span asp-validation-for="TestingResult.MemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="TestingResult.TotalScore" class="control-label"></label>
                 <input asp-for="TestingResult.TotalScore" class="form-control" />
                 <span asp-validation-for="TestingResult.TotalScore" class="text-danger"></span>

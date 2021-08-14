@@ -21,6 +21,7 @@ namespace Asker.Pages.Trainings
 
         public IActionResult OnGet()
         {
+        ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
             return Page();
         }
 

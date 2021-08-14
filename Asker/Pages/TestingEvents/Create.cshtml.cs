@@ -21,6 +21,7 @@ namespace Asker.Pages.TestingEvents
 
         public IActionResult OnGet()
         {
+        ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
             return Page();
         }
 

@@ -21,6 +21,8 @@ namespace Asker.Pages.TestingResults
 
         public IActionResult OnGet()
         {
+        ViewData["EventId"] = new SelectList(_context.TestingEvent, "Id", "Id");
+        ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 

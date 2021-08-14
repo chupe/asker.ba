@@ -21,6 +21,7 @@ namespace Asker.Pages.MembershipFees
 
         public IActionResult OnGet()
         {
+        ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 

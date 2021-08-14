@@ -30,12 +30,14 @@ namespace Asker.Pages.Trainings
                 return NotFound();
             }
 
-            Training = await _context.Training.FirstOrDefaultAsync(m => m.Id == id);
+            Training = await _context.Training
+                .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Training == null)
             {
                 return NotFound();
             }
+           ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
             return Page();
         }
 
