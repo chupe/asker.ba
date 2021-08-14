@@ -8,10 +8,7 @@ namespace Asker.Models
 {
     public class Member : EntityModel
     {
-        public Member() : base() 
-        {
-            Trainings = new HashSet<Training>();
-        }
+        public Member() : base() { }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]

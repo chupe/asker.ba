@@ -23,8 +23,7 @@ namespace Asker.Pages.ASquads
 
         public async Task OnGetAsync()
         {
-            ASquad = await _context.ASquad
-                .Include(a => a.Member).ToListAsync();
+            ASquad = await _context.ASquad.ToListAsync();
         }
     }
 }
