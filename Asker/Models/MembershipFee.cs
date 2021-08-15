@@ -17,9 +17,10 @@ namespace Asker.Models
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Amount))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "AmountRequired")]
-        [Range(1, 10000, ErrorMessageResourceName = "AmountOutOfRange")]
+        [Range(1, 10000, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "AmountOutOfRange")]
         [DataType(DataType.Currency)]
-        public int Amount { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public float Amount { get; set; }
 
         [ForeignKey("Member")]
         public Guid MemberId { get; set; }
