@@ -23,10 +23,11 @@ namespace Asker.Models
         public float Amount { get; set; }
 
         [ForeignKey("Member")]
+        [Required]
         public Guid MemberId { get; set; }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
+        // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
         public Member Member { get; set; }
     }
 }

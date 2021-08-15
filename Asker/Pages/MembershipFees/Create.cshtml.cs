@@ -31,6 +31,9 @@ namespace Asker.Pages.MembershipFees
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            Member member = await _context.Member.FindAsync(MembershipFee.MemberId);
+            MembershipFee.Member = member;
+
             if (!ModelState.IsValid)
             {
                 return Page();
