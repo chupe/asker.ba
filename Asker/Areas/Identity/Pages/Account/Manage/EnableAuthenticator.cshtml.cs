@@ -148,7 +148,7 @@ namespace Asker.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("Asker"),
+                _urlEncoder.Encode("Asker Tracker"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
