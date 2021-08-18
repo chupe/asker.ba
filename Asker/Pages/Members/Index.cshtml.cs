@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Asker.Data;
 using Asker.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Asker.Pages.Members
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly Asker.Data.ApplicationDbContext _context;
@@ -25,13 +27,8 @@ namespace Asker.Pages.Members
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
 
-        //public SelectList FullNames { get; set; }
-        //[BindProperty(SupportsGet = true)]
-        //public string MemberFullName { get; set; }
-
         public async Task OnGetAsync()
         {
-            // Use LINQ to get list of genres.
             IQueryable<string> nameQuery = from m in _context.Member
                                             orderby m.FullName
                                             select m.FullName;
@@ -44,11 +41,6 @@ namespace Asker.Pages.Members
                 members = members.Where(s => s.FullName.Contains(SearchString));
             }
 
-            //if (!string.IsNullOrEmpty(MemberFullName))
-            //{
-            //    members = members.Where(x => x.FullName == MemberFullName);
-            //}
-            //FullNames = new SelectList(await nameQuery.Distinct().ToListAsync());
             Member = await members.ToListAsync();
         }
     }
