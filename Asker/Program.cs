@@ -1,5 +1,5 @@
 using System;
-using Asker.Models.Seed;
+using AskerTracker.Models.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

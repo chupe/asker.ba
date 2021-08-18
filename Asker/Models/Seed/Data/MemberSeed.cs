@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asker.Types;
+using AskerTracker.Types;
 
-namespace Asker.Models.Seed.Data
+namespace AskerTracker.Models.Seed.Data
 {
     public static class MemberSeed
     {

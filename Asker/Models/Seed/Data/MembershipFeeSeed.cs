@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Asker.Common.Extensions;
-using Asker.Types;
+using AskerTracker.Common.Extensions;
+using AskerTracker.Types;
 
-namespace Asker.Models.Seed.Data
+namespace AskerTracker.Models.Seed.Data
 {
     public class MembershipFeesSeed
     {

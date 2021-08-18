@@ -1,4 +1,4 @@
-﻿namespace Asker.Models
+﻿namespace AskerTracker.Models
 {
     public class TestingEvent : EventModel
     {

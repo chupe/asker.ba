@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Asker.Data;
-using Asker.Models;
+using AskerTracker.Data;
+using AskerTracker.Models;
 
-namespace Asker.Pages.Members
+namespace AskerTracker.Pages.Members
 {
     public class DeleteModel : PageModel
     {
-        private readonly Asker.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DeleteModel(Asker.Data.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }

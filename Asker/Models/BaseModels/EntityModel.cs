@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public partial class EntityModel
     {

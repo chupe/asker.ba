@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Asker.Data;
-using Asker.Models;
+using AskerTracker.Data;
+using AskerTracker.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Asker.Pages.MembershipFees
+namespace AskerTracker.Pages.MembershipFees
 {
     public class IndexModel : PageModel
     {
-        private readonly Asker.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(Asker.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }

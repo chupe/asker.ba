@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Asker.Models.Scoring
+namespace AskerTracker.Models.Scoring
 {
     public class ScoringTable
     {

@@ -1,13 +1,13 @@
-﻿using Asker.Data;
-using Asker.Models;
-using Asker.Models.Seed.Data;
-using Asker.Types;
+﻿using AskerTracker.Data;
+using AskerTracker.Models;
+using AskerTracker.Models.Seed.Data;
+using AskerTracker.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-namespace Asker.Models.Seed
+namespace AskerTracker.Models.Seed
 {
     public static class InitializeSeed
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Asker.Common.Extensions
+namespace AskerTracker.Common.Extensions
 {
     public static class ListExtensions
     {

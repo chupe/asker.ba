@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Asker.Resources.Localization {
+namespace AskerTracker.Resources.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Asker.Resources.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Asker.Resources.Localization.UILocalization", typeof(UILocalization).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AskerTracker.Resources.Localization.UILocalization", typeof(UILocalization).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

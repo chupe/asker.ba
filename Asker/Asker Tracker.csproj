@@ -20,6 +20,8 @@
 
 	<PropertyGroup>
 		<ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
+		<AssemblyName>Asker Tracker</AssemblyName>
+		<RootNamespace>AskerTracker</RootNamespace>
 	</PropertyGroup>
 
 	<Target Name="RemoveIdentityAssets">

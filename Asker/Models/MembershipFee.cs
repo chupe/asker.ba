@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Asker.Resources.Localization;
+using AskerTracker.Resources.Localization;
 
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public class MembershipFee : EntityModel
     {

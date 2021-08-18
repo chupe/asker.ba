@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 
-namespace Asker.Pages
+namespace AskerTracker.Pages
 {
     public class AboutModel : PageModel
     {
