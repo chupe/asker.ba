@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Asker.Models.Scoring
+namespace AskerTracker.Models.Scoring
 {
     public class TmrScoring
     {

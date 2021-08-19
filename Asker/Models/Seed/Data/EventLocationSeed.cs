@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Asker.Models.Seed.Data
+namespace AskerTracker.Models.Seed.Data
 {
     public class EventLocationSeed
     {

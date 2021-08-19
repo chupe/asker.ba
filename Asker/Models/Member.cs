@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Asker.Resources.Localization;
-using Asker.Types;
+using AskerTracker.Resources.Localization;
+using AskerTracker.Types;
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public class Member : EntityModel
     {
-        public Member() : base() 
-        {
-            Trainings = new HashSet<Training>();
-        }
+        public Member() : base() { }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(FirstName))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "FirstNameRequired")]
@@ -57,9 +54,8 @@ namespace Asker.Models
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Active))]
         public bool Active { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Trainings))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingsRequired")]
-        public ICollection<Training> Trainings { get; set; }
+        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Transactions))]
+        public ICollection<MembershipFee> Fees { get; set; }
 
         private string jmbg;
 

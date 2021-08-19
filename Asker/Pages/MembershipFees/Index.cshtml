@@ -1,5 +1,7 @@
 ﻿@page
-@model Asker.Pages.MembershipFees.IndexModel
+@model AskerTracker.Pages.MembershipFees.IndexModel
+@System.Globalization.CultureInfo.CurrentUICulture
+
 
 @{
     ViewData["Title"] = "Index";
@@ -10,6 +12,16 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form>
+    <p>
+        <select asp-for="Member" asp-items="Model.Members">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,23 +38,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MembershipFee) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Member.FirstName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.MembershipFee)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Member.FirstName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

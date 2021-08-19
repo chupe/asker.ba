@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Asker.Data;
-using Asker.Models;
+using AskerTracker.Data;
+using AskerTracker.Models;
 
-namespace Asker.Pages.ASquads
+namespace AskerTracker.Pages.ASquads
 {
     public class IndexModel : PageModel
     {
-        private readonly Asker.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(Asker.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -23,8 +23,7 @@ namespace Asker.Pages.ASquads
 
         public async Task OnGetAsync()
         {
-            ASquad = await _context.ASquad
-                .Include(a => a.Member).ToListAsync();
+            ASquad = await _context.ASquad.ToListAsync();
         }
     }
 }

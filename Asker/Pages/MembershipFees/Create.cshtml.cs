@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Asker.Data;
-using Asker.Models;
+using AskerTracker.Data;
+using AskerTracker.Models;
 
-namespace Asker.Pages.MembershipFees
+namespace AskerTracker.Pages.MembershipFees
 {
     public class CreateModel : PageModel
     {
-        private readonly Asker.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CreateModel(Asker.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -31,6 +31,9 @@ namespace Asker.Pages.MembershipFees
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            Member member = await _context.Member.FindAsync(MembershipFee.MemberId);
+            MembershipFee.Member = member;
+
             if (!ModelState.IsValid)
             {
                 return Page();

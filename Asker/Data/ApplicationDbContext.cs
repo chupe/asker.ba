@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Asker.Models;
+using AskerTracker.Models;
 
-namespace Asker.Data
+namespace AskerTracker.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -10,14 +10,14 @@ namespace Asker.Data
             : base(options)
         {
         }
-        public DbSet<Asker.Models.Item> Item { get; set; }
-        public DbSet<Asker.Models.Member> Member { get; set; }
-        public DbSet<Asker.Models.MembershipFee> MembershipFee { get; set; }
-        public DbSet<Asker.Models.Training> Training { get; set; }
-        public DbSet<Asker.Models.TestingEvent> TestingEvent { get; set; }
-        public DbSet<Asker.Models.TestingResult> TestingResult { get; set; }
-        public DbSet<Asker.Models.EventLocation> EventLocation { get; set; }
-        public DbSet<Asker.Models.ItemTransaction> ItemTransaction { get; set; }
-        public DbSet<Asker.Models.ASquad> ASquad { get; set; }
+        public DbSet<Item> Item { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<MembershipFee> MembershipFee { get; set; }
+        public DbSet<Training> Training { get; set; }
+        public DbSet<TestingEvent> TestingEvent { get; set; }
+        public DbSet<TestingResult> TestingResult { get; set; }
+        public DbSet<EventLocation> EventLocation { get; set; }
+        public DbSet<ItemTransaction> ItemTransaction { get; set; }
+        public DbSet<ASquad> ASquad { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Asker.Resources.Localization;
-using Asker.Types;
+using AskerTracker.Resources.Localization;
+using AskerTracker.Types;
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public class Training : EventModel
     {

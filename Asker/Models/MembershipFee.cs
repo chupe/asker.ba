@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Asker.Resources.Localization;
+using AskerTracker.Resources.Localization;
 
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public class MembershipFee : EntityModel
     {
@@ -17,15 +17,17 @@ namespace Asker.Models
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Amount))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "AmountRequired")]
-        [Range(1, 10000, ErrorMessageResourceName = "AmountOutOfRange")]
+        [Range(1, 10000, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "AmountOutOfRange")]
         [DataType(DataType.Currency)]
-        public int Amount { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public float Amount { get; set; }
 
         [ForeignKey("Member")]
+        [Required]
         public Guid MemberId { get; set; }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
+        // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
         public Member Member { get; set; }
     }
 }

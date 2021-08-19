@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Asker.Resources.Localization;
+using AskerTracker.Resources.Localization;
 
-namespace Asker.Types
+namespace AskerTracker.Types
 {
     public enum TrainingType
     {

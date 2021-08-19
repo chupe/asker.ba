@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Asker.Types;
+using AskerTracker.Types;
 
-namespace Asker.Models.Seed.Data
+namespace AskerTracker.Models.Seed.Data
 {
     public class TestingResultSeed
     {
@@ -16,89 +16,89 @@ namespace Asker.Models.Seed.Data
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[0].Id,
-                    MaximumDeadliftWeight = 200,
-                    StandingPowerThrow = 7.8,
+                    MaximumDeadliftWeight = 340,
+                    StandingPowerThrow = 12.5,
                     HandReleasePushup = 60,
-                    SprintDragCarry = new TimeSpan(0, 2, 0),
-                    LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 18, 0)
+                    SprintDragCarry = new TimeSpan(0, 1, 33),
+                    LegTuck = 20,
+                    TwoMileRun = new TimeSpan(0, 13, 30)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[1].Id,
-                    MaximumDeadliftWeight = 220,
-                    StandingPowerThrow = 6.5,
-                    HandReleasePushup = 20,
+                    MaximumDeadliftWeight = 200,
+                    StandingPowerThrow = 8.0,
+                    HandReleasePushup = 30,
                     SprintDragCarry = new TimeSpan(0, 2, 10),
-                    LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 20, 0)
+                    LegTuck = 5,
+                    TwoMileRun = new TimeSpan(0, 18, 0)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[2].Id,
-                    MaximumDeadliftWeight = 240,
-                    StandingPowerThrow = 12,
-                    HandReleasePushup = 30,
-                    SprintDragCarry = new TimeSpan(0, 1, 50),
+                    MaximumDeadliftWeight = 180,
+                    StandingPowerThrow = 6.5,
+                    HandReleasePushup = 20,
+                    SprintDragCarry = new TimeSpan(0, 2, 30),
+                    LegTuck = 3,
+                    TwoMileRun = new TimeSpan(0, 19, 0)
+                },
+                new TestingResult
+                {
+                    EventId = TestingEventSeed.TestingIds[0],
+                    MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[3].Id,
+                    MaximumDeadliftWeight = 140,
+                    StandingPowerThrow = 4.5,
+                    HandReleasePushup = 10,
+                    SprintDragCarry = new TimeSpan(0, 3, 00),
                     LegTuck = 1,
                     TwoMileRun = new TimeSpan(0, 21, 0)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[0],
-                    MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[3].Id,
-                    MaximumDeadliftWeight = 340,
-                    StandingPowerThrow = 4.5,
-                    HandReleasePushup = 25,
-                    SprintDragCarry = new TimeSpan(0, 1, 33),
-                    LegTuck = 7,
-                    TwoMileRun = new TimeSpan(0, 17, 0)
-                },
-                new TestingResult
-                {
-                    EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[4].Id,
-                    MaximumDeadliftWeight = 280,
-                    StandingPowerThrow = 9.9,
-                    HandReleasePushup = 30,
-                    SprintDragCarry = new TimeSpan(0, 1, 45),
+                    MaximumDeadliftWeight = 130,
+                    StandingPowerThrow = 4.3,
+                    HandReleasePushup = 8,
+                    SprintDragCarry = new TimeSpan(0, 3, 10),
                     LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 16, 22)
+                    TwoMileRun = new TimeSpan(0, 21, 18)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[5].Id,
-                    MaximumDeadliftWeight = 210,
-                    StandingPowerThrow = 5,
-                    HandReleasePushup = 60,
-                    SprintDragCarry = new TimeSpan(0, 2, 0),
-                    LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 18, 0)
+                    MaximumDeadliftWeight = 90,
+                    StandingPowerThrow = 3.5,
+                    HandReleasePushup = 1,
+                    SprintDragCarry = new TimeSpan(0, 3, 30),
+                    LegTuck = 1,
+                    TwoMileRun = new TimeSpan(0, 22, 30)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[1],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[0].Id,
-                    MaximumDeadliftWeight = 200,
-                    StandingPowerThrow = 7.8,
-                    HandReleasePushup = 60,
-                    SprintDragCarry = new TimeSpan(0, 2, 0),
-                    LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 18, 0)
+                    MaximumDeadliftWeight = 201,
+                    StandingPowerThrow = 8.1,
+                    HandReleasePushup = 31,
+                    SprintDragCarry = new TimeSpan(0, 2, 09),
+                    LegTuck = 6,
+                    TwoMileRun = new TimeSpan(0, 17, 58)
                 },
                 new TestingResult
                 {
                     EventId = TestingEventSeed.TestingIds[1],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[1].Id,
-                    MaximumDeadliftWeight = 200,
-                    StandingPowerThrow = 7.8,
-                    HandReleasePushup = 60,
-                    SprintDragCarry = new TimeSpan(0, 2, 0),
-                    LegTuck = 10,
-                    TwoMileRun = new TimeSpan(0, 18, 0)
+                    MaximumDeadliftWeight = 339,
+                    StandingPowerThrow = 12.4,
+                    HandReleasePushup = 59,
+                    SprintDragCarry = new TimeSpan(0, 1, 36),
+                    LegTuck = 19,
+                    TwoMileRun = new TimeSpan(0, 13, 32)
                 },
             };
         }

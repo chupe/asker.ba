@@ -1,12 +1,24 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Asker.Data.Migrations
+namespace AskerTracker.Data.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ASquad",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ASquad", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "EventLocation",
                 columns: table => new
@@ -78,42 +90,30 @@ namespace Asker.Data.Migrations
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     JMBG = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ASquadId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TestingEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    TrainingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Member", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Member_ASquad_ASquadId",
+                        column: x => x.ASquadId,
+                        principalTable: "ASquad",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Member_TestingEvent_TestingEventId",
                         column: x => x.TestingEventId,
                         principalTable: "TestingEvent",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ASquad",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MemberId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TestingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ASquad", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ASquad_Member_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "Member",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ASquad_TestingEvent_TestingId",
-                        column: x => x.TestingId,
-                        principalTable: "TestingEvent",
+                        name: "FK_Member_Training_TrainingId",
+                        column: x => x.TrainingId,
+                        principalTable: "Training",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -186,7 +186,7 @@ namespace Asker.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MemberId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -197,30 +197,6 @@ namespace Asker.Data.Migrations
                         name: "FK_MembershipFee_Member_MemberId",
                         column: x => x.MemberId,
                         principalTable: "Member",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MemberTraining",
-                columns: table => new
-                {
-                    ParticipantsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TrainingsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MemberTraining", x => new { x.ParticipantsId, x.TrainingsId });
-                    table.ForeignKey(
-                        name: "FK_MemberTraining_Member_ParticipantsId",
-                        column: x => x.ParticipantsId,
-                        principalTable: "Member",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MemberTraining_Training_TrainingsId",
-                        column: x => x.TrainingsId,
-                        principalTable: "Training",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -259,16 +235,6 @@ namespace Asker.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ASquad_MemberId",
-                table: "ASquad",
-                column: "MemberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ASquad_TestingId",
-                table: "ASquad",
-                column: "TestingId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Item_LenderId",
                 table: "Item",
                 column: "LenderId");
@@ -289,19 +255,24 @@ namespace Asker.Data.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Member_ASquadId",
+                table: "Member",
+                column: "ASquadId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Member_TestingEventId",
                 table: "Member",
                 column: "TestingEventId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Member_TrainingId",
+                table: "Member",
+                column: "TrainingId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MembershipFee_MemberId",
                 table: "MembershipFee",
                 column: "MemberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MemberTraining_TrainingsId",
-                table: "MemberTraining",
-                column: "TrainingsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TestingEvent_LocationId",
@@ -327,9 +298,6 @@ namespace Asker.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ASquad");
-
-            migrationBuilder.DropTable(
                 name: "Item");
 
             migrationBuilder.DropTable(
@@ -339,19 +307,19 @@ namespace Asker.Data.Migrations
                 name: "MembershipFee");
 
             migrationBuilder.DropTable(
-                name: "MemberTraining");
-
-            migrationBuilder.DropTable(
                 name: "TestingResult");
-
-            migrationBuilder.DropTable(
-                name: "Training");
 
             migrationBuilder.DropTable(
                 name: "Member");
 
             migrationBuilder.DropTable(
+                name: "ASquad");
+
+            migrationBuilder.DropTable(
                 name: "TestingEvent");
+
+            migrationBuilder.DropTable(
+                name: "Training");
 
             migrationBuilder.DropTable(
                 name: "EventLocation");

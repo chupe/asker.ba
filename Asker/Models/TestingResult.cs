@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Asker.Models.Scoring;
-using Asker.Resources.Localization;
+using AskerTracker.Models.Scoring;
+using AskerTracker.Resources.Localization;
 
 
-namespace Asker.Models
+namespace AskerTracker.Models
 {
     public class TestingResult : EntityModel
     {
