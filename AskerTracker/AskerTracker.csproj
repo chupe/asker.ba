@@ -5,6 +5,19 @@
 		<UserSecretsId>aspnet-Asker-E0DEDCDC-BEF9-4367-9F66-6E5A19C56469</UserSecretsId>
 		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+		<Win32Resource />
+		<Version>0.1.0</Version>
+		<Authors>chupe</Authors>
+		<Company>Asker Airsoft Team</Company>
+		<PackageProjectUrl>asker.chupe.ba</PackageProjectUrl>
+		<PackageIcon>asker_logo_background.png</PackageIcon>
+		<PackageIconUrl />
+		<RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,21 +34,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Resources\UILocalization.bs.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>UILocalization.bs.resx</DependentUpon>
+		<Compile Update="Properties\Resources.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Resources\Localization\UILocalization.bs.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>UILocalization.bs.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Update="Resources\Localization\UILocalization.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -44,10 +47,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\Localization\UILocalization.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>UILocalization.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\..\Downloads\asker_logo_background.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
