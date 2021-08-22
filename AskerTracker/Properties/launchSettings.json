@@ -20,6 +20,7 @@
             "commandName": "Project",
             "launchBrowser": false,
             "environmentVariables": {
+                "ASKER_DBCONNECTION": "Server=tcp:AskerSQL.database.windows.net,1433;Database=coreDB;User ID=chupe;Password=askerMssql123!;Encrypt=true;Connection Timeout=30;MultipleActiveResultSets=true",
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
             },
