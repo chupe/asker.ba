@@ -16,7 +16,7 @@
                 "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
             }
         },
-        "Asker": {
+        "AskerTracker": {
             "commandName": "Project",
             "launchBrowser": false,
             "environmentVariables": {

@@ -28,9 +28,13 @@ namespace Asker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var envDbString = Environment.GetEnvironmentVariable("DBCONNECTION");
+            var configDbString = Configuration.GetConnectionString("AzureDB");
+            var connectionString = String.IsNullOrEmpty(envDbString) ? configDbString : envDbString;
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("AzureDB")));
+                options.UseSqlServer(connectionString
+                ));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
