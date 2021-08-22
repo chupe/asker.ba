@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
+using AskerTracker.Common;
 
 namespace Asker
 {
@@ -28,9 +30,7 @@ namespace Asker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var envDbString = Environment.GetEnvironmentVariable("ASKER_DBCONNECTION");
-            var configDbString = Configuration.GetConnectionString("AzureDB");
-            var connectionString = String.IsNullOrEmpty(envDbString) ? configDbString : envDbString;
+            string connectionString = new Helpers(Configuration).GetConnectionString();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString
