@@ -17,34 +17,22 @@ namespace AskerTracker.Models.Seed
                 serviceProvider.GetRequiredService<
                     DbContextOptions<ApplicationDbContext>>()))
             {
-                if (context.Member.Any())
-                    return;
-                else
+                if (!context.Member.Any())
                     context.Member.AddRange(MemberSeed.Entries);
 
-                if (context.Item.Any())
-                    return;
-                else
+                if (!context.Item.Any())
                     context.Item.AddRange(ItemSeed.Entries);
 
-                if (context.EventLocation.Any())
-                    return;
-                else
+                if (!context.EventLocation.Any())
                     context.EventLocation.AddRange(EventLocationSeed.Entries);
 
-                if (context.Training.Any())
-                    return;
-                else
+                if (!context.Training.Any())
                     context.Training.AddRange(TrainingSeed.Entries());
 
-                if (context.TestingEvent.Any())
-                    return;
-                else
+                if (!context.TestingEvent.Any())
                     context.TestingEvent.AddRange(TestingEventSeed.Entries());
 
-                if (context.TestingResult.Any())
-                    return;
-                else
+                if (!context.TestingResult.Any())
                     context.TestingResult.AddRange(TestingResultSeed.Entries());
 
                 context.SaveChanges();

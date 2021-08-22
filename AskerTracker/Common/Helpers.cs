@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Asker;
 using AskerTracker.Models.Seed;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +16,7 @@ namespace AskerTracker.Common
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private static IConfiguration Configuration { get; set; }
 
         public static void SeedDb(IHost host)
         {
@@ -38,7 +36,7 @@ namespace AskerTracker.Common
             }
         }
 
-        public string GetConnectionString()
+        public static string GetConnectionString()
         {
             string connectionString = "";
             List<string> connectionSources = new() { };
