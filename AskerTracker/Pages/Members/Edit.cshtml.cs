@@ -8,20 +8,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AskerTracker.Data;
 using AskerTracker.Models;
+using AskerTracker.Types;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace AskerTracker.Pages.Members
 {
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHtmlHelper _htmlHelper;
 
-        public EditModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context, IHtmlHelper htmlHelper)
         {
             _context = context;
+            _htmlHelper = htmlHelper;
         }
 
         [BindProperty]
         public Member Member { get; set; }
+        public IEnumerable<SelectListItem> BloodType { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -31,6 +36,7 @@ namespace AskerTracker.Pages.Members
             }
 
             Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            BloodType = _htmlHelper.GetEnumSelectList<BloodType>();
 
             if (Member == null)
             {
