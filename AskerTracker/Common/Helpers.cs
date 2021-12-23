@@ -41,10 +41,10 @@ namespace AskerTracker.Common
             string connectionString = "";
             List<string> connectionSources = new() { };
 
+            connectionSources.Add(Configuration.GetConnectionString("DefaultConnection"));
             connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.User));
             connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Machine));
             connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Process));
-            connectionSources.Add(Configuration.GetConnectionString("AzureDB"));
 
             foreach (var source in connectionSources)
             {

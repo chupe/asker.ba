@@ -33,7 +33,7 @@ namespace Asker
             string connectionString = Helpers.GetConnectionString();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
