@@ -1,7 +1,0 @@
-ARG SECRET
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
-ENV ASKER_DBCONNECTION=$SECRET
-EXPOSE 80
-EXPOSE 443
-COPY publish/ app/
-ENTRYPOINT ["dotnet", "AskerTracker.dll"]
