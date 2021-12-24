@@ -39,21 +39,12 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Resources\Localization\UILocalization.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>UILocalization.resx</DependentUpon>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Localization\UILocalization.resx">
-			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>UILocalization.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
@@ -62,6 +53,15 @@
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Data" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\AskerTracker.Core\AskerTracker.Core.csproj" />
+	  <ProjectReference Include="..\AskerTracker.Data\AskerTracker.Data.csproj" />
 	</ItemGroup>
 
 </Project>

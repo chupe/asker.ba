@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Core;
+using AskerTracker.Core.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AskerTracker.Data;
-using AskerTracker.Models;
-using AskerTracker.Types;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace AskerTracker.Pages.Members
 {

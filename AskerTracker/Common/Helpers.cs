@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asker;
-using AskerTracker.Models.Seed;
+using AskerTracker.Data.Seed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
