@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace AskerTracker.Core.Scoring
 {
-    public class ScoringTable
+    public static class ScoringTable
     {
-        public static SortedDictionary<int, int> MdlScoringTable = new()
+        public static readonly SortedDictionary<int, int> MdlScoringTable = new()
         {
             {80, 0},
             {90, 10},
@@ -36,7 +36,7 @@ namespace AskerTracker.Core.Scoring
             {340, 100}
         };
 
-        public static SortedDictionary<double, int> SptScoringTable = new()
+        public static readonly SortedDictionary<double, int> SptScoringTable = new()
         {
             {3.3, 0},
             {3.4, 5},
@@ -93,7 +93,7 @@ namespace AskerTracker.Core.Scoring
             {12.5, 100}
         };
 
-        public static SortedDictionary<int, int> HrpScoringTable = new()
+        public static readonly SortedDictionary<int, int> HrpScoringTable = new()
         {
             {1, 15},
             {2, 20},
@@ -147,7 +147,7 @@ namespace AskerTracker.Core.Scoring
             {60, 100}
         };
 
-        public static SortedDictionary<TimeSpan, int> SdcScoringTable = new()
+        public static readonly SortedDictionary<TimeSpan, int> SdcScoringTable = new()
         {
             {new TimeSpan(0, 1, 33), 100},
             {new TimeSpan(0, 1, 36), 99},
@@ -227,7 +227,7 @@ namespace AskerTracker.Core.Scoring
             {new TimeSpan(0, 3, 35), 0}
         };
 
-        public static SortedDictionary<int, int> LtkScoringTable = new()
+        public static readonly SortedDictionary<int, int> LtkScoringTable = new()
         {
             {0, 0},
             {1, 60},
@@ -252,7 +252,7 @@ namespace AskerTracker.Core.Scoring
             {20, 100}
         };
 
-        public static SortedDictionary<TimeSpan, int> TmrScoringTable = new()
+        public static readonly SortedDictionary<TimeSpan, int> TmrScoringTable = new()
         {
             {new TimeSpan(0, 13, 30), 100},
             {new TimeSpan(0, 13, 39), 99},

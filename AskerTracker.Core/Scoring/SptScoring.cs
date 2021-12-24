@@ -1,6 +1,6 @@
 ﻿namespace AskerTracker.Core.Scoring
 {
-    public class SptScoring
+    public static class SptScoring
     {
         public static int GetScore(double count)
         {

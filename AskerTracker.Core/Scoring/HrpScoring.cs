@@ -1,6 +1,6 @@
 ﻿namespace AskerTracker.Core.Scoring
 {
-    public class HrpScoring
+    public static class HrpScoring
     {
         public static int GetScore(int count)
         {

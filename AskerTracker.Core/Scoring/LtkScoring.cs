@@ -1,6 +1,6 @@
 ﻿namespace AskerTracker.Core.Scoring
 {
-    public class LtkScoring
+    public static class LtkScoring
     {
         public static int GetScore(int count)
         {

@@ -2,7 +2,7 @@
 
 namespace AskerTracker.Core.Scoring
 {
-    public class TmrScoring
+    public static class TmrScoring
     {
         public static int GetScore(TimeSpan count)
         {

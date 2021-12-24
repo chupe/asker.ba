@@ -1,6 +1,6 @@
 ﻿namespace AskerTracker.Core.Scoring
 {
-    public class MdlScoring
+    public static class MdlScoring
     {
         public static int GetScore(int count)
         {
