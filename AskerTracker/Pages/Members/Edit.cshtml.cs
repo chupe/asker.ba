@@ -25,14 +25,13 @@ namespace AskerTracker.Pages.Members
 
         [BindProperty] public Member Member { get; set; }
 
-        public IEnumerable<SelectListItem> BloodType { get; set; }
+        public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null) return NotFound();
 
             Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
-            BloodType = _htmlHelper.GetEnumSelectList<BloodType>();
 
             if (Member == null) return NotFound();
             return Page();
@@ -57,6 +56,7 @@ namespace AskerTracker.Pages.Members
                 throw;
             }
 
+            TempData["Message"] = "Saved successfully!";
             return RedirectToPage("./Index");
         }
 

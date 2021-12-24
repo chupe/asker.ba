@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-info">Create New</a>
 </p>
 
 <form>
@@ -17,6 +17,13 @@
         <input type="submit" value="Filter"/>
     </p>
 </form>
+
+@if (Model.Message != null)
+{
+    <div>
+        <span class="alert alert-info btn-block">@Model.Message</span>
+    </div>
+}
 
 <table class="table">
     <thead>

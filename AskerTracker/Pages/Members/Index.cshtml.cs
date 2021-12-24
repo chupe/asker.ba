@@ -20,6 +20,8 @@ namespace AskerTracker.Pages.Members
             _context = context;
         }
 
+        [TempData]
+        public string Message { get; set; }
         public IList<Member> Member { get; set; }
 
         [BindProperty(SupportsGet = true)] public string SearchString { get; set; }
