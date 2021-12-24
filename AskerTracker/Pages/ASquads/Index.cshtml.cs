@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.ASquads
 {
@@ -16,7 +16,7 @@ namespace AskerTracker.Pages.ASquads
             _context = context;
         }
 
-        public IList<ASquad> ASquad { get;set; }
+        public IList<ASquad> ASquad { get; set; }
 
         public async Task OnGetAsync()
         {

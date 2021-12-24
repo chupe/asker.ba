@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.MembershipFees
 {
@@ -16,25 +16,21 @@ namespace AskerTracker.Pages.MembershipFees
             _context = context;
         }
 
+        [BindProperty] public MembershipFee MembershipFee { get; set; }
+
         public IActionResult OnGet()
         {
-        ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
-
-        [BindProperty]
-        public MembershipFee MembershipFee { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            Member member = await _context.Member.FindAsync(MembershipFee.MemberId);
+            var member = await _context.Member.FindAsync(MembershipFee.MemberId);
             MembershipFee.Member = member;
 
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.MembershipFee.Add(MembershipFee);
             await _context.SaveChangesAsync();

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.Items
 {
@@ -19,26 +19,19 @@ namespace AskerTracker.Pages.Items
             _context = context;
         }
 
-        [BindProperty]
-        public Item Item { get; set; }
+        [BindProperty] public Item Item { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Item = await _context.Item
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Item == null)
-            {
-                return NotFound();
-            }
-           ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
-           ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
+            if (Item == null) return NotFound();
+            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 
@@ -46,10 +39,7 @@ namespace AskerTracker.Pages.Items
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(Item).State = EntityState.Modified;
 
@@ -60,13 +50,8 @@ namespace AskerTracker.Pages.Items
             catch (DbUpdateConcurrencyException)
             {
                 if (!ItemExists(Item.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

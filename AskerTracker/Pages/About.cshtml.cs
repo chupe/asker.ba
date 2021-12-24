@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AskerTracker.Pages
 {

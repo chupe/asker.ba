@@ -6,19 +6,18 @@
         {
             var scoringTable = ScoringTable.HrpScoringTable;
 
-            int temp = 0;
+            var temp = 0;
             foreach (var key in scoringTable.Keys)
-            {
                 if (key <= count)
                 {
                     temp = key;
-                    continue;
                 }
                 else
+                {
                     break;
-            }
+                }
 
-            scoringTable.TryGetValue(temp, out int value);
+            scoringTable.TryGetValue(temp, out var value);
             return value;
         }
     }

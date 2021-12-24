@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.TestingEvents
 {
@@ -19,24 +19,17 @@ namespace AskerTracker.Pages.TestingEvents
             _context = context;
         }
 
-        [BindProperty]
-        public TestingEvent TestingEvent { get; set; }
+        [BindProperty] public TestingEvent TestingEvent { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             TestingEvent = await _context.TestingEvent
                 .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (TestingEvent == null)
-            {
-                return NotFound();
-            }
-           ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
+            if (TestingEvent == null) return NotFound();
+            ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
             return Page();
         }
 
@@ -44,10 +37,7 @@ namespace AskerTracker.Pages.TestingEvents
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(TestingEvent).State = EntityState.Modified;
 
@@ -58,13 +48,8 @@ namespace AskerTracker.Pages.TestingEvents
             catch (DbUpdateConcurrencyException)
             {
                 if (!TestingEventExists(TestingEvent.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

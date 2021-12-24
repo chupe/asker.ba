@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.ItemTransactions
 {
@@ -17,33 +17,23 @@ namespace AskerTracker.Pages.ItemTransactions
             _context = context;
         }
 
-        [BindProperty]
-        public ItemTransaction ItemTransaction { get; set; }
+        [BindProperty] public ItemTransaction ItemTransaction { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             ItemTransaction = await _context.ItemTransaction
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ItemTransaction == null)
-            {
-                return NotFound();
-            }
+            if (ItemTransaction == null) return NotFound();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             ItemTransaction = await _context.ItemTransaction.FindAsync(id);
 

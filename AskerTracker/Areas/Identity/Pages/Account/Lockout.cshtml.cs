@@ -8,7 +8,6 @@ namespace AskerTracker.Areas.Identity.Pages.Account
     {
         public void OnGet()
         {
-
         }
     }
 }

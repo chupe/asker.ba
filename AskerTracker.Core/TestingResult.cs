@@ -10,19 +10,27 @@ namespace AskerTracker.Core
 {
     public class TestingResult : EntityModel
     {
-        public TestingResult() : base() { }
+        [ScaffoldColumn(false)] private int? hrpPoints;
 
-        [ForeignKey("Event")]
-        public Guid EventId { get; set; }
+        [ScaffoldColumn(false)] private int? ltkPoints;
+
+        [ScaffoldColumn(false)] private int? mdlPoints;
+
+        private Member member;
+
+        [ScaffoldColumn(false)] private int? sdcPoints;
+
+        [ScaffoldColumn(false)] private int? sptPoints;
+
+        [ScaffoldColumn(false)] private int? tmrPoints;
+
+        [ForeignKey("Event")] public Guid EventId { get; set; }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Event))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
         public TestingEvent Event { get; set; }
 
-        private Member member;
-
-        [ForeignKey("Member")]
-        public Guid MemberId { get; set; }
+        [ForeignKey("Member")] public Guid MemberId { get; set; }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
@@ -33,13 +41,16 @@ namespace AskerTracker.Core
             {
                 if (!Event.Participants.Contains(value))
                     throw new Exception("Member not found in the list of event participants");
-                else
-                    member = value;
+                member = value;
             }
         }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
-        public int TotalScore { get => CalculateTotal(); private set { } }
+        public int TotalScore
+        {
+            get => CalculateTotal();
+            private set { }
+        }
 
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
@@ -47,7 +58,8 @@ namespace AskerTracker.Core
         {
             get
             {
-                var disciplines = new List<int>() {
+                var disciplines = new List<int>
+                {
                     mdlPoints.GetValueOrDefault(),
                     sptPoints.GetValueOrDefault(),
                     hrpPoints.GetValueOrDefault(),
@@ -84,27 +96,9 @@ namespace AskerTracker.Core
         [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
         public TimeSpan TwoMileRun { get; set; }
 
-        [ScaffoldColumn(false)]
-        private int? mdlPoints;
-
-        [ScaffoldColumn(false)]
-        private int? sptPoints;
-
-        [ScaffoldColumn(false)]
-        private int? hrpPoints;
-
-        [ScaffoldColumn(false)]
-        private int? sdcPoints;
-
-        [ScaffoldColumn(false)]
-        private int? ltkPoints;
-
-        [ScaffoldColumn(false)]
-        private int? tmrPoints;
-
         public List<int?> GetPoints()
         {
-            return new()
+            return new List<int?>
             {
                 mdlPoints,
                 sptPoints,
@@ -118,19 +112,14 @@ namespace AskerTracker.Core
         public int CalculateTotal()
         {
             foreach (var pts in GetPoints())
-            {
                 if (!pts.HasValue)
                 {
                     CalculatePoints();
                     break;
                 }
-            }
 
-            int total = 0;
-            foreach (var pts in GetPoints())
-            {
-                total += pts.GetValueOrDefault();
-            }
+            var total = 0;
+            foreach (var pts in GetPoints()) total += pts.GetValueOrDefault();
 
             return total;
         }

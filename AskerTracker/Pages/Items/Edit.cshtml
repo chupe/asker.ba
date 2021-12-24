@@ -8,24 +8,24 @@
 <h1>Edit</h1>
 
 <h4>Item</h4>
-<hr />
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Item.Name" class="control-label"></label>
-                <input asp-for="Item.Name" class="form-control" />
+                <input asp-for="Item.Name" class="form-control"/>
                 <span asp-validation-for="Item.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Item.Description" class="control-label"></label>
-                <input asp-for="Item.Description" class="form-control" />
+                <input asp-for="Item.Description" class="form-control"/>
                 <span asp-validation-for="Item.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Item.Amount" class="control-label"></label>
-                <input asp-for="Item.Amount" class="form-control" />
+                <input asp-for="Item.Amount" class="form-control"/>
                 <span asp-validation-for="Item.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Item.Value" class="control-label"></label>
-                <input asp-for="Item.Value" class="form-control" />
+                <input asp-for="Item.Value" class="form-control"/>
                 <span asp-validation-for="Item.Value" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,12 +50,12 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Item.IsTeamProperty" /> @Html.DisplayNameFor(model => model.Item.IsTeamProperty)
+                    <input class="form-check-input" asp-for="Item.IsTeamProperty"/> @Html.DisplayNameFor(model => model.Item.IsTeamProperty)
                 </label>
             </div>
-            <input type="hidden" asp-for="Item.Id" />
+            <input type="hidden" asp-for="Item.Id"/>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>
     </div>
@@ -66,5 +66,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

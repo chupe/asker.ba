@@ -1,52 +1,52 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<UserSecretsId>aspnet-Asker-E0DEDCDC-BEF9-4367-9F66-6E5A19C56469</UserSecretsId>
-		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
-		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
-		<Win32Resource />
-		<Version>0.1.0</Version>
-		<Authors>chupe</Authors>
-		<Company>Asker Airsoft Team</Company>
-		<PackageProjectUrl>asker.chupe.ba</PackageProjectUrl>
-		<PackageIcon>asker_logo_background.png</PackageIcon>
-		<PackageIconUrl />
-		<RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <UserSecretsId>aspnet-Asker-E0DEDCDC-BEF9-4367-9F66-6E5A19C56469</UserSecretsId>
+        <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+        <Win32Resource/>
+        <Version>0.1.0</Version>
+        <Authors>chupe</Authors>
+        <Company>Asker Airsoft Team</Company>
+        <PackageProjectUrl>asker.chupe.ba</PackageProjectUrl>
+        <PackageIcon>asker_logo_background.png</PackageIcon>
+        <PackageIconUrl/>
+        <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <PlatformTarget>x64</PlatformTarget>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="MailKit" Version="2.15.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-		<PackageReference Include="MimeKit" Version="2.15.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MailKit" Version="2.15.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2"/>
+        <PackageReference Include="MimeKit" Version="2.15.0"/>
+    </ItemGroup>
 
-	<ItemGroup>
-	  <None Include="..\..\..\..\Downloads\asker_logo_background.png">
-	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
-	  </None>
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\..\Downloads\asker_logo_background.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Data" />
-	</ItemGroup>
+    <ItemGroup>
+        <Folder Include="Data"/>
+    </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\AskerTracker.Core\AskerTracker.Core.csproj" />
-	  <ProjectReference Include="..\AskerTracker.Data\AskerTracker.Data.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\AskerTracker.Core\AskerTracker.Core.csproj"/>
+        <ProjectReference Include="..\AskerTracker.Data\AskerTracker.Data.csproj"/>
+    </ItemGroup>
 
 </Project>

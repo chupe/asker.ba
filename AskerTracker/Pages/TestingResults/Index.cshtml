@@ -12,39 +12,40 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].Event)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].Member)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].TotalScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].MaximumDeadliftWeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].StandingPowerThrow)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].HandReleasePushup)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].SprintDragCarry)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].LegTuck)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TestingResult[0].TwoMileRun)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].Event)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].Member)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].TotalScore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].MaximumDeadliftWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].StandingPowerThrow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].HandReleasePushup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].SprintDragCarry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].LegTuck)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingResult[0].TwoMileRun)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TestingResult) {
+    @foreach (var item in Model.TestingResult)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Event.Id)
@@ -79,6 +80,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

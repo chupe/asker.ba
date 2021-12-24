@@ -9,7 +9,7 @@ namespace AskerTracker.Data.Seed.Data
     {
         public static List<TestingResult> Entries()
         {
-            return new()
+            return new List<TestingResult>
             {
                 new TestingResult
                 {
@@ -98,7 +98,7 @@ namespace AskerTracker.Data.Seed.Data
                     SprintDragCarry = new TimeSpan(0, 1, 36),
                     LegTuck = 19,
                     TwoMileRun = new TimeSpan(0, 13, 32)
-                },
+                }
             };
         }
     }

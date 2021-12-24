@@ -12,6 +12,7 @@ namespace AskerTracker.Services.Mail
     public class MailService : IEmailSender
     {
         private readonly MailSettings _mailSettings;
+
         public MailService(IOptions<MailSettings> mailSettings)
         {
             _mailSettings = mailSettings.Value;
@@ -19,7 +20,7 @@ namespace AskerTracker.Services.Mail
 
         public async Task SendEmailAsync(string eMail, string subject, string htmlMessage)
         {
-            MailRequest mailRequest = new MailRequest()
+            var mailRequest = new MailRequest
             {
                 ToEmail = eMail,
                 Subject = subject,
@@ -35,7 +36,6 @@ namespace AskerTracker.Services.Mail
             {
                 byte[] fileBytes;
                 foreach (var file in mailRequest.Attachments)
-                {
                     if (file.Length > 0)
                     {
                         using (var ms = new MemoryStream())
@@ -43,10 +43,11 @@ namespace AskerTracker.Services.Mail
                             file.CopyTo(ms);
                             fileBytes = ms.ToArray();
                         }
+
                         builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
                     }
-                }
             }
+
             builder.HtmlBody = mailRequest.Body;
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();

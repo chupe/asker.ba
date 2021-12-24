@@ -2,7 +2,6 @@
 {
     public enum TrainingType
     {
-
         // [Display(ResourceType = typeof(UILocalization), Name = "Internal")]
 
         Internal,

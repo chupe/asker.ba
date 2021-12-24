@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.EventLocations
 {
@@ -18,22 +18,15 @@ namespace AskerTracker.Pages.EventLocations
             _context = context;
         }
 
-        [BindProperty]
-        public EventLocation EventLocation { get; set; }
+        [BindProperty] public EventLocation EventLocation { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             EventLocation = await _context.EventLocation.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (EventLocation == null)
-            {
-                return NotFound();
-            }
+            if (EventLocation == null) return NotFound();
             return Page();
         }
 
@@ -41,10 +34,7 @@ namespace AskerTracker.Pages.EventLocations
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(EventLocation).State = EntityState.Modified;
 
@@ -55,13 +45,8 @@ namespace AskerTracker.Pages.EventLocations
             catch (DbUpdateConcurrencyException)
             {
                 if (!EventLocationExists(EventLocation.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

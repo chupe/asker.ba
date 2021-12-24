@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.Items
 {
@@ -21,19 +21,13 @@ namespace AskerTracker.Pages.Items
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Item = await _context.Item
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Item == null)
-            {
-                return NotFound();
-            }
+            if (Item == null) return NotFound();
             return Page();
         }
     }

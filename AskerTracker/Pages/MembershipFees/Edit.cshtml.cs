@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.MembershipFees
 {
@@ -19,24 +19,17 @@ namespace AskerTracker.Pages.MembershipFees
             _context = context;
         }
 
-        [BindProperty]
-        public MembershipFee MembershipFee { get; set; }
+        [BindProperty] public MembershipFee MembershipFee { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             MembershipFee = await _context.MembershipFee
                 .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (MembershipFee == null)
-            {
-                return NotFound();
-            }
-           ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
+            if (MembershipFee == null) return NotFound();
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 
@@ -44,10 +37,7 @@ namespace AskerTracker.Pages.MembershipFees
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(MembershipFee).State = EntityState.Modified;
 
@@ -58,13 +48,8 @@ namespace AskerTracker.Pages.MembershipFees
             catch (DbUpdateConcurrencyException)
             {
                 if (!MembershipFeeExists(MembershipFee.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

@@ -10,6 +10,7 @@ namespace AskerTracker.Data
             : base(options)
         {
         }
+
         public DbSet<Item> Item { get; set; }
         public DbSet<Member> Member { get; set; }
         public DbSet<MembershipFee> MembershipFee { get; set; }

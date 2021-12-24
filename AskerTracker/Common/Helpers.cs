@@ -37,17 +37,20 @@ namespace AskerTracker.Common
 
         public static string GetConnectionString()
         {
-            string connectionString = "";
-            List<string> connectionSources = new() { };
+            var connectionString = "";
+            List<string> connectionSources = new();
 
             connectionSources.Add(Configuration.GetConnectionString("DefaultConnection"));
-            connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.User));
-            connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Machine));
-            connectionSources.Add(Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Process));
+            connectionSources.Add(
+                Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.User));
+            connectionSources.Add(
+                Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Machine));
+            connectionSources.Add(
+                Environment.GetEnvironmentVariable("ASKER_DBCONNECTION", EnvironmentVariableTarget.Process));
 
             foreach (var source in connectionSources)
             {
-                if (String.IsNullOrEmpty(source))
+                if (string.IsNullOrEmpty(source))
                     continue;
 
                 connectionString = source;

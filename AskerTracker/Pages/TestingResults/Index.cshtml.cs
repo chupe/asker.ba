@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.TestingResults
 {
@@ -16,7 +16,7 @@ namespace AskerTracker.Pages.TestingResults
             _context = context;
         }
 
-        public IList<TestingResult> TestingResult { get;set; }
+        public IList<TestingResult> TestingResult { get; set; }
 
         public async Task OnGetAsync()
         {

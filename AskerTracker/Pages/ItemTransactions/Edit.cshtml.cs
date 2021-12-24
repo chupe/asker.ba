@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.ItemTransactions
 {
@@ -19,26 +19,19 @@ namespace AskerTracker.Pages.ItemTransactions
             _context = context;
         }
 
-        [BindProperty]
-        public ItemTransaction ItemTransaction { get; set; }
+        [BindProperty] public ItemTransaction ItemTransaction { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             ItemTransaction = await _context.ItemTransaction
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ItemTransaction == null)
-            {
-                return NotFound();
-            }
-           ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
-           ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
+            if (ItemTransaction == null) return NotFound();
+            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 
@@ -46,10 +39,7 @@ namespace AskerTracker.Pages.ItemTransactions
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(ItemTransaction).State = EntityState.Modified;
 
@@ -60,13 +50,8 @@ namespace AskerTracker.Pages.ItemTransactions
             catch (DbUpdateConcurrencyException)
             {
                 if (!ItemTransactionExists(ItemTransaction.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

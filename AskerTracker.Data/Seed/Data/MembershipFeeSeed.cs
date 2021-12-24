@@ -115,7 +115,7 @@ namespace AskerTracker.Data.Seed.Data
                 TransactionDate = new DateTime(2018, 10, 2),
                 MemberId = MemberSeed.MemberIds[4],
                 Amount = 200
-            },
+            }
         };
     }
 }

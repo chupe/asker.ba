@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
 using AskerTracker.Core.Types;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.Members
 {
@@ -23,24 +23,18 @@ namespace AskerTracker.Pages.Members
             _htmlHelper = htmlHelper;
         }
 
-        [BindProperty]
-        public Member Member { get; set; }
+        [BindProperty] public Member Member { get; set; }
+
         public IEnumerable<SelectListItem> BloodType { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
             BloodType = _htmlHelper.GetEnumSelectList<BloodType>();
 
-            if (Member == null)
-            {
-                return NotFound();
-            }
+            if (Member == null) return NotFound();
             return Page();
         }
 
@@ -48,10 +42,7 @@ namespace AskerTracker.Pages.Members
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.Attach(Member).State = EntityState.Modified;
 
@@ -62,13 +53,8 @@ namespace AskerTracker.Pages.Members
             catch (DbUpdateConcurrencyException)
             {
                 if (!MemberExists(Member.Id))
-                {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return RedirectToPage("./Index");

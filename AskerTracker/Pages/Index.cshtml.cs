@@ -16,7 +16,6 @@ namespace AskerTracker.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

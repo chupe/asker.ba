@@ -1,6 +1,7 @@
 ﻿@page
+@using System.Globalization
 @model AskerTracker.Pages.MembershipFees.IndexModel
-@System.Globalization.CultureInfo.CurrentUICulture
+@CultureInfo.CurrentUICulture
 
 
 @{
@@ -18,44 +19,44 @@
         <select asp-for="Member" asp-items="Model.Members">
             <option value="">All</option>
         </select>
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filter"/>
     </p>
 </form>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.MembershipFee)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TransactionDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Member.FirstName)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model.MembershipFee)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.FirstName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

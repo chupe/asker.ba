@@ -30,7 +30,7 @@ namespace AskerTracker.Data.Seed.Data
             new EventLocation
             {
                 Location = "Zenica, Lastavica"
-            },
+            }
         };
     }
 }

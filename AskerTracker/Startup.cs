@@ -28,7 +28,7 @@ namespace AskerTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Helpers.GetConnectionString();
+            var connectionString = Helpers.GetConnectionString();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
@@ -97,7 +97,7 @@ namespace AskerTracker
                 app.UseHsts();
             }
 
-            var supportedCultures = new[] { "bs-BA" };
+            var supportedCultures = new[] {"bs-BA"};
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(supportedCultures[0])
                 .AddSupportedCultures(supportedCultures)
@@ -113,10 +113,7 @@ namespace AskerTracker
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
         }
     }
 }

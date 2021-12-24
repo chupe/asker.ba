@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.EventLocations
 {
@@ -16,7 +16,7 @@ namespace AskerTracker.Pages.EventLocations
             _context = context;
         }
 
-        public IList<EventLocation> EventLocation { get;set; }
+        public IList<EventLocation> EventLocation { get; set; }
 
         public async Task OnGetAsync()
         {

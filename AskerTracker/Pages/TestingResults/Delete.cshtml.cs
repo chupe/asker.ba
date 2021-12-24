@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.TestingResults
 {
@@ -17,33 +17,23 @@ namespace AskerTracker.Pages.TestingResults
             _context = context;
         }
 
-        [BindProperty]
-        public TestingResult TestingResult { get; set; }
+        [BindProperty] public TestingResult TestingResult { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             TestingResult = await _context.TestingResult
                 .Include(t => t.Event)
                 .Include(t => t.Member).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (TestingResult == null)
-            {
-                return NotFound();
-            }
+            if (TestingResult == null) return NotFound();
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             TestingResult = await _context.TestingResult.FindAsync(id);
 

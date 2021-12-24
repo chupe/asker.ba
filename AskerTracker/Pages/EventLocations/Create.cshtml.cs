@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using AskerTracker.Core;
+using AskerTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using AskerTracker.Data;
 
 namespace AskerTracker.Pages.EventLocations
 {
@@ -15,21 +15,17 @@ namespace AskerTracker.Pages.EventLocations
             _context = context;
         }
 
+        [BindProperty] public EventLocation EventLocation { get; set; }
+
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public EventLocation EventLocation { get; set; }
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            if (!ModelState.IsValid) return Page();
 
             _context.EventLocation.Add(EventLocation);
             await _context.SaveChangesAsync();
