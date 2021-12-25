@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public class AskerTrackerDbContext : IdentityDbContext
+    { 
+        public AskerTrackerDbContext(DbContextOptions<AskerTrackerDbContext> options)
             : base(options)
         {
         }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AskerTracker.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(AskerTrackerDbContext))]
     [Migration("20210815155144_InitialCreate")]
     partial class InitialCreate
     {

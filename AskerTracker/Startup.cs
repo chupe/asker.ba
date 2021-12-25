@@ -24,13 +24,12 @@ namespace AskerTracker
 
         public IConfiguration Configuration { get; }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Helpers.GetConnectionString();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AskerTrackerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 ));
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -39,7 +38,7 @@ namespace AskerTracker
             services.AddTransient<IEmailSender, MailService>();
 
             services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<AskerTrackerDbContext>()
                 .AddDefaultTokenProviders();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -74,7 +73,7 @@ namespace AskerTracker
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(999);
 
                 options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";

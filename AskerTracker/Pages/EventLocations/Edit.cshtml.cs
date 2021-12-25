@@ -11,9 +11,9 @@ namespace AskerTracker.Pages.EventLocations
 {
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
 
-        public EditModel(ApplicationDbContext context)
+        public EditModel(AskerTrackerDbContext context)
         {
             _context = context;
         }

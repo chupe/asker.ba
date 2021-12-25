@@ -10,9 +10,9 @@ namespace AskerTracker.Pages.Trainings
 {
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
 
-        public DeleteModel(ApplicationDbContext context)
+        public DeleteModel(AskerTrackerDbContext context)
         {
             _context = context;
         }

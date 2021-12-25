@@ -10,9 +10,9 @@ namespace AskerTracker.Data.Seed
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new ApplicationDbContext(
+            using (var context = new AskerTrackerDbContext(
                        serviceProvider.GetRequiredService<
-                           DbContextOptions<ApplicationDbContext>>()))
+                           DbContextOptions<AskerTrackerDbContext>>()))
             {
                 if (!context.Member.Any())
                     context.Member.AddRange(MemberSeed.Entries);

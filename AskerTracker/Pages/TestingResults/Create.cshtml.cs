@@ -9,9 +9,9 @@ namespace AskerTracker.Pages.TestingResults
 {
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
 
-        public CreateModel(ApplicationDbContext context)
+        public CreateModel(AskerTrackerDbContext context)
         {
             _context = context;
         }

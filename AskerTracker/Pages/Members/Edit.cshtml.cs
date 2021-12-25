@@ -14,10 +14,10 @@ namespace AskerTracker.Pages.Members
 {
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
         private readonly IHtmlHelper _htmlHelper;
 
-        public EditModel(ApplicationDbContext context, IHtmlHelper htmlHelper)
+        public EditModel(AskerTrackerDbContext context, IHtmlHelper htmlHelper)
         {
             _context = context;
             _htmlHelper = htmlHelper;

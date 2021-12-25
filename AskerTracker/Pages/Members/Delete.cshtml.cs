@@ -10,9 +10,9 @@ namespace AskerTracker.Pages.Members
 {
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
 
-        public DeleteModel(ApplicationDbContext context)
+        public DeleteModel(AskerTrackerDbContext context)
         {
             _context = context;
         }
@@ -39,6 +39,7 @@ namespace AskerTracker.Pages.Members
             {
                 _context.Member.Remove(Member);
                 await _context.SaveChangesAsync();
+                TempData["Message"] = $"{Member.FullName} deleted";
             }
 
             return RedirectToPage("./Index");

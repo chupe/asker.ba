@@ -12,9 +12,9 @@ namespace AskerTracker.Pages.MembershipFees
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AskerTrackerDbContext _context;
 
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(AskerTrackerDbContext context)
         {
             _context = context;
         }
