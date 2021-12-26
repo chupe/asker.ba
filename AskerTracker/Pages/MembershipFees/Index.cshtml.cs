@@ -27,18 +27,13 @@ namespace AskerTracker.Pages.MembershipFees
 
         public async Task OnGetAsync()
         {
-            // Use LINQ to get list of genres.
-            var genreQuery = from m in _context.MembershipFee
-                orderby m.Member.FullName
-                select m.Member.FullName;
+            var membersQuery = _context.MembershipFee.OrderBy(m => m.Member.FullName).Select(n => n.Member.FullName);
 
             var fees = await _context.MembershipFee
                 .Include(m => m.Member).ToListAsync();
-            //from m in _context.MembershipFee
-            //             select m;
 
             if (!string.IsNullOrEmpty(Member)) fees = fees.Where(x => x.Member.FullName == Member).ToList();
-            Members = new SelectList(await genreQuery.Distinct().ToListAsync());
+            Members = new SelectList(await membersQuery.Distinct().ToListAsync());
 
             MembershipFee = fees;
         }

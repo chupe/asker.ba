@@ -41,7 +41,7 @@ namespace AskerTracker.Core
         public double Value { get; set; }
 
         [ForeignKey("Lender")] public Guid? LenderId { get; set; }
-
+        
         // [Display(ResourceType = typeof(UILocalization), Name = nameof(Lender))]
         public Member Lender { get; set; }
 

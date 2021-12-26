@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Core;
@@ -30,8 +31,13 @@ namespace AskerTracker.Pages.Items
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Item == null) return NotFound();
-            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
-            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
+
+            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName")
+                .Append(new SelectListItem("Team property", "", true));
+
+            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName")
+                .Append(new SelectListItem("Team property", "", true));
+
             return Page();
         }
 
@@ -39,6 +45,12 @@ namespace AskerTracker.Pages.Items
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName")
+                .Append(new SelectListItem("Team property", "", true));
+
+            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName")
+                .Append(new SelectListItem("Team property", "", true));
+         
             if (!ModelState.IsValid) return Page();
 
             _context.Attach(Item).State = EntityState.Modified;

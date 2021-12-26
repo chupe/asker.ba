@@ -28,12 +28,7 @@ namespace AskerTracker.Pages.Members
 
         public async Task OnGetAsync()
         {
-            var nameQuery = from m in _context.Member
-                orderby m.FullName
-                select m.FullName;
-
-            var members = from m in _context.Member
-                select m;
+            var members = _context.Member.Select(m => m);
 
             if (!string.IsNullOrEmpty(SearchString)) members = members.Where(s => s.FullName.Contains(SearchString));
 
