@@ -30,8 +30,7 @@ namespace AskerTracker
             var connectionString = Helpers.GetConnectionString();
 
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
-                ));
+                options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
@@ -47,6 +46,7 @@ namespace AskerTracker
                 )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+            services.AddControllers();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -112,7 +112,11 @@ namespace AskerTracker
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+            });
         }
     }
 }
