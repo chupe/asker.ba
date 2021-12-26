@@ -1,8 +1,5 @@
 ﻿@page
-@using System.Globalization
 @model AskerTracker.Pages.MembershipFees.IndexModel
-@CultureInfo.CurrentUICulture
-
 
 @{
     ViewData["Title"] = "Index";
@@ -14,13 +11,13 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-<form>
-    <p>
-        <select asp-for="Member" asp-items="Model.Members">
+<form class="form-group">
+    <div class="input-group col-3">
+        <select asp-for="Member" asp-items="Model.Members" class="form-control">
             <option value="">All</option>
         </select>
-        <input type="submit" value="Filter"/>
-    </p>
+        <button type="submit" class="btn btn-light">Filter</button>
+    </div>
 </form>
 
 <table class="table">
@@ -51,11 +48,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Member.FirstName)
             </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+
+            <partial name="_EntryButtonsPartial" model="item"/>
         </tr>
     }
     </tbody>
