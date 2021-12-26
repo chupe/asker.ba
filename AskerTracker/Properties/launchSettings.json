@@ -31,7 +31,7 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASKER_DBCONNECTION": "Data Source=DESKTOP-IK2C5F5; Database=Asker; User ID=sa; Password=P@ssw0rd; Integrated Security=False; MultipleActiveResultSets=true",
+        "ASKER_DBCONNECTION": "Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },

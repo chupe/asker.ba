@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using AskerTracker.Common;
 using AskerTracker.Data;
 using AskerTracker.Services.Mail;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace AskerTracker
@@ -105,8 +107,24 @@ namespace AskerTracker
             app.UseRequestLocalization(localizationOptions);
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseNodeModules();
+
+            // this will serve up wwwroot
+            app.UseFileServer();
+
+            // this will serve up node_modules
+            var provider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "node_modules")
+            );
+            app.UseFileServer(new FileServerOptions
+            {
+                RequestPath = "/node_modules",
+                StaticFileOptions =
+                {
+                    FileProvider = provider
+                },
+                EnableDirectoryBrowsing = true
+            });
+
             app.UseCookiePolicy();
 
             app.UseRouting();
