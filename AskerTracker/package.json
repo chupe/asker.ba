@@ -1,0 +1,12 @@
+{
+  "name": "askertracker",
+  "version": "1.0.0",
+  "author": "chupe",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "datatables.net-bs5": "^1.11.3",
+    "jquery": "^3.6.0",
+    "jquery-validation": "^1.19.3",
+    "jquery-validation-unobtrusive": "^3.2.12"
+  }
+}
