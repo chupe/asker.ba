@@ -1,0 +1,23 @@
+@page
+@model AskerTracker.Pages.Members.ClientMembers
+
+@{
+}
+
+<h2>Client Members</h2>
+
+@section Scripts
+{
+    <script>
+        
+        $(function (){
+            $.ajax("/api/members", {
+                method: "get"
+            })
+            .then(function (response){
+                console.dir(response)
+            })
+        })
+        
+    </script>
+}
