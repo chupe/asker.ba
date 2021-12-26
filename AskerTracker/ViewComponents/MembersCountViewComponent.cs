@@ -19,7 +19,7 @@ namespace AskerTracker.ViewComponents
         {
             var count = await _dbContext.Member.CountAsync();
             
-            return View(count + title.Length);
+            return View(count + (title?.Length ?? 0));
         }
     }
 }
