@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using AskerTracker.Data;
 using AskerTracker.Data.Seed;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,21 +19,26 @@ namespace AskerTracker.Common
 
         private static IConfiguration Configuration { get; set; }
 
+        public static void MigrateDatabase(IHost host)
+        {
+            using var scope = host.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
+            db.Database.Migrate();
+        }
+
         public static void SeedDb(IHost host)
         {
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
 
-                try
-                {
-                    InitializeSeed.Initialize(services);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
-                }
+            try
+            {
+                InitializeSeed.Initialize(services);
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred seeding the DB");
             }
         }
 

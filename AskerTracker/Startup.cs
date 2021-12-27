@@ -32,9 +32,11 @@ namespace AskerTracker
         public void ConfigureServices(IServiceCollection services)
         {
             // var connectionString = Helpers.GetConnectionString();
+            var connectionString =
+                "Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true";
 
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer("Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true"));
+                options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
