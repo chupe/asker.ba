@@ -27,6 +27,17 @@
       "dotnetRunMessages": "true",
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
+    "AskerTrackerProd": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASKER_DBCONNECTION": "Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true",
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,

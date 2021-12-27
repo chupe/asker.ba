@@ -7,6 +7,7 @@ using AskerTracker.Services.Mail;
 using AskerTracker.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -30,10 +31,10 @@ namespace AskerTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Helpers.GetConnectionString();
+            // var connectionString = Helpers.GetConnectionString();
 
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer("Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true"));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
@@ -52,10 +53,10 @@ namespace AskerTracker
 
             services.AddControllers()
                 .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                options.JsonSerializerOptions.IgnoreNullValues = true;
-            });
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -105,6 +106,8 @@ namespace AskerTracker
                 app.UseHsts();
             }
 
+            app.Use(SayHelloMiddleware);
+
             var supportedCultures = new[] {"bs-BA"};
             var localizationOptions = new RequestLocalizationOptions()
                 .SetDefaultCulture(supportedCultures[0])
@@ -144,6 +147,25 @@ namespace AskerTracker
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+        }
+
+        private RequestDelegate SayHelloMiddleware(RequestDelegate next)
+        {
+            return async context =>
+            {
+                if (context.Request.Path.StartsWithSegments("/hello"))
+                {
+                    var test = Environment.GetEnvironmentVariable("ASKER_DBCONNECTION");
+                    await context.Response.WriteAsync($"Hello from middleware! {test}");
+                }
+                else
+                {
+                    await next(context);
+
+                    if (context.Response.StatusCode == 404)
+                        await context.Response.WriteAsync("404 intercepted from middleware");
+                }
+            };
         }
     }
 }

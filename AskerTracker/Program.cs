@@ -1,3 +1,4 @@
+using System;
 using AskerTracker.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -9,13 +10,13 @@ namespace AskerTracker
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
+            
             Helpers.SeedDb(host);
 
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
+        private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });

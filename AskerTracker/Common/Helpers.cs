@@ -57,6 +57,9 @@ namespace AskerTracker.Common
                 break;
             }
 
+            if (string.IsNullOrEmpty(connectionString))
+                throw new ArgumentException("Connection string can not be found in specified files.");
+
             return connectionString;
         }
     }

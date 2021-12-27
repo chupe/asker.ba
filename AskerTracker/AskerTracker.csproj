@@ -15,6 +15,14 @@
         <PackageIconUrl />
         <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
     </PropertyGroup>
+    
+    <Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">
+        <Exec Command="npm install"/>
+    </Target>
+
+    <ItemGroup>
+        <Content Include="node_modules/**" CopyToPublishDirectory="PreserveNewest"/>
+    </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <PlatformTarget>x64</PlatformTarget>
@@ -41,7 +49,6 @@
             <Pack>True</Pack>
             <PackagePath></PackagePath>
         </None>
-        <None Remove="node_modules\**" />
     </ItemGroup>
 
     <ItemGroup>
