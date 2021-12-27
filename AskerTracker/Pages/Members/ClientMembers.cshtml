@@ -6,6 +6,8 @@
 
 <h2>Client Members</h2>
 
+<table class="table" id="members"></table>
+
 @section Scripts
 {
     <link rel="stylesheet" type="text/css" href="~/node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css"/>
@@ -19,7 +21,16 @@
                 method: "get"
             })
             .then(function (response){
-                console.dir(response)
+                $('#members').dataTable({
+                data: response, 
+                columns: [
+                    { "data": "fullName" },
+                    { "data": "nickname" },
+                    { "data": "phoneNumber" },
+                    { "data": "bloodType" },
+                    { "data": "active" }
+                    ]
+                })
             })
         })
         
