@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.Json.Serialization;
 using AskerTracker.Common;
 using AskerTracker.Data;
 using AskerTracker.Services.Mail;
@@ -48,7 +49,13 @@ namespace AskerTracker
                 )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
-            services.AddControllers();
+
+            services.AddControllers()
+                .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
 
             services.Configure<IdentityOptions>(options =>
             {
