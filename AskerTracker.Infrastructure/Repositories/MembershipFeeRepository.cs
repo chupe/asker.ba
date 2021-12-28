@@ -17,6 +17,12 @@ namespace AskerTracker.Infrastructure.Repositories
             _context = context;
         }
 
+        public override MembershipFee Add(MembershipFee entity)
+        {
+            entity.Member = _context.Member.Find(entity.MemberId);
+            return base.Add(entity);
+        }
+
         public override async Task<IEnumerable<MembershipFee>> Find(Expression<Func<MembershipFee, bool>> predicate)
         {
             return await _context.MembershipFee

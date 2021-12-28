@@ -27,14 +27,36 @@ namespace AskerTracker.Infrastructure.Repositories
             return _context.Update(entity).Entity;
         }
 
+        public T Remove(T entity)
+        {
+            return _context.Remove(entity).Entity;
+        }
+        
         public virtual async Task<T> Get(Guid id)
         {
             return await _context.FindAsync<T>(id);
         }
-
+        
+        public virtual async Task<TT> Get<TT>(Expression<Func<TT, bool>> predicate, Expression<Func<TT, object>> include) where TT : class
+        {
+            return await _context.Set<TT>()
+                .AsNoTracking()
+                .Where(predicate)
+                .Include(include)
+                .FirstOrDefaultAsync();
+        }
+        
         public virtual async Task<IEnumerable<T>> All()
         {
             return await _context.Set<T>()
+                .ToListAsync();
+        }
+
+        public virtual async Task<IEnumerable<TT>> All<TT>(Expression<Func<TT, object>> include) where TT : class
+        {
+            return await _context.Set<TT>()
+                .AsNoTracking()
+                .Include(include)
                 .ToListAsync();
         }
 
@@ -43,6 +65,15 @@ namespace AskerTracker.Infrastructure.Repositories
             return await _context.Set<T>()
                 .AsQueryable()
                 .Where(predicate)
+                .ToListAsync();
+        }
+        
+        public virtual async Task<IEnumerable<TT>> Find<TT>(Expression<Func<TT, bool>> predicate, Expression<Func<TT, object>> include) where TT : class
+        {
+            return await _context.Set<TT>()
+                .AsNoTracking()
+                .Where(predicate)
+                .Include(include)
                 .ToListAsync();
         }
 
@@ -54,11 +85,6 @@ namespace AskerTracker.Infrastructure.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
-        }
-
-        public T Remove(T entity)
-        {
-            return _context.Remove(entity).Entity;
         }
     }
 }

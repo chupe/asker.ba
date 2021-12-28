@@ -1,39 +1,48 @@
 ﻿using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.MembershipFees
 {
     public class CreateModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<MembershipFee> _repository;
 
-        public CreateModel(AskerTrackerDbContext context)
+        public CreateModel(IRepository<MembershipFee> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [BindProperty] public MembershipFee MembershipFee { get; set; }
 
+        public SelectList Members => Helper.GetSelectList(_repository).Result;
+
         public IActionResult OnGet()
         {
-            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
             return Page();
         }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // To protect from over-posting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            var member = await _context.Member.FindAsync(MembershipFee.MemberId);
-            MembershipFee.Member = member;
-
             if (!ModelState.IsValid) return Page();
 
-            _context.MembershipFee.Add(MembershipFee);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _repository.Add(MembershipFee);
+                await _repository.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                return NotFound();
+            }
+
+            TempData["Message"] = $"Added fee for {MembershipFee.Member.FullName} successfully!";
 
             return RedirectToPage("./Index");
         }

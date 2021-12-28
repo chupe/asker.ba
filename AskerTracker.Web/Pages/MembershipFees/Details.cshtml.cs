@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +11,11 @@ namespace AskerTracker.Pages.MembershipFees
 {
     public class DetailsModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<MembershipFee> _repository;
 
-        public DetailsModel(AskerTrackerDbContext context)
+        public DetailsModel(IRepository<MembershipFee> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public MembershipFee MembershipFee { get; set; }
@@ -23,8 +24,7 @@ namespace AskerTracker.Pages.MembershipFees
         {
             if (id == null) return NotFound();
 
-            MembershipFee = await _context.MembershipFee
-                .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
+            MembershipFee = await _repository.Get<MembershipFee>(f => f.Id == id.Value, f => f.Member);
 
             if (MembershipFee == null) return NotFound();
             return Page();

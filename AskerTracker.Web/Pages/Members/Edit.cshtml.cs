@@ -62,8 +62,7 @@ namespace AskerTracker.Pages.Members
 
         private async Task<bool> MemberExists(Guid id)
         {
-            var member = await _repository.Find(e => e.Id == id);
-            return member != null;
+            return await _repository.Get(id) != null;
         }
     }
 }

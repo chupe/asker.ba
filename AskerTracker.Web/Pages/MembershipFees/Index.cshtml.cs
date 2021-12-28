@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,28 +13,31 @@ namespace AskerTracker.Pages.MembershipFees
 {
     public class IndexModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<MembershipFee> _repository;
 
-        public IndexModel(AskerTrackerDbContext context)
+        public IndexModel(IRepository<MembershipFee> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public IList<MembershipFee> MembershipFee { get; set; }
+        
+        [TempData] public string Message { get; set; }
 
         public SelectList Members { get; set; }
 
-        [BindProperty(SupportsGet = true)] public string Member { get; set; }
+        [BindProperty(SupportsGet = true)] public string MemberName { get; set; }
 
         public async Task OnGetAsync()
         {
-            var membersQuery = _context.MembershipFee.OrderBy(m => m.Member.FullName).Select(n => n.Member.FullName);
+            var fees = (await _repository.All<MembershipFee>(m => m.Member)).ToList();
+            
+            if (!string.IsNullOrEmpty(MemberName))
+                fees = fees.Where(x => x.Member.FullName == MemberName).ToList();
+            
+            var membersList = fees.OrderBy(m => m.Member.FullName).Select(n => n.Member.FullName);
 
-            var fees = await _context.MembershipFee
-                .Include(m => m.Member).ToListAsync();
-
-            if (!string.IsNullOrEmpty(Member)) fees = fees.Where(x => x.Member.FullName == Member).ToList();
-            Members = new SelectList(await membersQuery.Distinct().ToListAsync());
+            Members = new SelectList(membersList.Distinct().ToList());
 
             MembershipFee = fees;
         }
