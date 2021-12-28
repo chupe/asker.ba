@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AskerTracker.Data.Seed.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,17 @@ namespace AskerTracker.Data.Seed
                        serviceProvider.GetRequiredService<
                            DbContextOptions<AskerTrackerDbContext>>()))
             {
+                if (!context.Users.Any())
+                    context.Users.Add(new IdentityUser
+                    {
+                        UserName = "test@mail.com",
+                        NormalizedUserName = "test@mail.com".ToUpper(),
+                        Email = "test@mail.com",
+                        NormalizedEmail = "test@mail.com".ToUpper(),
+                        EmailConfirmed = true,
+                        PasswordHash = "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
+                    });
+                
                 if (!context.Member.Any())
                     context.Member.AddRange(MemberSeed.Entries);
 
