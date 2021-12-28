@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
-using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,12 +13,12 @@ namespace AskerTracker.Pages.Members
 {
     public class EditModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Member> _repository;
         private readonly IHtmlHelper _htmlHelper;
 
-        public EditModel(AskerTrackerDbContext context, IHtmlHelper htmlHelper)
+        public EditModel(IRepository<Member> repository, IHtmlHelper htmlHelper)
         {
-            _context = context;
+            _repository = repository;
             _htmlHelper = htmlHelper;
         }
 
@@ -31,9 +30,10 @@ namespace AskerTracker.Pages.Members
         {
             if (id == null) return NotFound();
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            Member = await _repository.Get(id.Value);
 
             if (Member == null) return NotFound();
+            
             return Page();
         }
 
@@ -43,15 +43,15 @@ namespace AskerTracker.Pages.Members
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.Attach(Member).State = EntityState.Modified;
+            _repository.Add(Member);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _repository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(Member.Id))
+                if (!await MemberExists(Member.Id))
                     return NotFound();
                 throw;
             }
@@ -60,9 +60,10 @@ namespace AskerTracker.Pages.Members
             return RedirectToPage("./Index");
         }
 
-        private bool MemberExists(Guid id)
+        private async Task<bool> MemberExists(Guid id)
         {
-            return _context.Member.Any(e => e.Id == id);
+            var member = await _repository.Find(e => e.Id == id);
+            return member != null;
         }
     }
 }

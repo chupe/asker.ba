@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using AskerTracker.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,12 +17,12 @@ namespace AskerTracker.Infrastructure.Repositories
             _context = context;
         }
 
-        public override IEnumerable<MembershipFee> Find(Expression<Func<MembershipFee, bool>> predicate)
+        public override async Task<IEnumerable<MembershipFee>> Find(Expression<Func<MembershipFee, bool>> predicate)
         {
-            return _context.MembershipFee
+            return await _context.MembershipFee
                 .Include(f => f.Member)
                 .Where(predicate)
-                .ToList();
+                .ToListAsync();
         }
 
         public override MembershipFee Update(MembershipFee entity)

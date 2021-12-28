@@ -2,13 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
-using AskerTracker.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.Members
 {
@@ -22,15 +19,15 @@ namespace AskerTracker.Pages.Members
             _repository = repository;
         }
 
-        [TempData]
-        public string Message { get; set; }
+        [TempData] public string Message { get; set; }
         public IList<Member> Members { get; set; }
 
         [BindProperty(SupportsGet = true)] public string SearchString { get; set; }
 
         public async Task OnGetAsync()
         {
-            var members = _repository.All().Select(m => m);
+            var members = await _repository.All();
+            members = members.Select(m => m);
 
             if (!string.IsNullOrEmpty(SearchString)) members = members.Where(s => s.FullName.Contains(SearchString));
 

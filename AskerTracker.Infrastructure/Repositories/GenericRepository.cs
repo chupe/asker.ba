@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using AskerTracker.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Infrastructure.Repositories
 {
@@ -25,28 +27,33 @@ namespace AskerTracker.Infrastructure.Repositories
             return _context.Update(entity).Entity;
         }
 
-        public virtual T Get(Guid id)
+        public virtual async Task<T> Get(Guid id)
         {
-            return _context.Find<T>();
+            return await _context.FindAsync<T>();
         }
 
-        public virtual IEnumerable<T> All()
+        public virtual async Task<IEnumerable<T>> All()
         {
-            return _context.Set<T>()
-                .ToList();
+            return await _context.Set<T>()
+                .ToListAsync();
         }
 
-        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>()
+            return await _context.Set<T>()
                 .AsQueryable()
                 .Where(predicate)
-                .ToList();
+                .ToListAsync();
         }
 
         public virtual void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

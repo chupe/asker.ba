@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace AskerTracker.Infrastructure.Interfaces
 {
@@ -8,9 +9,11 @@ namespace AskerTracker.Infrastructure.Interfaces
     {
         T Add(T entity);
         T Update(T entity);
-        T Get(Guid id);
-        IEnumerable<T> All();
-        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        Task<T> Get(Guid id);
+        Task<IEnumerable<T>> All();
+        Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);
         void SaveChanges();
+        Task SaveChangesAsync();
+
     }
 }
