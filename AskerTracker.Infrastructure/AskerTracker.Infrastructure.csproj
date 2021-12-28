@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>AskerTracker.Data</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -10,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AskerTracker.Core\AskerTracker.Core.csproj" />
+        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -4,14 +4,16 @@ using AskerTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AskerTracker.Data.Migrations
 {
     [DbContext(typeof(AskerTrackerDbContext))]
-    partial class AskerTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211227233337_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace AskerTracker.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AskerTracker.Core.ASquad", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.ASquad", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +32,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("ASquad");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.EventLocation", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.EventLocation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +48,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("EventLocation");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Item", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +91,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("Item");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.ItemTransaction", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.ItemTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +125,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("ItemTransaction");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Member", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Member", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -195,7 +197,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("Member");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.MembershipFee", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.MembershipFee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -217,7 +219,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("MembershipFee");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.TestingEvent", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.TestingEvent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -236,7 +238,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("TestingEvent");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.TestingResult", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.TestingResult", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -278,7 +280,7 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("TestingResult");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Training", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Training", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -496,13 +498,13 @@ namespace AskerTracker.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Item", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Item", b =>
                 {
-                    b.HasOne("AskerTracker.Core.Member", "Lender")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Lender")
                         .WithMany()
                         .HasForeignKey("LenderId");
 
-                    b.HasOne("AskerTracker.Core.Member", "Owner")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId");
 
@@ -511,13 +513,13 @@ namespace AskerTracker.Data.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.ItemTransaction", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.ItemTransaction", b =>
                 {
-                    b.HasOne("AskerTracker.Core.Member", "Lender")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Lender")
                         .WithMany()
                         .HasForeignKey("LenderId");
 
-                    b.HasOne("AskerTracker.Core.Member", "Owner")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId");
 
@@ -526,24 +528,24 @@ namespace AskerTracker.Data.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Member", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Member", b =>
                 {
-                    b.HasOne("AskerTracker.Core.ASquad", null)
+                    b.HasOne("AskerTracker.Web.Domain.ASquad", null)
                         .WithMany("Members")
                         .HasForeignKey("ASquadId");
 
-                    b.HasOne("AskerTracker.Core.TestingEvent", null)
+                    b.HasOne("AskerTracker.Web.Domain.TestingEvent", null)
                         .WithMany("Participants")
                         .HasForeignKey("TestingEventId");
 
-                    b.HasOne("AskerTracker.Core.Training", null)
+                    b.HasOne("AskerTracker.Web.Domain.Training", null)
                         .WithMany("Participants")
                         .HasForeignKey("TrainingId");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.MembershipFee", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.MembershipFee", b =>
                 {
-                    b.HasOne("AskerTracker.Core.Member", "Member")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Member")
                         .WithMany("Fees")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -552,9 +554,9 @@ namespace AskerTracker.Data.Migrations
                     b.Navigation("Member");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.TestingEvent", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.TestingEvent", b =>
                 {
-                    b.HasOne("AskerTracker.Core.EventLocation", "Location")
+                    b.HasOne("AskerTracker.Web.Domain.EventLocation", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -563,15 +565,15 @@ namespace AskerTracker.Data.Migrations
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.TestingResult", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.TestingResult", b =>
                 {
-                    b.HasOne("AskerTracker.Core.TestingEvent", "Event")
+                    b.HasOne("AskerTracker.Web.Domain.TestingEvent", "Event")
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AskerTracker.Core.Member", "Member")
+                    b.HasOne("AskerTracker.Web.Domain.Member", "Member")
                         .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -582,9 +584,9 @@ namespace AskerTracker.Data.Migrations
                     b.Navigation("Member");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Training", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Training", b =>
                 {
-                    b.HasOne("AskerTracker.Core.EventLocation", "Location")
+                    b.HasOne("AskerTracker.Web.Domain.EventLocation", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -644,22 +646,22 @@ namespace AskerTracker.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.ASquad", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.ASquad", b =>
                 {
                     b.Navigation("Members");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Member", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Member", b =>
                 {
                     b.Navigation("Fees");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.TestingEvent", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.TestingEvent", b =>
                 {
                     b.Navigation("Participants");
                 });
 
-            modelBuilder.Entity("AskerTracker.Core.Training", b =>
+            modelBuilder.Entity("AskerTracker.Web.Domain.Training", b =>
                 {
                     b.Navigation("Participants");
                 });

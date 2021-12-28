@@ -14,6 +14,7 @@
         <PackageIcon>asker_logo_background.png</PackageIcon>
         <PackageIconUrl />
         <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
+        <RootNamespace>AskerTracker</RootNamespace>
     </PropertyGroup>
     
     <Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">
@@ -34,7 +35,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.13" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
         <PackageReference Include="MimeKit" Version="2.15.0" />
@@ -48,8 +49,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AskerTracker.Core\AskerTracker.Core.csproj" />
-        <ProjectReference Include="..\AskerTracker.Data\AskerTracker.Data.csproj" />
+        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
+        <ProjectReference Include="..\AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

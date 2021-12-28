@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskerTracker", "AskerTracker\AskerTracker.csproj", "{87C68B62-51EF-4463-BD26-BC05A8B3DF66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AskerTracker.Web", "AskerTracker.Web\AskerTracker.Web.csproj", "{87C68B62-51EF-4463-BD26-BC05A8B3DF66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskerTracker.Core", "AskerTracker.Core\AskerTracker.Core.csproj", "{0F4B9223-0DAD-4B2F-86C9-525342C9E6CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskerTracker.Domain", "AskerTracker.Domain\AskerTracker.Domain.csproj", "{0F4B9223-0DAD-4B2F-86C9-525342C9E6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskerTracker.Data", "AskerTracker.Data\AskerTracker.Data.csproj", "{FE1752D6-2A6E-4211-A9CC-2199CF0E2F2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskerTracker.Infrastructure", "AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj", "{FE1752D6-2A6E-4211-A9CC-2199CF0E2F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
