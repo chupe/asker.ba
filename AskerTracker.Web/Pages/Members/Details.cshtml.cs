@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +11,11 @@ namespace AskerTracker.Pages.Members
 {
     public class DetailsModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Member> _repository;
 
-        public DetailsModel(AskerTrackerDbContext context)
+        public DetailsModel(IRepository<Member> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public Member Member { get; set; }
@@ -23,9 +24,10 @@ namespace AskerTracker.Pages.Members
         {
             if (id == null) return NotFound();
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            Member = await _repository.Get(id.Value);
 
             if (Member == null) return NotFound();
+            
             return Page();
         }
     }

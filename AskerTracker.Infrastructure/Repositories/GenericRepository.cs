@@ -29,7 +29,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public virtual async Task<T> Get(Guid id)
         {
-            return await _context.FindAsync<T>();
+            return await _context.FindAsync<T>(id);
         }
 
         public virtual async Task<IEnumerable<T>> All()
@@ -54,6 +54,11 @@ namespace AskerTracker.Infrastructure.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public T Remove(T entity)
+        {
+            return _context.Remove(entity).Entity;
         }
     }
 }

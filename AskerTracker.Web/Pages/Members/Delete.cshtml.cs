@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +11,11 @@ namespace AskerTracker.Pages.Members
 {
     public class DeleteModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Member> _repository;
 
-        public DeleteModel(AskerTrackerDbContext context)
+        public DeleteModel(IRepository<Member> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [BindProperty] public Member Member { get; set; }
@@ -23,7 +24,7 @@ namespace AskerTracker.Pages.Members
         {
             if (id == null) return NotFound();
 
-            Member = await _context.Member.FirstOrDefaultAsync(m => m.Id == id);
+            Member = await _repository.Get(id.Value);
 
             if (Member == null) return NotFound();
             return Page();
@@ -33,12 +34,12 @@ namespace AskerTracker.Pages.Members
         {
             if (id == null) return NotFound();
 
-            Member = await _context.Member.FindAsync(id);
+            Member = await _repository.Get(id.Value);
 
             if (Member != null)
             {
-                _context.Member.Remove(Member);
-                await _context.SaveChangesAsync();
+                _repository.Remove(Member);
+                await _repository.SaveChangesAsync();
                 TempData["Message"] = $"{Member.FullName} deleted";
             }
 

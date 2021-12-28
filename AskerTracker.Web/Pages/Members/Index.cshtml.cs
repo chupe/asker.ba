@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
@@ -29,7 +30,8 @@ namespace AskerTracker.Pages.Members
             var members = await _repository.All();
             members = members.Select(m => m);
 
-            if (!string.IsNullOrEmpty(SearchString)) members = members.Where(s => s.FullName.Contains(SearchString));
+            if (!string.IsNullOrEmpty(SearchString)) 
+                members = members.Where(s => s.FullName.Contains(SearchString, StringComparison.CurrentCultureIgnoreCase));
 
             Members = members.ToList();
         }

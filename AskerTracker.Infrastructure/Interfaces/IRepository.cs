@@ -14,6 +14,7 @@ namespace AskerTracker.Infrastructure.Interfaces
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);
         void SaveChanges();
         Task SaveChangesAsync();
+        T Remove(T entity);
 
     }
 }

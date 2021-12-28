@@ -43,7 +43,7 @@ namespace AskerTracker.Pages.Members
         {
             if (!ModelState.IsValid) return Page();
 
-            _repository.Add(Member);
+            _repository.Update(Member);
 
             try
             {
@@ -56,7 +56,7 @@ namespace AskerTracker.Pages.Members
                 throw;
             }
 
-            TempData["Message"] = "Saved successfully!";
+            TempData["Message"] = $"Saved {Member.FullName} successfully!";
             return RedirectToPage("./Index");
         }
 
