@@ -1,8 +1,8 @@
-﻿using AskerTracker.Core;
+﻿using AskerTracker.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Data
+namespace AskerTracker.Infrastructure
 {
     public class AskerTrackerDbContext : IdentityDbContext
     { 

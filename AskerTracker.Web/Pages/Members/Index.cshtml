@@ -34,25 +34,25 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Member[0].FullName)
+            @Html.DisplayNameFor(model => model.Members[0].FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Member[0].DateJoined)
+            @Html.DisplayNameFor(model => model.Members[0].DateJoined)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Member[0].BirthDate)
+            @Html.DisplayNameFor(model => model.Members[0].BirthDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Member[0].PhoneNumber)
+            @Html.DisplayNameFor(model => model.Members[0].PhoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Member[0].Active)
+            @Html.DisplayNameFor(model => model.Members[0].Active)
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Member)
+    @foreach (var item in Model.Members)
     {
         <tr>
             <td>

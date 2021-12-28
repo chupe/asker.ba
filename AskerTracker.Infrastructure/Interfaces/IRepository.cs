@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace AskerTracker.Data.Repositories
+namespace AskerTracker.Infrastructure.Interfaces
 {
     public interface IRepository<T>
     {

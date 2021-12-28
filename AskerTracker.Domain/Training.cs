@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AskerTracker.Core.BaseModels;
-using AskerTracker.Core.Types;
+using AskerTracker.Domain.BaseModels;
+using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Core
+namespace AskerTracker.Domain
 {
     public class Training : EventModel
     {

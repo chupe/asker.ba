@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using AskerTracker.Core;
+using AskerTracker.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Data.Repositories
+namespace AskerTracker.Infrastructure.Repositories
 {
     public class MembershipFeeRepository : GenericRepository<MembershipFee>
     {

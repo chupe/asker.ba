@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AskerTracker.Data.Migrations
+namespace AskerTracker.Infrastructure.Migrations
 {
     public partial class InitialCreate : Migration
     {

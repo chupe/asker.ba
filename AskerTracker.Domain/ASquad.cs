@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AskerTracker.Core.BaseModels;
+using AskerTracker.Domain.BaseModels;
 
-namespace AskerTracker.Core
+namespace AskerTracker.Domain
 {
     public class ASquad : EntityModel
     {

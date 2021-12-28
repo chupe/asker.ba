@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AskerTracker.Core.BaseModels
+namespace AskerTracker.Domain.BaseModels
 {
     public class EntityModel
     {

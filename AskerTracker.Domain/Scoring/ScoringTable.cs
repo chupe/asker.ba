@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AskerTracker.Core.Scoring
+namespace AskerTracker.Domain.Scoring
 {
     public static class ScoringTable
     {

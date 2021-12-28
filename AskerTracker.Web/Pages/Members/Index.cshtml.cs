@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Core;
-using AskerTracker.Data;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
+using AskerTracker.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,26 +15,26 @@ namespace AskerTracker.Pages.Members
     [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Member> _repository;
 
-        public IndexModel(AskerTrackerDbContext context)
+        public IndexModel(IRepository<Member> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [TempData]
         public string Message { get; set; }
-        public IList<Member> Member { get; set; }
+        public IList<Member> Members { get; set; }
 
         [BindProperty(SupportsGet = true)] public string SearchString { get; set; }
 
         public async Task OnGetAsync()
         {
-            var members = _context.Member.Select(m => m);
+            var members = _repository.All().Select(m => m);
 
             if (!string.IsNullOrEmpty(SearchString)) members = members.Where(s => s.FullName.Contains(SearchString));
 
-            Member = await members.ToListAsync();
+            Members = members.ToList();
         }
     }
 }

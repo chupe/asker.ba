@@ -1,6 +1,6 @@
-﻿using AskerTracker.Core.BaseModels;
+﻿using AskerTracker.Domain.BaseModels;
 
-namespace AskerTracker.Core
+namespace AskerTracker.Domain
 {
     public class TestingEvent : EventModel
     {

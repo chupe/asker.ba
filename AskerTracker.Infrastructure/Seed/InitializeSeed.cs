@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using AskerTracker.Data.Seed.Data;
+using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AskerTracker.Data.Seed
+namespace AskerTracker.Infrastructure.Seed
 {
     public static class InitializeSeed
     {

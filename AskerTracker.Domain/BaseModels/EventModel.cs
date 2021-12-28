@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AskerTracker.Core.Resources.Localization;
+using AskerTracker.Domain.Resources.Localization;
 
-namespace AskerTracker.Core.BaseModels
+namespace AskerTracker.Domain.BaseModels
 {
     public class EventModel : EntityModel
     {

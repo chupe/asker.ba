@@ -1,4 +1,4 @@
-﻿namespace AskerTracker.Core.Types
+﻿namespace AskerTracker.Domain.Types
 {
     public enum TrainingType
     {

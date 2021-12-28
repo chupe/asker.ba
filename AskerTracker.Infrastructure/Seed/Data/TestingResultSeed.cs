@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AskerTracker.Core;
+using AskerTracker.Domain;
 
-namespace AskerTracker.Data.Seed.Data
+namespace AskerTracker.Infrastructure.Seed.Data
 {
     public class TestingResultSeed
     {

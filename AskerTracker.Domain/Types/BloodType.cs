@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AskerTracker.Core.Resources.Localization;
+using AskerTracker.Domain.Resources.Localization;
 
-namespace AskerTracker.Core.Types
+namespace AskerTracker.Domain.Types
 {
     public enum BloodType
     {

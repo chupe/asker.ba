@@ -1,4 +1,4 @@
-﻿namespace AskerTracker.Core.Scoring
+﻿namespace AskerTracker.Domain.Scoring
 {
     public static class HrpScoring
     {

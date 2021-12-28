@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AskerTracker.Core;
-using AskerTracker.Core.Types;
+using AskerTracker.Domain;
+using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Data.Seed.Data
+namespace AskerTracker.Infrastructure.Seed.Data
 {
     public class TrainingSeed
     {

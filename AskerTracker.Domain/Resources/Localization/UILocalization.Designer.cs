@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AskerTracker.Core.Resources.Localization {
+namespace AskerTracker.Domain.Resources.Localization {
     using System;
     
     

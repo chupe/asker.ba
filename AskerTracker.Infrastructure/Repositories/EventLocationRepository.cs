@@ -1,7 +1,7 @@
 using System.Linq;
-using AskerTracker.Core;
+using AskerTracker.Domain;
 
-namespace AskerTracker.Data.Repositories
+namespace AskerTracker.Infrastructure.Repositories
 {
     public class EventLocationRepository : GenericRepository<EventLocation>
     {

@@ -2,7 +2,10 @@ using System;
 using System.IO;
 using System.Text.Json.Serialization;
 using AskerTracker.Common;
-using AskerTracker.Data;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
+using AskerTracker.Infrastructure.Repositories;
 using AskerTracker.Services.Mail;
 using AskerTracker.Settings;
 using Microsoft.AspNetCore.Builder;
@@ -39,11 +42,6 @@ namespace AskerTracker
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddLogging(builder =>
-            {
-                
-            });
-
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailSender, MailService>();
 
@@ -64,6 +62,13 @@ namespace AskerTracker
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     options.JsonSerializerOptions.IgnoreNullValues = true;
                 });
+
+            services.AddTransient<IRepository<Member>, MemberRepository>();
+            services.AddTransient<IRepository<EventLocation>, EventLocationRepository>();
+            services.AddTransient<IRepository<Item>, ItemRepository>();
+            services.AddTransient<IRepository<MembershipFee>, MembershipFeeRepository>();
+            services.AddTransient<IRepository<TestingEvent>, TestingEventRepository>();
+            services.AddTransient<IRepository<Training>, TrainingRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

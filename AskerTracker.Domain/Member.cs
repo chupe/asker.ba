@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AskerTracker.Core.BaseModels;
-using AskerTracker.Core.Resources.Localization;
-using AskerTracker.Core.Types;
+using AskerTracker.Domain.BaseModels;
+using AskerTracker.Domain.Resources.Localization;
+using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Core
+namespace AskerTracker.Domain
 {
     public class Member : EntityModel
     {

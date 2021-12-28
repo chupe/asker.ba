@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AskerTracker.Core.BaseModels;
-using AskerTracker.Core.Resources.Localization;
+using AskerTracker.Domain.BaseModels;
+using AskerTracker.Domain.Resources.Localization;
 
-namespace AskerTracker.Core
+namespace AskerTracker.Domain
 {
     public class ItemTransaction : EntityModel
     {

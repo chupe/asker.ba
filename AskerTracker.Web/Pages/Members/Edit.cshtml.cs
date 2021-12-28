@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Core;
-using AskerTracker.Core.Types;
-using AskerTracker.Data;
+using AskerTracker.Domain;
+using AskerTracker.Domain.Types;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
