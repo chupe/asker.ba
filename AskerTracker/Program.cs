@@ -1,7 +1,9 @@
 using System;
 using AskerTracker.Common;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AskerTracker
 {
@@ -10,13 +12,16 @@ namespace AskerTracker
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
-            Helpers.MigrateDatabase(host);
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
+            var helpers = new Helpers(logger: logger);
+            
+            logger.LogInformation("Host created");
+            helpers.MigrateDatabase(host);
             
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             
             if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
-                Helpers.SeedDb(host);
+                helpers.SeedDb(host);
 
             host.Run();
         }

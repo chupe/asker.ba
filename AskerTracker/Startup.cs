@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AskerTracker
 {
@@ -26,18 +27,22 @@ namespace AskerTracker
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // var connectionString = Helpers.GetConnectionString();
-            var connectionString =
-                "Data Source=localhost, 1433; Database=Asker; User ID=sa; Password=123456qwE; Integrated Security=False; MultipleActiveResultSets=true";
-
+            var helpers = new Helpers(Configuration);
+            var connectionString = helpers.GetConnectionString();
+            
             services.AddDbContext<AskerTrackerDbContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddLogging(builder =>
+            {
+                
+            });
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailSender, MailService>();
