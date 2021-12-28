@@ -28,7 +28,7 @@ namespace AskerTracker.Core.Resources.Localization {
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AskerTracker.Web.Domain.Resources.Localization.UILocalization", typeof(UILocalization).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AskerTracker.Domain.Resources.Localization.UILocalization", typeof(UILocalization).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
