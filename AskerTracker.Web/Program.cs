@@ -12,16 +12,10 @@ namespace AskerTracker
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            
             var logger = host.Services.GetRequiredService<ILogger<Program>>();
             var helpers = new Helpers(logger: logger);
-            
-            logger.LogInformation("Host created");
-            helpers.MigrateDatabase(host);
-            
-            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            
-            if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
-                helpers.SeedDb(host);
+            helpers.MigrateAndSeedDatabase(host);
 
             host.Run();
         }

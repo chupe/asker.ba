@@ -22,25 +22,25 @@ namespace AskerTracker.Common
 
         private static IConfiguration Configuration { get; set; }
 
-        public void MigrateDatabase(IHost host)
+        public async void MigrateAndSeedDatabase(IHost host)
         {
-            using var scope = host.Services.CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
-            db.Database.Migrate();
-        }
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        public void SeedDb(IHost host)
-        {
             using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
+            var context = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
+            await context.Database.MigrateAsync();
 
-            try
+            if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
             {
-                InitializeSeed.Initialize(services);
-            }
-            catch (Exception ex)
-            {
-                _logger?.LogError(ex, "An error occurred seeding the DB");
+                try
+                {
+                    InitializeSeed.Initialize(context);
+                    _logger.LogInformation("Finished seeding database");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred seeding the DB");
+                }
             }
         }
 

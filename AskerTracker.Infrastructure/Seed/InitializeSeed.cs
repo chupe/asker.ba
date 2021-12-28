@@ -9,43 +9,38 @@ namespace AskerTracker.Data.Seed
 {
     public static class InitializeSeed
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static void Initialize(AskerTrackerDbContext context)
         {
-            using (var context = new AskerTrackerDbContext(
-                       serviceProvider.GetRequiredService<
-                           DbContextOptions<AskerTrackerDbContext>>()))
-            {
-                if (!context.Users.Any())
-                    context.Users.Add(new IdentityUser
-                    {
-                        UserName = "test@mail.com",
-                        NormalizedUserName = "test@mail.com".ToUpper(),
-                        Email = "test@mail.com",
-                        NormalizedEmail = "test@mail.com".ToUpper(),
-                        EmailConfirmed = true,
-                        PasswordHash = "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
-                    });
+            if (!context.Users.Any())
+                context.Users.Add(new IdentityUser
+                {
+                    UserName = "test@mail.com",
+                    NormalizedUserName = "test@mail.com".ToUpper(),
+                    Email = "test@mail.com",
+                    NormalizedEmail = "test@mail.com".ToUpper(),
+                    EmailConfirmed = true,
+                    PasswordHash = "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
+                });
                 
-                if (!context.Member.Any())
-                    context.Member.AddRange(MemberSeed.Entries);
+            if (!context.Member.Any())
+                context.Member.AddRange(MemberSeed.Entries);
 
-                if (!context.Item.Any())
-                    context.Item.AddRange(ItemSeed.Entries);
+            if (!context.Item.Any())
+                context.Item.AddRange(ItemSeed.Entries);
 
-                if (!context.EventLocation.Any())
-                    context.EventLocation.AddRange(EventLocationSeed.Entries);
+            if (!context.EventLocation.Any())
+                context.EventLocation.AddRange(EventLocationSeed.Entries);
 
-                if (!context.Training.Any())
-                    context.Training.AddRange(TrainingSeed.Entries());
+            if (!context.Training.Any())
+                context.Training.AddRange(TrainingSeed.Entries());
 
-                if (!context.TestingEvent.Any())
-                    context.TestingEvent.AddRange(TestingEventSeed.Entries());
+            if (!context.TestingEvent.Any())
+                context.TestingEvent.AddRange(TestingEventSeed.Entries());
 
-                if (!context.TestingResult.Any())
-                    context.TestingResult.AddRange(TestingResultSeed.Entries());
+            if (!context.TestingResult.Any())
+                context.TestingResult.AddRange(TestingResultSeed.Entries());
 
-                context.SaveChanges();
-            }
+            context.SaveChanges();
         }
     }
 }
