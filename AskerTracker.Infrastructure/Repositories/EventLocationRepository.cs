@@ -1,0 +1,25 @@
+using System.Linq;
+using AskerTracker.Core;
+
+namespace AskerTracker.Data.Repositories
+{
+    public class EventLocationRepository : GenericRepository<EventLocation>
+    {
+        private readonly AskerTrackerDbContext _context;
+
+        public EventLocationRepository(AskerTrackerDbContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public override EventLocation Update(EventLocation entity)
+        {
+            var updated = _context.EventLocation
+                .Single(m => m.Id == entity.Id);
+
+            updated.Location = entity.Location;
+
+            return base.Update(updated);
+        }
+    }
+}
