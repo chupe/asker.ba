@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
@@ -12,15 +13,17 @@ namespace AskerTracker.Pages.MembershipFees
     public class CreateModel : PageModel
     {
         private readonly IRepository<MembershipFee> _repository;
+        private readonly IRepository<Member> _memberRepository;
 
-        public CreateModel(IRepository<MembershipFee> repository)
+        public CreateModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
         {
             _repository = repository;
+            _memberRepository = memberRepository;
         }
 
         [BindProperty] public MembershipFee MembershipFee { get; set; }
 
-        public SelectList Members => Helper.GetSelectList(_repository).Result;
+        public SelectList Members => Helper.GetMemberSelectList(_memberRepository).Result;
 
         public IActionResult OnGet()
         {

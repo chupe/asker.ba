@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,17 @@ namespace AskerTracker.Pages.MembershipFees
     public class EditModel : PageModel
     {
         private readonly IRepository<MembershipFee> _repository;
+        private readonly IRepository<Member> _memberRepository;
 
-        public EditModel(IRepository<MembershipFee> repository)
+        public EditModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
         {
             _repository = repository;
+            _memberRepository = memberRepository;
         }
 
         [BindProperty] public MembershipFee MembershipFee { get; set; }
 
-        public SelectList Members => Helper.GetSelectList(_repository).Result;
+        public SelectList Members => Helper.GetMemberSelectList(_memberRepository).Result;
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
