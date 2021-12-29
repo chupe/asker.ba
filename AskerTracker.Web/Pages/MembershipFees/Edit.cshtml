@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MembershipFee.MemberId" class="control-label"></label>
-                <select asp-for="MembershipFee.MemberId" class="form-control" asp-items="@Model.Members"></select>
+                <select asp-for="MembershipFee.MemberId" class="form-control" asp-items="@Model.MembersSelectList"></select>
                 <span asp-validation-for="MembershipFee.MemberId" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="MembershipFee.Id"/>

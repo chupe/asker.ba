@@ -24,7 +24,7 @@ namespace AskerTracker.Pages.MembershipFees
 
         [BindProperty] public MembershipFee MembershipFee { get; set; }
 
-        public IEnumerable<SelectListItem> Members => Helper.GetMemberSelectList(_memberRepository).Result;
+        public IEnumerable<SelectListItem> MembersSelectList => Helper.GetMemberSelectList(_memberRepository).Result;
 
         public IActionResult OnGet()
         {

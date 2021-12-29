@@ -25,9 +25,7 @@
 
 @if (Model.Message != null)
 {
-    <div>
-        <span class="alert alert-info btn-block">@Model.Message</span>
-    </div>
+    <partial name="Shared/_NotificationAlertPartial" model="Model.Message"/>
 }
 
 <table class="table">
