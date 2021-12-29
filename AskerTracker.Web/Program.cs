@@ -1,4 +1,3 @@
-using System;
 using AskerTracker.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +13,7 @@ namespace AskerTracker
             var host = CreateHostBuilder(args).Build();
             
             var logger = host.Services.GetRequiredService<ILogger<Program>>();
-            var helpers = new Helpers(logger: logger);
+            var helpers = new DbHelpers(logger: logger);
             helpers.MigrateAndSeedDatabase(host);
 
             host.Run();

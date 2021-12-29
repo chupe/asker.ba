@@ -10,18 +10,17 @@ using Microsoft.Extensions.Logging;
 
 namespace AskerTracker.Common
 {
-    public class Helpers
+    public class DbHelpers
     {
         private readonly ILogger _logger;
+        private static IConfiguration Configuration { get; set; }
 
-        public Helpers(IConfiguration configuration = null, ILogger logger = null)
+        public DbHelpers(IConfiguration configuration = null, ILogger logger = null)
         {
             _logger = logger;
             Configuration = configuration;
         }
-
-        private static IConfiguration Configuration { get; set; }
-
+        
         public async void MigrateAndSeedDatabase(IHost host)
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
