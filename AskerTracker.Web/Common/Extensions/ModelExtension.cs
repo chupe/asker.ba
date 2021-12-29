@@ -20,5 +20,7 @@ namespace AskerTracker.Common.Extensions
                         p.SetValue(dest, sourceProp.GetValue(source, null), null);
                 }
         }
+        
+        
     }
 }

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Common;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,30 +16,31 @@ namespace AskerTracker.Pages.Items
 {
     public class EditModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Item> _repository;
+        private readonly IRepository<Member> _memberRepository;
 
-        public EditModel(AskerTrackerDbContext context)
+        public EditModel(IRepository<Item> repository,
+            IRepository<Member> memberRepository)
         {
-            _context = context;
+            _repository = repository;
+            _memberRepository = memberRepository;
         }
 
         [BindProperty] public Item Item { get; set; }
+        
+        public IEnumerable<SelectListItem> MembersSelectList =>
+            Helper.GetMemberSelectList(_memberRepository).Result.AppendItem(new SelectListItem("Team property", "", true));
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null) return NotFound();
 
-            Item = await _context.Item
-                .Include(i => i.Lender)
-                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            Item = await _repository.Get<Item>(x => x.Id == id.Value, x => x.Lender);
+            var owner = (await _repository.Get<Item>(x => x.Id == id.Value, x => x.Owner)).Owner;
+
+            Item.IncludeMore(i => i.Owner, owner);
 
             if (Item == null) return NotFound();
-
-            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName")
-                .Append(new SelectListItem("Team property", "", true));
-
-            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName")
-                .Append(new SelectListItem("Team property", "", true));
 
             return Page();
         }
@@ -45,19 +49,13 @@ namespace AskerTracker.Pages.Items
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName")
-                .Append(new SelectListItem("Team property", "", true));
-
-            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName")
-                .Append(new SelectListItem("Team property", "", true));
-         
             if (!ModelState.IsValid) return Page();
 
-            _context.Attach(Item).State = EntityState.Modified;
+            _repository.Update(Item);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _repository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,7 +69,7 @@ namespace AskerTracker.Pages.Items
 
         private bool ItemExists(Guid id)
         {
-            return _context.Item.Any(e => e.Id == id);
+            return _repository.Get(id) != null;
         }
     }
 }

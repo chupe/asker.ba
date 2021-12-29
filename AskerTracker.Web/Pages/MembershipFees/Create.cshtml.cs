@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
@@ -23,7 +24,7 @@ namespace AskerTracker.Pages.MembershipFees
 
         [BindProperty] public MembershipFee MembershipFee { get; set; }
 
-        public SelectList Members => Helper.GetMemberSelectList(_memberRepository).Result;
+        public IEnumerable<SelectListItem> Members => Helper.GetMemberSelectList(_memberRepository).Result;
 
         public IActionResult OnGet()
         {

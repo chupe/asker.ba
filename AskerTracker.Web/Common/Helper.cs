@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
@@ -8,21 +9,20 @@ namespace AskerTracker.Common
 {
     public static class Helper
     {
-        // private readonly IRepository<Member> _repository;
-        //
-        // public Helper(IRepository<Member> repository)
-        // {
-        //     _repository = repository;
-        // }
-
-        public static async Task<SelectList> GetMemberSelectList(IRepository<Member> repository)
+        public static async Task<IEnumerable<SelectListItem>> GetMemberSelectList(IRepository<Member> repository,
+            string dataValueField = "Id", string dataTextField = "FullName", bool selectedValue = false, bool additionalItem = false)
         {
             var list = (await repository.All()).ToList();
 
             var membersList = list.OrderBy(m => m.FullName).GroupBy(x => x.FullName)
                 .Select(y => y.First()).ToList();
 
-            return new SelectList(membersList, "Id", "FullName");
+            return new SelectList(membersList, dataValueField, dataTextField, selectedValue);
         }
+
+        public static IEnumerable<SelectListItem> AppendItem(this IEnumerable<SelectListItem> list, SelectListItem item)
+        {
+            return list.Append(item);
+        }   
     }
 }
