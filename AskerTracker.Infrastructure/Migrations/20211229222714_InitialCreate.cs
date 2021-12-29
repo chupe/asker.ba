@@ -230,7 +230,6 @@ namespace AskerTracker.Infrastructure.Migrations
                     BloodType = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     JMBG = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ASquadId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TestingEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TrainingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -269,8 +268,7 @@ namespace AskerTracker.Infrastructure.Migrations
                     Comment = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     Value = table.Column<double>(type: "float", nullable: false),
                     LenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsTeamProperty = table.Column<bool>(type: "bit", nullable: false)
+                    OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {

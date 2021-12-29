@@ -6,8 +6,7 @@ namespace AskerTracker.Domain
 {
     public class EventLocation : EntityModel
     {
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Location))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "LocationRequired")]
+        [Required]
         [StringLength(40, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to40",
             MinimumLength = 3)]
         [DataType(DataType.Text)]

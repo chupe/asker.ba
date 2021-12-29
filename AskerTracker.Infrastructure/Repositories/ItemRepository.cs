@@ -23,7 +23,6 @@ namespace AskerTracker.Infrastructure.Repositories
             updated.LenderId = entity.LenderId;
             updated.OwnerId = entity.OwnerId;
             updated.Value = entity.Value;
-            updated.IsTeamProperty = entity.IsTeamProperty;
 
             return base.Update(updated);
         }

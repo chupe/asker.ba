@@ -15,8 +15,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 OwnerId = MemberSeed.Entries[0].Id,
                 LenderId = MemberSeed.Entries[1].Id,
                 Amount = 1,
-                Value = 100.5,
-                IsTeamProperty = false
+                Value = 100.5
             },
             new Item
             {
@@ -25,8 +24,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 Comment = "U dobrom stanju",
                 LenderId = MemberSeed.Entries[2].Id,
                 Amount = 2,
-                Value = 399.99,
-                IsTeamProperty = true
+                Value = 399.99
             },
             new Item
             {
@@ -36,8 +34,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 OwnerId = MemberSeed.Entries[3].Id,
                 LenderId = MemberSeed.Entries[4].Id,
                 Amount = 1,
-                Value = 600.999,
-                IsTeamProperty = false
+                Value = 600.999
             }
         };
     }

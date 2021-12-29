@@ -16,6 +16,6 @@ namespace AskerTracker.Domain.BaseModels
         [Required]
         [ScaffoldColumn(false)]
         [DataType(DataType.DateTime)]
-        public DateTime CreatedDate { get; }
+        private DateTime CreatedDate { get; }
     }
 }

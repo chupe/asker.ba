@@ -34,14 +34,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 BirthDate = new DateTime(1990, 1, 23),
                 BloodType = BloodType.BPositive,
                 DateJoined = new DateTime(2016, 10, 19),
-                Active = true,
-                Fees = new HashSet<MembershipFee>
-                {
-                    MembershipFeesSeed.Entries[0],
-                    MembershipFeesSeed.Entries[1],
-                    MembershipFeesSeed.Entries[2],
-                    MembershipFeesSeed.Entries[3]
-                }
+                Active = true
             },
             new Member
             {
@@ -54,14 +47,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 BirthDate = new DateTime(1985, 11, 18),
                 BloodType = BloodType.OPositive,
                 DateJoined = new DateTime(2016, 10, 19),
-                Active = false,
-                Fees = new HashSet<MembershipFee>
-                {
-                    MembershipFeesSeed.Entries[4],
-                    MembershipFeesSeed.Entries[5],
-                    MembershipFeesSeed.Entries[6],
-                    MembershipFeesSeed.Entries[7]
-                }
+                Active = false
             },
             new Member
             {
@@ -74,14 +60,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 BirthDate = new DateTime(1995, 5, 25),
                 BloodType = BloodType.OPositive,
                 DateJoined = new DateTime(2016, 10, 19),
-                Active = false,
-                Fees = new HashSet<MembershipFee>
-                {
-                    MembershipFeesSeed.Entries[8],
-                    MembershipFeesSeed.Entries[9],
-                    MembershipFeesSeed.Entries[10],
-                    MembershipFeesSeed.Entries[11]
-                }
+                Active = false
             },
             new Member
             {
@@ -93,14 +72,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 BirthDate = new DateTime(1990, 1, 16),
                 BloodType = BloodType.BPositive,
                 DateJoined = new DateTime(2016, 10, 19),
-                Active = true,
-                Fees = new HashSet<MembershipFee>
-                {
-                    MembershipFeesSeed.Entries[12],
-                    MembershipFeesSeed.Entries[13],
-                    MembershipFeesSeed.Entries[14],
-                    MembershipFeesSeed.Entries[15]
-                }
+                Active = true
             },
             new Member
             {
@@ -113,12 +85,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                 BirthDate = new DateTime(1990, 5, 29),
                 BloodType = BloodType.APositive,
                 DateJoined = new DateTime(2016, 10, 19),
-                Active = false,
-                Fees = new HashSet<MembershipFee>
-                {
-                    MembershipFeesSeed.Entries[16],
-                    MembershipFeesSeed.Entries[17]
-                }
+                Active = false
             },
             new Member
             {

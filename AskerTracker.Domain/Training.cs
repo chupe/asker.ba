@@ -6,8 +6,7 @@ namespace AskerTracker.Domain
 {
     public class Training : EventModel
     {
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TrainingType))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "TrainingTypeRequired")]
+        [Required]
         [EnumDataType(typeof(TrainingType))]
         public TrainingType TrainingType { get; set; }
     }

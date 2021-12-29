@@ -15,25 +15,23 @@ namespace AskerTracker.Domain
         [ScaffoldColumn(false)] private int? ltkPoints;
 
         [ScaffoldColumn(false)] private int? mdlPoints;
-
-        private Member member;
-
+        
         [ScaffoldColumn(false)] private int? sdcPoints;
 
         [ScaffoldColumn(false)] private int? sptPoints;
 
         [ScaffoldColumn(false)] private int? tmrPoints;
+        
+        private Member member;
 
         [ForeignKey("Event")] public Guid EventId { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Event))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "EventRequired")]
+        [Required]
         public TestingEvent Event { get; set; }
 
         [ForeignKey("Member")] public Guid MemberId { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(Member))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "MemberRequired")]
+        [Required]
         public Member Member
         {
             get => member;
@@ -45,15 +43,13 @@ namespace AskerTracker.Domain
             }
         }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
         public int TotalScore
         {
             get => CalculateTotal();
             private set { }
         }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TotalScore))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public int WeakestDisciplinePoints
         {
             get
@@ -72,28 +68,22 @@ namespace AskerTracker.Domain
             }
         }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(MaximumDeadliftWeight))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public int MaximumDeadliftWeight { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(StandingPowerThrow))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public double StandingPowerThrow { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(HandReleasePushup))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public int HandReleasePushup { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(SprintDragCarry))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public TimeSpan SprintDragCarry { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(LegTuck))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public int LegTuck { get; set; }
 
-        // [Display(ResourceType = typeof(UILocalization), Name = nameof(TwoMileRun))]
-        [Required] // [Required(ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "ScoreRequired")]
+        [Required]
         public TimeSpan TwoMileRun { get; set; }
 
         public List<int?> GetPoints()
