@@ -10,7 +10,7 @@ namespace AskerTracker.Common
     public static class Helper
     {
         public static async Task<IEnumerable<SelectListItem>> GetMemberSelectList(IRepository<Member> repository,
-            string dataValueField = "Id", string dataTextField = "FullName", bool selectedValue = false, bool additionalItem = false)
+            string dataValueField = "Id", string dataTextField = "FullName", bool selectedValue = false)
         {
             var list = (await repository.All()).ToList();
 
@@ -23,6 +23,11 @@ namespace AskerTracker.Common
         public static IEnumerable<SelectListItem> AppendItem(this IEnumerable<SelectListItem> list, SelectListItem item)
         {
             return list.Append(item);
+        }
+        
+        public static IEnumerable<SelectListItem> AppendTeamPropertyItem(this IEnumerable<SelectListItem> list)
+        {
+            return list.Append(new SelectListItem("Team property", "", true));
         }   
     }
 }

@@ -29,7 +29,7 @@ namespace AskerTracker.Pages.Items
         [BindProperty] public Item Item { get; set; }
         
         public IEnumerable<SelectListItem> MembersSelectList =>
-            Helper.GetMemberSelectList(_memberRepository).Result.AppendItem(new SelectListItem("Team property", "", true));
+            Helper.GetMemberSelectList(_memberRepository).Result.AppendTeamPropertyItem();
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -56,6 +56,7 @@ namespace AskerTracker.Pages.Items
             try
             {
                 await _repository.SaveChangesAsync();
+                TempData["Message"] = $"Saved item {Item.Name} successfully!";
             }
             catch (DbUpdateConcurrencyException)
             {

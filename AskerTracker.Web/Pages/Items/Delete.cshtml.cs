@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,11 @@ namespace AskerTracker.Pages.Items
 {
     public class DeleteModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Item> _repository;
 
-        public DeleteModel(AskerTrackerDbContext context)
+        public DeleteModel(IRepository<Item> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [BindProperty] public Item Item { get; set; }
@@ -22,10 +24,11 @@ namespace AskerTracker.Pages.Items
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null) return NotFound();
+            
+            Item = await _repository.Get<Item>(x => x.Id == id.Value, x => x.Lender);
+            var owner = (await _repository.Get<Item>(x => x.Id == id.Value, x => x.Owner)).Owner;
 
-            Item = await _context.Item
-                .Include(i => i.Lender)
-                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            Item.IncludeMore(i => i.Owner, owner);
 
             if (Item == null) return NotFound();
             return Page();
@@ -35,12 +38,13 @@ namespace AskerTracker.Pages.Items
         {
             if (id == null) return NotFound();
 
-            Item = await _context.Item.FindAsync(id);
+            Item = await _repository.Get(id.Value);
 
             if (Item != null)
             {
-                _context.Item.Remove(Item);
-                await _context.SaveChangesAsync();
+                _repository.Remove(Item);
+                await _repository.SaveChangesAsync();
+                TempData["Message"] = $"Removed {Item.Name} successfully!";
             }
 
             return RedirectToPage("./Index");

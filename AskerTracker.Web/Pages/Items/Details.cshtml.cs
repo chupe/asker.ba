@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,11 +12,11 @@ namespace AskerTracker.Pages.Items
 {
     public class DetailsModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly IRepository<Item> _repository;
 
-        public DetailsModel(AskerTrackerDbContext context)
+        public DetailsModel(IRepository<Item> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public Item Item { get; set; }
@@ -23,9 +25,10 @@ namespace AskerTracker.Pages.Items
         {
             if (id == null) return NotFound();
 
-            Item = await _context.Item
-                .Include(i => i.Lender)
-                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            Item = await _repository.Get<Item>(x => x.Id == id.Value, x => x.Lender);
+            var owner = (await _repository.Get<Item>(x => x.Id == id.Value, x => x.Owner)).Owner;
+
+            Item.IncludeMore(i => i.Owner, owner);
 
             if (Item == null) return NotFound();
             return Page();
