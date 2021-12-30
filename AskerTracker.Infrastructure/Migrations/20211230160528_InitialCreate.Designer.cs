@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AskerTracker.Infrastructure.Migrations
 {
     [DbContext(typeof(AskerTrackerDbContext))]
-    [Migration("20211229222714_InitialCreate")]
+    [Migration("20211230160528_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ASquad");
+                    b.ToTable("ASquads");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.EventLocation", b =>
@@ -45,7 +45,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventLocation");
+                    b.ToTable("EventLocations");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.Item", b =>
@@ -85,7 +85,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.ItemTransaction", b =>
@@ -119,7 +119,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("ItemTransaction");
+                    b.ToTable("ItemTransactions");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.Member", b =>
@@ -187,7 +187,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("Member");
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.MembershipFee", b =>
@@ -209,7 +209,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("MembershipFee");
+                    b.ToTable("MembershipFees");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.TestingEvent", b =>
@@ -228,7 +228,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("TestingEvent");
+                    b.ToTable("TestingEvents");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.TestingResult", b =>
@@ -270,7 +270,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("TestingResult");
+                    b.ToTable("TestingResults");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.Training", b =>
@@ -292,7 +292,7 @@ namespace AskerTracker.Infrastructure.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Training");
+                    b.ToTable("Trainings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

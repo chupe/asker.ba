@@ -47,6 +47,7 @@ namespace AskerTracker
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AskerTrackerDbContext>()
                 .AddDefaultTokenProviders();
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddRazorPages(

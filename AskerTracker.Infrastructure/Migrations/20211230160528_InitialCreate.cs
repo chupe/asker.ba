@@ -47,18 +47,18 @@ namespace AskerTracker.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ASquad",
+                name: "ASquads",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ASquad", x => x.Id);
+                    table.PrimaryKey("PK_ASquads", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EventLocation",
+                name: "EventLocations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -66,7 +66,7 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventLocation", x => x.Id);
+                    table.PrimaryKey("PK_EventLocations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,7 +176,7 @@ namespace AskerTracker.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TestingEvent",
+                name: "TestingEvents",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -185,17 +185,17 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TestingEvent", x => x.Id);
+                    table.PrimaryKey("PK_TestingEvents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TestingEvent_EventLocation_LocationId",
+                        name: "FK_TestingEvents_EventLocations_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "EventLocation",
+                        principalTable: "EventLocations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Training",
+                name: "Trainings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -205,17 +205,17 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Training", x => x.Id);
+                    table.PrimaryKey("PK_Trainings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Training_EventLocation_LocationId",
+                        name: "FK_Trainings_EventLocations_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "EventLocation",
+                        principalTable: "EventLocations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Member",
+                name: "Members",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -236,29 +236,29 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Member", x => x.Id);
+                    table.PrimaryKey("PK_Members", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Member_ASquad_ASquadId",
+                        name: "FK_Members_ASquads_ASquadId",
                         column: x => x.ASquadId,
-                        principalTable: "ASquad",
+                        principalTable: "ASquads",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Member_TestingEvent_TestingEventId",
+                        name: "FK_Members_TestingEvents_TestingEventId",
                         column: x => x.TestingEventId,
-                        principalTable: "TestingEvent",
+                        principalTable: "TestingEvents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Member_Training_TrainingId",
+                        name: "FK_Members_Trainings_TrainingId",
                         column: x => x.TrainingId,
-                        principalTable: "Training",
+                        principalTable: "Trainings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Item",
+                name: "Items",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -272,23 +272,23 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Item", x => x.Id);
+                    table.PrimaryKey("PK_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Item_Member_LenderId",
+                        name: "FK_Items_Members_LenderId",
                         column: x => x.LenderId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Item_Member_OwnerId",
+                        name: "FK_Items_Members_OwnerId",
                         column: x => x.OwnerId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemTransaction",
+                name: "ItemTransactions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -301,23 +301,23 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemTransaction", x => x.Id);
+                    table.PrimaryKey("PK_ItemTransactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ItemTransaction_Member_LenderId",
+                        name: "FK_ItemTransactions_Members_LenderId",
                         column: x => x.LenderId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ItemTransaction_Member_OwnerId",
+                        name: "FK_ItemTransactions_Members_OwnerId",
                         column: x => x.OwnerId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MembershipFee",
+                name: "MembershipFees",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -327,17 +327,17 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MembershipFee", x => x.Id);
+                    table.PrimaryKey("PK_MembershipFees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MembershipFee_Member_MemberId",
+                        name: "FK_MembershipFees_Members_MemberId",
                         column: x => x.MemberId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TestingResult",
+                name: "TestingResults",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -353,17 +353,17 @@ namespace AskerTracker.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TestingResult", x => x.Id);
+                    table.PrimaryKey("PK_TestingResults", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TestingResult_Member_MemberId",
+                        name: "FK_TestingResults_Members_MemberId",
                         column: x => x.MemberId,
-                        principalTable: "Member",
+                        principalTable: "Members",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TestingResult_TestingEvent_EventId",
+                        name: "FK_TestingResults_TestingEvents_EventId",
                         column: x => x.EventId,
-                        principalTable: "TestingEvent",
+                        principalTable: "TestingEvents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -408,63 +408,63 @@ namespace AskerTracker.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_LenderId",
-                table: "Item",
+                name: "IX_Items_LenderId",
+                table: "Items",
                 column: "LenderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_OwnerId",
-                table: "Item",
+                name: "IX_Items_OwnerId",
+                table: "Items",
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemTransaction_LenderId",
-                table: "ItemTransaction",
+                name: "IX_ItemTransactions_LenderId",
+                table: "ItemTransactions",
                 column: "LenderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ItemTransaction_OwnerId",
-                table: "ItemTransaction",
+                name: "IX_ItemTransactions_OwnerId",
+                table: "ItemTransactions",
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_ASquadId",
-                table: "Member",
+                name: "IX_Members_ASquadId",
+                table: "Members",
                 column: "ASquadId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_TestingEventId",
-                table: "Member",
+                name: "IX_Members_TestingEventId",
+                table: "Members",
                 column: "TestingEventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_TrainingId",
-                table: "Member",
+                name: "IX_Members_TrainingId",
+                table: "Members",
                 column: "TrainingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MembershipFee_MemberId",
-                table: "MembershipFee",
+                name: "IX_MembershipFees_MemberId",
+                table: "MembershipFees",
                 column: "MemberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestingEvent_LocationId",
-                table: "TestingEvent",
+                name: "IX_TestingEvents_LocationId",
+                table: "TestingEvents",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestingResult_EventId",
-                table: "TestingResult",
+                name: "IX_TestingResults_EventId",
+                table: "TestingResults",
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TestingResult_MemberId",
-                table: "TestingResult",
+                name: "IX_TestingResults_MemberId",
+                table: "TestingResults",
                 column: "MemberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Training_LocationId",
-                table: "Training",
+                name: "IX_Trainings_LocationId",
+                table: "Trainings",
                 column: "LocationId");
         }
 
@@ -486,16 +486,16 @@ namespace AskerTracker.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Item");
+                name: "Items");
 
             migrationBuilder.DropTable(
-                name: "ItemTransaction");
+                name: "ItemTransactions");
 
             migrationBuilder.DropTable(
-                name: "MembershipFee");
+                name: "MembershipFees");
 
             migrationBuilder.DropTable(
-                name: "TestingResult");
+                name: "TestingResults");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -504,19 +504,19 @@ namespace AskerTracker.Infrastructure.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Member");
+                name: "Members");
 
             migrationBuilder.DropTable(
-                name: "ASquad");
+                name: "ASquads");
 
             migrationBuilder.DropTable(
-                name: "TestingEvent");
+                name: "TestingEvents");
 
             migrationBuilder.DropTable(
-                name: "Training");
+                name: "Trainings");
 
             migrationBuilder.DropTable(
-                name: "EventLocation");
+                name: "EventLocations");
         }
     }
 }
