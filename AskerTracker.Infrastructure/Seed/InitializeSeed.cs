@@ -14,6 +14,8 @@ namespace AskerTracker.Infrastructure.Seed
             if (!context.Users.Any())
                 context.Users.Add(new Member
                 {
+                    Id = new Guid("3F2504E0-4F89-11D3-1111-0305E82C3310"),
+                    SecurityStamp = new Guid("3F2504E0-4F89-11D3-1111-0305E82C3310").ToString(),
                     UserName = "test@mail.com",
                     NormalizedUserName = "test@mail.com".ToUpper(),
                     Email = "test@mail.com",

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AskerTracker.Domain.BaseModels
 {
-    public class EntityModel
+    public class EntityModel : IEntityModel
     {
         public EntityModel()
         {
@@ -16,6 +16,6 @@ namespace AskerTracker.Domain.BaseModels
         [Required]
         [ScaffoldColumn(false)]
         [DataType(DataType.DateTime)]
-        private DateTime CreatedDate { get; }
+        public DateTime CreatedDate { get; }
     }
 }

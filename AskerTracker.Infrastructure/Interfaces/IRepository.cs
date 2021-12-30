@@ -15,10 +15,8 @@ namespace AskerTracker.Infrastructure.Interfaces
         Task<IEnumerable<T>> All();
         Task<IEnumerable<TT>> All<TT>(Expression<Func<TT, object>> include) where TT : class;
         Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);
-
         Task<IEnumerable<TT>> Find<TT>(Expression<Func<TT, bool>> predicate, Expression<Func<TT, object>> include)
             where TT : class;
-
         void SaveChanges();
         Task SaveChangesAsync();
     }

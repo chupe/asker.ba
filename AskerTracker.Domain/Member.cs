@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AskerTracker.Domain
 {
-    public class Member : IdentityUser<Guid>
+    public class Member : IdentityUser<Guid>, IEntityModel
     {
         private string jmbg;
 
@@ -61,5 +61,17 @@ namespace AskerTracker.Domain
         }
 
         [ScaffoldColumn(false)] public string FullName => $"{FirstName} {LastName}";
+        
+        [Required]
+        [ScaffoldColumn(false)]
+        [DataType(DataType.DateTime)]
+        public DateTime CreatedDate { get; }
+    }
+
+    public interface IEntityModel
+    {
+        Guid Id { get; set; }
+
+        DateTime CreatedDate { get; }
     }
 }
