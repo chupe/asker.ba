@@ -20,8 +20,8 @@ namespace AskerTracker.Pages.TestingResults
 
         public IActionResult OnGet()
         {
-            ViewData["EventId"] = new SelectList(_context.TestingEvent, "Id", "Id");
-            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["EventId"] = new SelectList(_context.TestingEvents, "Id", "Id");
+            ViewData["MemberId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
@@ -30,7 +30,7 @@ namespace AskerTracker.Pages.TestingResults
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.TestingResult.Add(TestingResult);
+            _context.TestingResults.Add(TestingResult);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -20,26 +20,26 @@ namespace AskerTracker.Infrastructure.Seed
                         "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
                 });
 
-            if (!context.Member.Any())
-                context.Member.AddRange(MemberSeed.Entries);
+            if (!context.Members.Any())
+                context.Members.AddRange(MemberSeed.Entries);
             
-            if (!context.MembershipFee.Any())
-                context.MembershipFee.AddRange(MembershipFeeSeed.Entries);
+            if (!context.MembershipFees.Any())
+                context.MembershipFees.AddRange(MembershipFeeSeed.Entries);
             
-            if (!context.Item.Any())
-                context.Item.AddRange(ItemSeed.Entries);
+            if (!context.Items.Any())
+                context.Items.AddRange(ItemSeed.Entries);
 
-            if (!context.EventLocation.Any())
-                context.EventLocation.AddRange(EventLocationSeed.Entries);
+            if (!context.EventLocations.Any())
+                context.EventLocations.AddRange(EventLocationSeed.Entries);
 
-            if (!context.Training.Any())
-                context.Training.AddRange(TrainingSeed.Entries());
+            if (!context.Trainings.Any())
+                context.Trainings.AddRange(TrainingSeed.Entries());
 
-            if (!context.TestingEvent.Any())
-                context.TestingEvent.AddRange(TestingEventSeed.Entries());
+            if (!context.TestingEvents.Any())
+                context.TestingEvents.AddRange(TestingEventSeed.Entries());
 
-            if (!context.TestingResult.Any())
-                context.TestingResult.AddRange(TestingResultSeed.Entries());
+            if (!context.TestingResults.Any())
+                context.TestingResults.AddRange(TestingResultSeed.Entries());
 
             context.SaveChanges();
         }

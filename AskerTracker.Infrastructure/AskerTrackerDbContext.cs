@@ -11,14 +11,14 @@ namespace AskerTracker.Infrastructure
         {
         }
 
-        public DbSet<Item> Item { get; set; }
-        public DbSet<Member> Member { get; set; }
-        public DbSet<MembershipFee> MembershipFee { get; set; }
-        public DbSet<Training> Training { get; set; }
-        public DbSet<TestingEvent> TestingEvent { get; set; }
-        public DbSet<TestingResult> TestingResult { get; set; }
-        public DbSet<EventLocation> EventLocation { get; set; }
-        public DbSet<ItemTransaction> ItemTransaction { get; set; }
-        public DbSet<ASquad> ASquad { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<MembershipFee> MembershipFees { get; set; }
+        public DbSet<Training> Trainings { get; set; }
+        public DbSet<TestingEvent> TestingEvents { get; set; }
+        public DbSet<TestingResult> TestingResults { get; set; }
+        public DbSet<EventLocation> EventLocations { get; set; }
+        public DbSet<ItemTransaction> ItemTransactions { get; set; }
+        public DbSet<ASquad> ASquads { get; set; }
     }
 }

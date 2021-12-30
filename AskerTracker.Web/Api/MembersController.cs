@@ -24,7 +24,7 @@ namespace AskerTracker.Api
         [HttpGet]
         public IEnumerable<Member> GetMembers()
         {
-            return _context.Member;
+            return _context.Members;
         }
 
         // GET: api/Members/5
@@ -33,7 +33,7 @@ namespace AskerTracker.Api
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var member = await _context.Member.FindAsync(id);
+            var member = await _context.Members.FindAsync(id);
 
             if (member == null) return NotFound();
 
@@ -70,7 +70,7 @@ namespace AskerTracker.Api
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _context.Member.Add(member);
+            _context.Members.Add(member);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMember", new {id = member.Id}, member);
@@ -82,10 +82,10 @@ namespace AskerTracker.Api
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var member = await _context.Member.FindAsync(id);
+            var member = await _context.Members.FindAsync(id);
             if (member == null) return NotFound();
 
-            _context.Member.Remove(member);
+            _context.Members.Remove(member);
             await _context.SaveChangesAsync();
 
             return Ok(member);
@@ -93,7 +93,7 @@ namespace AskerTracker.Api
 
         private bool MemberExists(Guid? id)
         {
-            return _context.Member.Any(e => e.Id == id);
+            return _context.Members.Any(e => e.Id == id);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace AskerTracker.Pages.ItemTransactions
         {
             if (id == null) return NotFound();
 
-            ItemTransaction = await _context.ItemTransaction
+            ItemTransaction = await _context.ItemTransactions
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 

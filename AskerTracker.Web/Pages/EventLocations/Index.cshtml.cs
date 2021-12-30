@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.EventLocations
 
         public async Task OnGetAsync()
         {
-            EventLocation = await _context.EventLocation.ToListAsync();
+            EventLocation = await _context.EventLocations.ToListAsync();
         }
     }
 }

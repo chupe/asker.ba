@@ -20,8 +20,8 @@ namespace AskerTracker.Pages.ItemTransactions
 
         public IActionResult OnGet()
         {
-            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
-            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
+            ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
@@ -30,7 +30,7 @@ namespace AskerTracker.Pages.ItemTransactions
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.ItemTransaction.Add(ItemTransaction);
+            _context.ItemTransactions.Add(ItemTransaction);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

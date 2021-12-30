@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.Trainings
 
         public async Task OnGetAsync()
         {
-            Training = await _context.Training
+            Training = await _context.Trainings
                 .Include(t => t.Location).ToListAsync();
         }
     }

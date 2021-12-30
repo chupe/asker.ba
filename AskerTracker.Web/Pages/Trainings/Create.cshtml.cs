@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.Trainings
 
         public IActionResult OnGet()
         {
-            ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
+            ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
             return Page();
         }
 
@@ -29,7 +29,7 @@ namespace AskerTracker.Pages.Trainings
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.Training.Add(Training);
+            _context.Trainings.Add(Training);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

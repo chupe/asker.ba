@@ -23,7 +23,7 @@ namespace AskerTracker.Pages.TestingResults
         {
             if (id == null) return NotFound();
 
-            TestingResult = await _context.TestingResult
+            TestingResult = await _context.TestingResults
                 .Include(t => t.Event)
                 .Include(t => t.Member).FirstOrDefaultAsync(m => m.Id == id);
 

@@ -23,7 +23,7 @@ namespace AskerTracker.Pages.EventLocations
         {
             if (id == null) return NotFound();
 
-            EventLocation = await _context.EventLocation.FirstOrDefaultAsync(m => m.Id == id);
+            EventLocation = await _context.EventLocations.FirstOrDefaultAsync(m => m.Id == id);
 
             if (EventLocation == null) return NotFound();
             return Page();
@@ -33,11 +33,11 @@ namespace AskerTracker.Pages.EventLocations
         {
             if (id == null) return NotFound();
 
-            EventLocation = await _context.EventLocation.FindAsync(id);
+            EventLocation = await _context.EventLocations.FindAsync(id);
 
             if (EventLocation != null)
             {
-                _context.EventLocation.Remove(EventLocation);
+                _context.EventLocations.Remove(EventLocation);
                 await _context.SaveChangesAsync();
             }
 

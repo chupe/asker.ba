@@ -14,7 +14,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override EventLocation Update(EventLocation entity)
         {
-            var updated = _context.EventLocation
+            var updated = _context.EventLocations
                 .Single(m => m.Id == entity.Id);
 
             updated.Location = entity.Location;

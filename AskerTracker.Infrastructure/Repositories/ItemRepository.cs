@@ -14,7 +14,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override Item Update(Item entity)
         {
-            var updated = _context.Item
+            var updated = _context.Items
                 .Single(m => m.Id == entity.Id);
 
             updated.Amount = entity.Amount;

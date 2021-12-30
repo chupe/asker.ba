@@ -25,11 +25,11 @@ namespace AskerTracker.Pages.Trainings
         {
             if (id == null) return NotFound();
 
-            Training = await _context.Training
+            Training = await _context.Trainings
                 .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Training == null) return NotFound();
-            ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
+            ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
             return Page();
         }
 
@@ -57,7 +57,7 @@ namespace AskerTracker.Pages.Trainings
 
         private bool TrainingExists(Guid id)
         {
-            return _context.Training.Any(e => e.Id == id);
+            return _context.Trainings.Any(e => e.Id == id);
         }
     }
 }

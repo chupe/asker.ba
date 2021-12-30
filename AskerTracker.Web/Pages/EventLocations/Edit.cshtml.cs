@@ -24,7 +24,7 @@ namespace AskerTracker.Pages.EventLocations
         {
             if (id == null) return NotFound();
 
-            EventLocation = await _context.EventLocation.FirstOrDefaultAsync(m => m.Id == id);
+            EventLocation = await _context.EventLocations.FirstOrDefaultAsync(m => m.Id == id);
 
             if (EventLocation == null) return NotFound();
             return Page();
@@ -54,7 +54,7 @@ namespace AskerTracker.Pages.EventLocations
 
         private bool EventLocationExists(Guid id)
         {
-            return _context.EventLocation.Any(e => e.Id == id);
+            return _context.EventLocations.Any(e => e.Id == id);
         }
     }
 }

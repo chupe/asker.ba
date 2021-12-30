@@ -14,7 +14,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override Member Update(Member entity)
         {
-            var updated = _context.Member
+            var updated = _context.Members
                 .Single(m => m.Id == entity.Id);
 
             updated.Active = entity.Active;

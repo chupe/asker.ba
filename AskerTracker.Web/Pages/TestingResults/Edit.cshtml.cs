@@ -25,13 +25,13 @@ namespace AskerTracker.Pages.TestingResults
         {
             if (id == null) return NotFound();
 
-            TestingResult = await _context.TestingResult
+            TestingResult = await _context.TestingResults
                 .Include(t => t.Event)
                 .Include(t => t.Member).FirstOrDefaultAsync(m => m.Id == id);
 
             if (TestingResult == null) return NotFound();
-            ViewData["EventId"] = new SelectList(_context.TestingEvent, "Id", "Id");
-            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["EventId"] = new SelectList(_context.TestingEvents, "Id", "Id");
+            ViewData["MemberId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
@@ -59,7 +59,7 @@ namespace AskerTracker.Pages.TestingResults
 
         private bool TestingResultExists(Guid id)
         {
-            return _context.TestingResult.Any(e => e.Id == id);
+            return _context.TestingResults.Any(e => e.Id == id);
         }
     }
 }

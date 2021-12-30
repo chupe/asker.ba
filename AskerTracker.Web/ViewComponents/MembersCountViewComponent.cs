@@ -16,7 +16,7 @@ namespace AskerTracker.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string title)
         {
-            var count = await _dbContext.Member.CountAsync();
+            var count = await _dbContext.Members.CountAsync();
 
             return View(count + (title?.Length ?? 0));
         }

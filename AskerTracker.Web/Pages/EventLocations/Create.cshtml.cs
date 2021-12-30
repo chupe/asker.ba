@@ -27,7 +27,7 @@ namespace AskerTracker.Pages.EventLocations
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.EventLocation.Add(EventLocation);
+            _context.EventLocations.Add(EventLocation);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

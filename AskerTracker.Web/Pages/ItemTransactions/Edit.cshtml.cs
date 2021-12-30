@@ -25,13 +25,13 @@ namespace AskerTracker.Pages.ItemTransactions
         {
             if (id == null) return NotFound();
 
-            ItemTransaction = await _context.ItemTransaction
+            ItemTransaction = await _context.ItemTransactions
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
             if (ItemTransaction == null) return NotFound();
-            ViewData["LenderId"] = new SelectList(_context.Member, "Id", "FirstName");
-            ViewData["OwnerId"] = new SelectList(_context.Member, "Id", "FirstName");
+            ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
+            ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
@@ -59,7 +59,7 @@ namespace AskerTracker.Pages.ItemTransactions
 
         private bool ItemTransactionExists(Guid id)
         {
-            return _context.ItemTransaction.Any(e => e.Id == id);
+            return _context.ItemTransactions.Any(e => e.Id == id);
         }
     }
 }

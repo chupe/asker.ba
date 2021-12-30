@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.TestingEvents
 
         public IActionResult OnGet()
         {
-            ViewData["LocationId"] = new SelectList(_context.EventLocation, "Id", "Location");
+            ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
             return Page();
         }
 
@@ -29,7 +29,7 @@ namespace AskerTracker.Pages.TestingEvents
         {
             if (!ModelState.IsValid) return Page();
 
-            _context.TestingEvent.Add(TestingEvent);
+            _context.TestingEvents.Add(TestingEvent);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

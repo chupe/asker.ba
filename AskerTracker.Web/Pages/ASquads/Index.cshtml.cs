@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.ASquads
 
         public async Task OnGetAsync()
         {
-            ASquad = await _context.ASquad.ToListAsync();
+            ASquad = await _context.ASquads.ToListAsync();
         }
     }
 }

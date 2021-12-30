@@ -19,13 +19,13 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override MembershipFee Add(MembershipFee entity)
         {
-            entity.Member = _context.Member.Find(entity.MemberId);
+            entity.Member = _context.Members.Find(entity.MemberId);
             return base.Add(entity);
         }
 
         public override async Task<IEnumerable<MembershipFee>> Find(Expression<Func<MembershipFee, bool>> predicate)
         {
-            return await _context.MembershipFee
+            return await _context.MembershipFees
                 .Include(f => f.Member)
                 .Where(predicate)
                 .ToListAsync();
@@ -33,7 +33,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override MembershipFee Update(MembershipFee entity)
         {
-            var updated = _context.MembershipFee
+            var updated = _context.MembershipFees
                 .Single(m => m.Id == entity.Id);
 
             updated.Amount = entity.Amount;

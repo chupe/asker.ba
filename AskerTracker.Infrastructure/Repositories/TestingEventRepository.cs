@@ -14,7 +14,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override TestingEvent Update(TestingEvent entity)
         {
-            var updated = _context.TestingEvent
+            var updated = _context.TestingEvents
                 .Single(m => m.Id == entity.Id);
 
             updated.LocationId = entity.LocationId;

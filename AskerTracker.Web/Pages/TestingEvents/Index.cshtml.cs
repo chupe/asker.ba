@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.TestingEvents
 
         public async Task OnGetAsync()
         {
-            TestingEvent = await _context.TestingEvent
+            TestingEvent = await _context.TestingEvents
                 .Include(t => t.Location).ToListAsync();
         }
     }

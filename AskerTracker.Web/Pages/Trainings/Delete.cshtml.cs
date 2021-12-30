@@ -23,7 +23,7 @@ namespace AskerTracker.Pages.Trainings
         {
             if (id == null) return NotFound();
 
-            Training = await _context.Training
+            Training = await _context.Trainings
                 .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Training == null) return NotFound();
@@ -34,11 +34,11 @@ namespace AskerTracker.Pages.Trainings
         {
             if (id == null) return NotFound();
 
-            Training = await _context.Training.FindAsync(id);
+            Training = await _context.Trainings.FindAsync(id);
 
             if (Training != null)
             {
-                _context.Training.Remove(Training);
+                _context.Trainings.Remove(Training);
                 await _context.SaveChangesAsync();
             }
 

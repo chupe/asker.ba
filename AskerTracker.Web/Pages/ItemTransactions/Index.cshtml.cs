@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.ItemTransactions
 
         public async Task OnGetAsync()
         {
-            ItemTransaction = await _context.ItemTransaction
+            ItemTransaction = await _context.ItemTransactions
                 .Include(i => i.Lender)
                 .Include(i => i.Owner).ToListAsync();
         }

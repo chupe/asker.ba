@@ -14,7 +14,7 @@ namespace AskerTracker.Infrastructure.Repositories
 
         public override Training Update(Training entity)
         {
-            var updated = _context.Training
+            var updated = _context.Trainings
                 .Single(m => m.Id == entity.Id);
 
             updated.TrainingType = entity.TrainingType;
