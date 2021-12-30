@@ -11,7 +11,7 @@ namespace AskerTracker
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            
+
             var logger = host.Services.GetRequiredService<ILogger<Program>>();
             var helpers = new DbHelpers(logger: logger);
             helpers.MigrateAndSeedDatabase(host);

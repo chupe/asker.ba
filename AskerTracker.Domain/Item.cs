@@ -34,7 +34,7 @@ namespace AskerTracker.Domain
         public double Value { get; set; }
 
         [ForeignKey("Lender")] public Guid? LenderId { get; set; }
-        
+
         public Member Lender { get; set; }
 
         [ForeignKey("Owner")] public Guid? OwnerId { get; set; }

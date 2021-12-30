@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AskerTracker.Infrastructure
 {
     public class AskerTrackerDbContext : IdentityDbContext
-    { 
+    {
         public AskerTrackerDbContext(DbContextOptions<AskerTrackerDbContext> options)
             : base(options)
         {

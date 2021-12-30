@@ -19,7 +19,7 @@ namespace AskerTracker.Pages.Items
         }
 
         public IList<Item> Item { get; set; }
-        
+
         [TempData] public string Message { get; set; }
 
         public async Task OnGetAsync()

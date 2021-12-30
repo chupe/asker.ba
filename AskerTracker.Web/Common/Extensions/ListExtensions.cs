@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace AskerTracker.Common.Extensions
 {
     public static class ListExtensions
     {
+        private const string ExpressionCannotBeNullMessage = "The expression cannot be null.";
+        private const string InvalidExpressionMessage = "Invalid expression.";
+
         public static T RemoveAndReturnFirst<T>(this List<T> list)
         {
             if (list == null || list.Count == 0)
@@ -23,19 +25,16 @@ namespace AskerTracker.Common.Extensions
         public static IList<T> IncludeMore<T, TT>(this IList<T> list, Expression<Func<T, object>> propertyToChange,
             IList<TT> objects)
         {
-            for (var i = 0; i < list.Count; i++)
-            {
-                list[i].IncludeMore(propertyToChange, objects[i]);
-            }
+            for (var i = 0; i < list.Count; i++) list[i].IncludeMore(propertyToChange, objects[i]);
 
             return list;
         }
-        
+
         public static T IncludeMore<T, TT>(this T parent, Expression<Func<T, object>> propertyToChange,
             TT value)
         {
             var propertyName = GetMemberName(propertyToChange.Body);
-            
+
             parent.SetProperty(propertyName, value);
 
             return parent;
@@ -48,9 +47,6 @@ namespace AskerTracker.Common.Extensions
             propertyInfo.SetValue(obj, value);
         }
 
-        private const string ExpressionCannotBeNullMessage = "The expression cannot be null.";
-        private const string InvalidExpressionMessage = "Invalid expression.";
-
         public static string GetMemberName<T>
             (this T instance, Expression<Func<T, object>> expression)
         {
@@ -61,10 +57,7 @@ namespace AskerTracker.Common.Extensions
             (this T instance, params Expression<Func<T, object>>[] expressions)
         {
             var memberNames = new List<string>();
-            foreach (var cExpression in expressions)
-            {
-                memberNames.Add(GetMemberName(cExpression.Body));
-            }
+            foreach (var cExpression in expressions) memberNames.Add(GetMemberName(cExpression.Body));
 
             return memberNames;
         }
@@ -77,10 +70,7 @@ namespace AskerTracker.Common.Extensions
 
         private static string GetMemberName(Expression expression)
         {
-            if (expression == null)
-            {
-                throw new ArgumentException(ExpressionCannotBeNullMessage);
-            }
+            if (expression == null) throw new ArgumentException(ExpressionCannotBeNullMessage);
 
             if (expression is MemberExpression)
             {

@@ -4,9 +4,9 @@ using AskerTracker.Domain;
 
 namespace AskerTracker.Infrastructure.Seed.Data
 {
-    public class MembershipFeesSeed
+    public static class MembershipFeeSeed
     {
-        public static List<MembershipFee> Entries = new()
+        public static readonly List<MembershipFee> Entries = new()
         {
             new MembershipFee
             {

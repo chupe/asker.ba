@@ -2,11 +2,9 @@
 using System.Threading.Tasks;
 using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.Items
 {
@@ -24,7 +22,7 @@ namespace AskerTracker.Pages.Items
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null) return NotFound();
-            
+
             Item = await _repository.Get<Item>(x => x.Id == id.Value, x => x.Lender);
             var owner = (await _repository.Get<Item>(x => x.Id == id.Value, x => x.Owner)).Owner;
 

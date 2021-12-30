@@ -6,19 +6,19 @@
         <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
-        <Win32Resource />
+        <Win32Resource/>
         <Version>0.1.0</Version>
         <Authors>chupe</Authors>
         <Company>Asker Airsoft Team</Company>
         <PackageProjectUrl>asker.chupe.ba</PackageProjectUrl>
         <PackageIcon>asker_logo_background.png</PackageIcon>
-        <PackageIconUrl />
+        <PackageIconUrl/>
         <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
         <RootNamespace>AskerTracker</RootNamespace>
     </PropertyGroup>
-    
+
     <Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">
-        <Exec Command="npm install" />
+        <Exec Command="npm install"/>
     </Target>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,19 +26,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="bootstrap" Version="5.1.2" />
-        <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.7.2" />
-        <PackageReference Include="MailKit" Version="2.15.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.13" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8" />
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-        <PackageReference Include="MimeKit" Version="2.15.0" />
+        <PackageReference Include="bootstrap" Version="5.1.2"/>
+        <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.7.2"/>
+        <PackageReference Include="MailKit" Version="2.15.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8"/>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2"/>
+        <PackageReference Include="MimeKit" Version="2.15.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -49,19 +49,19 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
-        <ProjectReference Include="..\AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj" />
+        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj"/>
+        <ProjectReference Include="..\AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\lib\datatables\datatables.min.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\datatables\datatables.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+        <_ContentIncludedByDefault Remove="wwwroot\lib\datatables\datatables.min.css"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\datatables\datatables.min.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js"/>
+        <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt"/>
     </ItemGroup>
 </Project>

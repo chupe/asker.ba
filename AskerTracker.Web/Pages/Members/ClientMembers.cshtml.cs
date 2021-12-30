@@ -6,7 +6,6 @@ namespace AskerTracker.Pages.Members
     {
         public void OnGet()
         {
-            
         }
     }
 }

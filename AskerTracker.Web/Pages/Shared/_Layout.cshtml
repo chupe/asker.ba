@@ -73,9 +73,9 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        @await Component.InvokeAsync(typeof(MembersCountViewComponent), new { title = ViewData["Title"]})
+        @await Component.InvokeAsync(typeof(MembersCountViewComponent), new {title = ViewData["Title"]})
         &copy; 2021 - Asker - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        @await RenderSectionAsync("footer", required: false)
+        @await RenderSectionAsync("footer", false)
     </div>
 </footer>
 

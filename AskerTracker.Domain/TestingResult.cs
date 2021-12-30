@@ -15,19 +15,18 @@ namespace AskerTracker.Domain
         [ScaffoldColumn(false)] private int? ltkPoints;
 
         [ScaffoldColumn(false)] private int? mdlPoints;
-        
+
+        private Member member;
+
         [ScaffoldColumn(false)] private int? sdcPoints;
 
         [ScaffoldColumn(false)] private int? sptPoints;
 
         [ScaffoldColumn(false)] private int? tmrPoints;
-        
-        private Member member;
 
         [ForeignKey("Event")] public Guid EventId { get; set; }
 
-        [Required]
-        public TestingEvent Event { get; set; }
+        [Required] public TestingEvent Event { get; set; }
 
         [ForeignKey("Member")] public Guid MemberId { get; set; }
 
@@ -68,23 +67,17 @@ namespace AskerTracker.Domain
             }
         }
 
-        [Required]
-        public int MaximumDeadliftWeight { get; set; }
+        [Required] public int MaximumDeadliftWeight { get; set; }
 
-        [Required]
-        public double StandingPowerThrow { get; set; }
+        [Required] public double StandingPowerThrow { get; set; }
 
-        [Required]
-        public int HandReleasePushup { get; set; }
+        [Required] public int HandReleasePushup { get; set; }
 
-        [Required]
-        public TimeSpan SprintDragCarry { get; set; }
+        [Required] public TimeSpan SprintDragCarry { get; set; }
 
-        [Required]
-        public int LegTuck { get; set; }
+        [Required] public int LegTuck { get; set; }
 
-        [Required]
-        public TimeSpan TwoMileRun { get; set; }
+        [Required] public TimeSpan TwoMileRun { get; set; }
 
         public List<int?> GetPoints()
         {

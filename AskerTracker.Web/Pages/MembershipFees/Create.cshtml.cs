@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AskerTracker.Common;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,8 +12,8 @@ namespace AskerTracker.Pages.MembershipFees
 {
     public class CreateModel : PageModel
     {
-        private readonly IRepository<MembershipFee> _repository;
         private readonly IRepository<Member> _memberRepository;
+        private readonly IRepository<MembershipFee> _repository;
 
         public CreateModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
         {

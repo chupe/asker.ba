@@ -5,7 +5,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
 {
     public static class ItemSeed
     {
-        public static List<Item> Entries = new()
+        public static readonly List<Item> Entries = new()
         {
             new Item
             {

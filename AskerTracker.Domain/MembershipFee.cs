@@ -8,9 +8,7 @@ namespace AskerTracker.Domain
 {
     public class MembershipFee : EntityModel
     {
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime TransactionDate { get; set; }
+        [Required] [DataType(DataType.Date)] public DateTime TransactionDate { get; set; }
 
         [Required]
         [Range(1, 10000, ErrorMessageResourceType = typeof(UILocalization),
@@ -19,9 +17,8 @@ namespace AskerTracker.Domain
         [Column(TypeName = "decimal(18, 2)")]
         public float Amount { get; set; }
 
-        [ForeignKey("Member")] 
-        [Required] public Guid MemberId { get; set; }
-        
+        [ForeignKey("Member")] [Required] public Guid MemberId { get; set; }
+
         public Member Member { get; set; }
     }
 }

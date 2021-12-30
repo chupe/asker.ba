@@ -3,9 +3,9 @@ using AskerTracker.Domain;
 
 namespace AskerTracker.Infrastructure.Seed.Data
 {
-    public class EventLocationSeed
+    public static class EventLocationSeed
     {
-        public static List<EventLocation> Entries = new()
+        public static readonly List<EventLocation> Entries = new()
         {
             new EventLocation
             {

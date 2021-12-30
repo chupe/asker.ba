@@ -36,7 +36,7 @@ namespace AskerTracker
         {
             var helpers = new DbHelpers(Configuration);
             var connectionString = helpers.GetConnectionString();
-            
+
             services.AddDbContext<AskerTrackerDbContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();

@@ -13,8 +13,8 @@ namespace AskerTracker.Pages.Members
 {
     public class EditModel : PageModel
     {
-        private readonly IRepository<Member> _repository;
         private readonly IHtmlHelper _htmlHelper;
+        private readonly IRepository<Member> _repository;
 
         public EditModel(IRepository<Member> repository, IHtmlHelper htmlHelper)
         {
@@ -33,7 +33,7 @@ namespace AskerTracker.Pages.Members
             Member = await _repository.Get(id.Value);
 
             if (Member == null) return NotFound();
-            
+
             return Page();
         }
 

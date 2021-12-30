@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Common;
 using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,8 +14,8 @@ namespace AskerTracker.Pages.Items
 {
     public class EditModel : PageModel
     {
-        private readonly IRepository<Item> _repository;
         private readonly IRepository<Member> _memberRepository;
+        private readonly IRepository<Item> _repository;
 
         public EditModel(IRepository<Item> repository,
             IRepository<Member> memberRepository)
@@ -27,7 +25,7 @@ namespace AskerTracker.Pages.Items
         }
 
         [BindProperty] public Item Item { get; set; }
-        
+
         public IEnumerable<SelectListItem> MembersSelectList =>
             Helper.GetMemberSelectList(_memberRepository).Result.AppendTeamPropertyItem();
 

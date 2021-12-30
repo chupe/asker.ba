@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.Members
 {
@@ -27,7 +25,7 @@ namespace AskerTracker.Pages.Members
             Member = await _repository.Get(id.Value);
 
             if (Member == null) return NotFound();
-            
+
             return Page();
         }
     }

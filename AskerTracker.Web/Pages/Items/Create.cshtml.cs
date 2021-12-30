@@ -11,8 +11,8 @@ namespace AskerTracker.Pages.Items
 {
     public class CreateModel : PageModel
     {
-        private readonly IRepository<Item> _repository;
         private readonly IRepository<Member> _memberRepository;
+        private readonly IRepository<Item> _repository;
 
         public CreateModel(IRepository<Item> repository,
             IRepository<Member> memberRepository)

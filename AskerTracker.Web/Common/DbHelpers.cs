@@ -13,14 +13,15 @@ namespace AskerTracker.Common
     public class DbHelpers
     {
         private readonly ILogger _logger;
-        private static IConfiguration Configuration { get; set; }
 
         public DbHelpers(IConfiguration configuration = null, ILogger logger = null)
         {
             _logger = logger;
             Configuration = configuration;
         }
-        
+
+        private static IConfiguration Configuration { get; set; }
+
         public async void MigrateAndSeedDatabase(IHost host)
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -30,7 +31,6 @@ namespace AskerTracker.Common
             await context.Database.MigrateAsync();
 
             if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
-            {
                 try
                 {
                     InitializeSeed.Initialize(context);
@@ -40,7 +40,6 @@ namespace AskerTracker.Common
                 {
                     _logger.LogError(ex, "An error occurred seeding the DB");
                 }
-            }
         }
 
         public string GetConnectionString()

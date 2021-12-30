@@ -24,10 +24,10 @@ namespace AskerTracker.Common
         {
             return list.Append(item);
         }
-        
+
         public static IEnumerable<SelectListItem> AppendTeamPropertyItem(this IEnumerable<SelectListItem> list)
         {
             return list.Append(new SelectListItem("Team property", "", true));
-        }   
+        }
     }
 }

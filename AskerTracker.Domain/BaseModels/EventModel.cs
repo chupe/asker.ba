@@ -20,8 +20,7 @@ namespace AskerTracker.Domain.BaseModels
             MinimumLength = 3)]
         public EventLocation Location { get; set; }
 
-        [Required] 
-        [DataType(DataType.Date)] public DateTime DateHeld { get; set; }
+        [Required] [DataType(DataType.Date)] public DateTime DateHeld { get; set; }
 
         [Required] public ICollection<Member> Participants { get; set; }
     }

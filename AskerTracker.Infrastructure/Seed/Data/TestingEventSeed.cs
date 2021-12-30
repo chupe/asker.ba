@@ -4,13 +4,13 @@ using AskerTracker.Domain;
 
 namespace AskerTracker.Infrastructure.Seed.Data
 {
-    public class TestingEventSeed
+    public static class TestingEventSeed
     {
         public static List<Guid> TestingIds { get; set; } = new()
         {
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3304"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3305"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3306")
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3304"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3305"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3306")
         };
 
         public static List<TestingEvent> Entries()

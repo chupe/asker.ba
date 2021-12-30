@@ -30,8 +30,9 @@ namespace AskerTracker.Pages.Members
             var members = await _repository.All();
             members = members.Select(m => m);
 
-            if (!string.IsNullOrEmpty(SearchString)) 
-                members = members.Where(s => s.FullName.Contains(SearchString, StringComparison.CurrentCultureIgnoreCase));
+            if (!string.IsNullOrEmpty(SearchString))
+                members = members.Where(s =>
+                    s.FullName.Contains(SearchString, StringComparison.CurrentCultureIgnoreCase));
 
             Members = members.ToList();
         }

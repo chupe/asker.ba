@@ -2,11 +2,9 @@
 using System.Threading.Tasks;
 using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.Items
 {

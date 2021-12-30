@@ -5,14 +5,14 @@ using AskerTracker.Domain.Types;
 
 namespace AskerTracker.Infrastructure.Seed.Data
 {
-    public class TrainingSeed
+    public static class TrainingSeed
     {
-        public static List<Guid> TrainingIds = new()
+        private static readonly List<Guid> TrainingIds = new()
         {
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3300"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3301"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3302"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3303")
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3300"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3301"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3302"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3303")
         };
 
         public static List<Training> Entries()

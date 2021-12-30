@@ -13,8 +13,8 @@ namespace AskerTracker.Pages.MembershipFees
 {
     public class EditModel : PageModel
     {
-        private readonly IRepository<MembershipFee> _repository;
         private readonly IRepository<Member> _memberRepository;
+        private readonly IRepository<MembershipFee> _repository;
 
         public EditModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
         {
@@ -33,7 +33,7 @@ namespace AskerTracker.Pages.MembershipFees
             MembershipFee = await _repository.Get<MembershipFee>(x => x.Id == id.Value, m => m.Member);
 
             if (MembershipFee == null) return NotFound();
-            
+
             return Page();
         }
 

@@ -8,8 +8,7 @@ namespace AskerTracker.Domain
 {
     public class ItemTransaction : EntityModel
     {
-        [DataType(DataType.Date)]
-        public DateTime TransactionDate { get; set; }
+        [DataType(DataType.Date)] public DateTime TransactionDate { get; set; }
 
         [Required]
         [Range(1, 10000, ErrorMessageResourceType = typeof(UILocalization),

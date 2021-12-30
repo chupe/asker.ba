@@ -5,13 +5,13 @@ using AskerTracker.Domain;
 
 namespace AskerTracker.Infrastructure.Seed.Data
 {
-    public class TestingResultSeed
+    public static class TestingResultSeed
     {
         public static List<TestingResult> Entries()
         {
             return new List<TestingResult>
             {
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[0].Id,
@@ -22,7 +22,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 20,
                     TwoMileRun = new TimeSpan(0, 13, 30)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[1].Id,
@@ -33,7 +33,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 5,
                     TwoMileRun = new TimeSpan(0, 18, 0)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[2].Id,
@@ -44,7 +44,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 3,
                     TwoMileRun = new TimeSpan(0, 19, 0)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[3].Id,
@@ -55,7 +55,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 1,
                     TwoMileRun = new TimeSpan(0, 21, 0)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[4].Id,
@@ -66,7 +66,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 10,
                     TwoMileRun = new TimeSpan(0, 21, 18)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[0],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[5].Id,
@@ -77,7 +77,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 1,
                     TwoMileRun = new TimeSpan(0, 22, 30)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[1],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[0].Id,
@@ -88,7 +88,7 @@ namespace AskerTracker.Infrastructure.Seed.Data
                     LegTuck = 6,
                     TwoMileRun = new TimeSpan(0, 17, 58)
                 },
-                new TestingResult
+                new()
                 {
                     EventId = TestingEventSeed.TestingIds[1],
                     MemberId = TestingEventSeed.Entries()[0].Participants.ToList()[1].Id,

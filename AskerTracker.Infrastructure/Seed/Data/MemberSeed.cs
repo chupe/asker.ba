@@ -7,21 +7,21 @@ namespace AskerTracker.Infrastructure.Seed.Data
 {
     public static class MemberSeed
     {
-        public static List<Guid> MemberIds = new()
+        public static readonly List<Guid> MemberIds = new()
         {
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3310"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3311"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3312"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3313"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3314"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3315"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3316"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3317"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3318"),
-            new("3F2504E0-4F89-11D3-9A0C-0305E82C3319")
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3310"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3311"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3312"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3313"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3314"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3315"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3316"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3317"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3318"),
+            new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3319")
         };
 
-        public static List<Member> Entries = new()
+        public static readonly List<Member> Entries = new()
         {
             new Member
             {

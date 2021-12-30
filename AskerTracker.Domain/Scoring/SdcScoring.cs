@@ -11,13 +11,9 @@ namespace AskerTracker.Domain.Scoring
             var temp = new TimeSpan(0, 3, 35);
             foreach (var key in scoringTable.Keys)
                 if (key <= count)
-                {
                     temp = key;
-                }
                 else
-                {
                     break;
-                }
 
             scoringTable.TryGetValue(temp, out var value);
             return value;

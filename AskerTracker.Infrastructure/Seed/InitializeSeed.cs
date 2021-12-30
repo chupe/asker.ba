@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AskerTracker.Infrastructure.Seed
 {
@@ -19,12 +16,16 @@ namespace AskerTracker.Infrastructure.Seed
                     Email = "test@mail.com",
                     NormalizedEmail = "test@mail.com".ToUpper(),
                     EmailConfirmed = true,
-                    PasswordHash = "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
+                    PasswordHash =
+                        "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
                 });
-                
+
             if (!context.Member.Any())
                 context.Member.AddRange(MemberSeed.Entries);
-
+            
+            if (!context.MembershipFee.Any())
+                context.MembershipFee.AddRange(MembershipFeeSeed.Entries);
+            
             if (!context.Item.Any())
                 context.Item.AddRange(ItemSeed.Entries);
 

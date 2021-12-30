@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +17,7 @@ namespace AskerTracker.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(string title)
         {
             var count = await _dbContext.Member.CountAsync();
-            
+
             return View(count + (title?.Length ?? 0));
         }
     }

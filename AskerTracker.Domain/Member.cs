@@ -24,15 +24,11 @@ namespace AskerTracker.Domain
             MinimumLength = 3)]
         public string Nickname { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime DateJoined { get; set; }
+        [Required] [DataType(DataType.Date)] public DateTime DateJoined { get; set; }
 
         [DataType(DataType.Date)] public DateTime? DateLeft { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Required] [DataType(DataType.Date)] public DateTime BirthDate { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [StringLength(50, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to50",
@@ -48,7 +44,7 @@ namespace AskerTracker.Domain
         public BloodType BloodType { get; set; }
 
         public bool Active { get; set; }
-        
+
         [Required]
         [StringLength(13, ErrorMessageResourceType = typeof(UILocalization),
             ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
@@ -63,7 +59,6 @@ namespace AskerTracker.Domain
             }
         }
 
-        [ScaffoldColumn(false)]
-        public string FullName => $"{FirstName} {LastName}";
+        [ScaffoldColumn(false)] public string FullName => $"{FirstName} {LastName}";
     }
 }

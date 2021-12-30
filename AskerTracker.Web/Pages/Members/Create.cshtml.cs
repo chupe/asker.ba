@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
-using AskerTracker.Infrastructure;
 using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,7 +21,7 @@ namespace AskerTracker.Pages.Members
         }
 
         [BindProperty] public Member Member { get; set; }
-        
+
         public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
         public IActionResult OnGet()
