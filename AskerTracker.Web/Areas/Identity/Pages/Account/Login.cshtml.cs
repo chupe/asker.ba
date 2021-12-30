@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,12 @@ namespace AskerTracker.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly ILogger<LoginModel> _logger;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Member> _signInManager;
+        private readonly UserManager<Member> _userManager;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager,
+        public LoginModel(SignInManager<Member> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<Member> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

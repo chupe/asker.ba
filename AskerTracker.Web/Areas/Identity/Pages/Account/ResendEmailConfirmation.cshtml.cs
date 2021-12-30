@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -15,9 +16,9 @@ namespace AskerTracker.Areas.Identity.Pages.Account
     public class ResendEmailConfirmationModel : PageModel
     {
         private readonly IEmailSender _emailSender;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Member> _userManager;
 
-        public ResendEmailConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(UserManager<Member> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

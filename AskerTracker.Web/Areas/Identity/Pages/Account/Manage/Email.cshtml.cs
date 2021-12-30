@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,12 @@ namespace AskerTracker.Areas.Identity.Pages.Account.Manage
     public class EmailModel : PageModel
     {
         private readonly IEmailSender _emailSender;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Member> _signInManager;
+        private readonly UserManager<Member> _userManager;
 
         public EmailModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Member> userManager,
+            SignInManager<Member> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -36,7 +37,7 @@ namespace AskerTracker.Areas.Identity.Pages.Account.Manage
 
         [BindProperty] public InputModel Input { get; set; }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Member user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;

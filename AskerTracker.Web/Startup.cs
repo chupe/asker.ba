@@ -44,7 +44,7 @@ namespace AskerTracker
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IEmailSender, MailService>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<Member, Role>()
                 .AddEntityFrameworkStores<AskerTrackerDbContext>()
                 .AddDefaultTokenProviders();
             services.AddLocalization(options => options.ResourcesPath = "Resources");

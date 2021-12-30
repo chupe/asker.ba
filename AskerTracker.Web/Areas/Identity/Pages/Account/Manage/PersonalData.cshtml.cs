@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,10 +10,10 @@ namespace AskerTracker.Areas.Identity.Pages.Account.Manage
     public class PersonalDataModel : PageModel
     {
         private readonly ILogger<PersonalDataModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Member> _userManager;
 
         public PersonalDataModel(
-            UserManager<IdentityUser> userManager,
+            UserManager<Member> userManager,
             ILogger<PersonalDataModel> logger)
         {
             _userManager = userManager;

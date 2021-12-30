@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using AskerTracker.Domain;
+using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,7 +12,7 @@ namespace AskerTracker.Infrastructure.Seed
         public static void Initialize(AskerTrackerDbContext context)
         {
             if (!context.Users.Any())
-                context.Users.Add(new IdentityUser
+                context.Users.Add(new Member
                 {
                     UserName = "test@mail.com",
                     NormalizedUserName = "test@mail.com".ToUpper(),
@@ -17,7 +20,15 @@ namespace AskerTracker.Infrastructure.Seed
                     NormalizedEmail = "test@mail.com".ToUpper(),
                     EmailConfirmed = true,
                     PasswordHash =
-                        "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
+                        "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg==",
+                    FirstName = "Test",
+                    LastName = "Test",
+                    PhoneNumber = "+38761205350",
+                    JMBG = "2301990170070",
+                    BirthDate = new DateTime(1990, 1, 23),
+                    BloodType = BloodType.BPositive,
+                    DateJoined = new DateTime(2016, 10, 19),
+                    Active = true
                 });
 
             if (!context.Members.Any())

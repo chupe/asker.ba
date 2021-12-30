@@ -3,10 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
 using AskerTracker.Domain.Types;
+using Microsoft.AspNetCore.Identity;
 
 namespace AskerTracker.Domain
 {
-    public class Member : EntityModel
+    public class Member : IdentityUser<Guid>
     {
         private string jmbg;
 

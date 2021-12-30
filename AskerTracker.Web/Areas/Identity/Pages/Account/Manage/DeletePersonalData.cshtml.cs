@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,12 +12,12 @@ namespace AskerTracker.Areas.Identity.Pages.Account.Manage
     public class DeletePersonalDataModel : PageModel
     {
         private readonly ILogger<DeletePersonalDataModel> _logger;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<Member> _signInManager;
+        private readonly UserManager<Member> _userManager;
 
         public DeletePersonalDataModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Member> userManager,
+            SignInManager<Member> signInManager,
             ILogger<DeletePersonalDataModel> logger)
         {
             _userManager = userManager;

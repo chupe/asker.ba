@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -13,9 +14,9 @@ namespace AskerTracker.Areas.Identity.Pages.Account
     public class RegisterConfirmationModel : PageModel
     {
         private readonly IEmailSender _sender;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<Member> _userManager;
 
-        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<Member> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;
