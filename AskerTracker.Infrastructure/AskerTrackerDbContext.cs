@@ -1,4 +1,5 @@
-﻿using AskerTracker.Domain;
+﻿using System;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,27 @@ namespace AskerTracker.Infrastructure
         public DbSet<EventLocation> EventLocations { get; set; }
         public DbSet<ItemTransaction> ItemTransactions { get; set; }
         public DbSet<ASquad> ASquads { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            
+            builder.Entity<Member>()
+                .HasMany(m => m.Trainings)
+                .WithMany(t => t.Participants)
+                .UsingEntity<MemberTraining>(
+                    mt => mt.HasOne<Training>().WithMany(),
+                    mt => mt.HasOne<Member>().WithMany()
+                )
+                .Property(mt => mt.WasLate)
+                .HasDefaultValue(false);
+        }
+    }
+
+    public abstract class MemberTraining
+    {
+        public Guid MemberId { get; set; }
+        public Guid TrainingId { get; set; }
+        public bool WasLate { get; set; }
     }
 }

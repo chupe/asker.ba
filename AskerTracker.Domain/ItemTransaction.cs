@@ -8,6 +8,12 @@ namespace AskerTracker.Domain
 {
     public class ItemTransaction : EntityModel
     {
+        [ForeignKey(nameof(Item))]
+        [Required]
+        public Guid? ItemId { get; set; }
+
+        [Required] public Item Item { get; set; }
+
         [DataType(DataType.Date)] public DateTime TransactionDate { get; set; }
 
         [Required]
@@ -22,12 +28,21 @@ namespace AskerTracker.Domain
 
         [Required] public bool OwnershipChange { get; set; }
 
-        [ForeignKey("Lender")] public Guid? LenderId { get; set; }
+        [ForeignKey(nameof(Lender))]
+        public Guid? LenderId { get; set; }
 
         public Member Lender { get; set; }
 
-        [ForeignKey("Owner")] public Guid? OwnerId { get; set; }
+        [ForeignKey(nameof(Owner))]
+        public Guid? OwnerId { get; set; }
 
         public Member Owner { get; set; }
+
+        [ForeignKey(nameof(Previous))]
+        public Guid? PreviousId { get; set; }
+
+        public ItemTransaction Previous { get; set; }
+
+        public ItemTransaction Next { get; set; }
     }
 }

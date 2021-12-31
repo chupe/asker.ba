@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
 
@@ -33,14 +35,17 @@ namespace AskerTracker.Domain
         [DataType(DataType.Currency)]
         public double Value { get; set; }
 
-        [ForeignKey("Lender")] public Guid? LenderId { get; set; }
+        [ForeignKey(nameof(Lender))] public Guid? LenderId { get; set; }
 
         public Member Lender { get; set; }
 
-        [ForeignKey("Owner")] public Guid? OwnerId { get; set; }
+        [ForeignKey(nameof(Owner))] public Guid? OwnerId { get; set; }
 
         public Member Owner { get; set; }
 
         public bool IsTeamProperty => Owner == null;
+        
+        [Required]
+        public IEnumerable<ItemTransaction> ItemTransactions { get; set; } = new List<ItemTransaction>();
     }
 }

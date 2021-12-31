@@ -17,7 +17,7 @@ namespace AskerTracker.Domain
         [Column(TypeName = "decimal(18, 2)")]
         public float Amount { get; set; }
 
-        [ForeignKey("Member")] [Required] public Guid MemberId { get; set; }
+        [ForeignKey(nameof(Member))] [Required] public Guid MemberId { get; set; }
 
         public Member Member { get; set; }
     }

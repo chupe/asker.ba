@@ -99,6 +99,10 @@ namespace AskerTracker.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<Guid?>("ItemId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("LenderId")
                         .HasColumnType("uniqueidentifier");
 
@@ -108,14 +112,23 @@ namespace AskerTracker.Infrastructure.Migrations
                     b.Property<bool>("OwnershipChange")
                         .HasColumnType("bit");
 
+                    b.Property<Guid?>("PreviousId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId");
+
                     b.HasIndex("LenderId");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex("PreviousId")
+                        .IsUnique()
+                        .HasFilter("[PreviousId] IS NOT NULL");
 
                     b.ToTable("ItemTransactions");
                 });
@@ -171,19 +184,9 @@ namespace AskerTracker.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("TestingEventId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TrainingId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ASquadId");
-
-                    b.HasIndex("TestingEventId");
-
-                    b.HasIndex("TrainingId");
 
                     b.ToTable("Members");
                 });
@@ -291,6 +294,41 @@ namespace AskerTracker.Infrastructure.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Trainings");
+                });
+
+            modelBuilder.Entity("AskerTracker.Infrastructure.MemberTraining", b =>
+                {
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TrainingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("WasLate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("MemberId", "TrainingId");
+
+                    b.HasIndex("TrainingId");
+
+                    b.ToTable("MemberTraining");
+                });
+
+            modelBuilder.Entity("MemberTestingEvent", b =>
+                {
+                    b.Property<Guid>("ParticipantsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TestingEventsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ParticipantsId", "TestingEventsId");
+
+                    b.HasIndex("TestingEventsId");
+
+                    b.ToTable("MemberTestingEvent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -506,6 +544,12 @@ namespace AskerTracker.Infrastructure.Migrations
 
             modelBuilder.Entity("AskerTracker.Domain.ItemTransaction", b =>
                 {
+                    b.HasOne("AskerTracker.Domain.Item", "Item")
+                        .WithMany("ItemTransactions")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AskerTracker.Domain.Member", "Lender")
                         .WithMany()
                         .HasForeignKey("LenderId");
@@ -514,9 +558,17 @@ namespace AskerTracker.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("OwnerId");
 
+                    b.HasOne("AskerTracker.Domain.ItemTransaction", "Previous")
+                        .WithOne("Next")
+                        .HasForeignKey("AskerTracker.Domain.ItemTransaction", "PreviousId");
+
+                    b.Navigation("Item");
+
                     b.Navigation("Lender");
 
                     b.Navigation("Owner");
+
+                    b.Navigation("Previous");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.Member", b =>
@@ -524,20 +576,12 @@ namespace AskerTracker.Infrastructure.Migrations
                     b.HasOne("AskerTracker.Domain.ASquad", null)
                         .WithMany("Members")
                         .HasForeignKey("ASquadId");
-
-                    b.HasOne("AskerTracker.Domain.TestingEvent", null)
-                        .WithMany("Participants")
-                        .HasForeignKey("TestingEventId");
-
-                    b.HasOne("AskerTracker.Domain.Training", null)
-                        .WithMany("Participants")
-                        .HasForeignKey("TrainingId");
                 });
 
             modelBuilder.Entity("AskerTracker.Domain.MembershipFee", b =>
                 {
                     b.HasOne("AskerTracker.Domain.Member", "Member")
-                        .WithMany()
+                        .WithMany("MembershipFees")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -584,6 +628,36 @@ namespace AskerTracker.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("AskerTracker.Infrastructure.MemberTraining", b =>
+                {
+                    b.HasOne("AskerTracker.Domain.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AskerTracker.Domain.Training", null)
+                        .WithMany()
+                        .HasForeignKey("TrainingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MemberTestingEvent", b =>
+                {
+                    b.HasOne("AskerTracker.Domain.Member", null)
+                        .WithMany()
+                        .HasForeignKey("ParticipantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AskerTracker.Domain.TestingEvent", null)
+                        .WithMany()
+                        .HasForeignKey("TestingEventsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -642,14 +716,19 @@ namespace AskerTracker.Infrastructure.Migrations
                     b.Navigation("Members");
                 });
 
-            modelBuilder.Entity("AskerTracker.Domain.TestingEvent", b =>
+            modelBuilder.Entity("AskerTracker.Domain.Item", b =>
                 {
-                    b.Navigation("Participants");
+                    b.Navigation("ItemTransactions");
                 });
 
-            modelBuilder.Entity("AskerTracker.Domain.Training", b =>
+            modelBuilder.Entity("AskerTracker.Domain.ItemTransaction", b =>
                 {
-                    b.Navigation("Participants");
+                    b.Navigation("Next");
+                });
+
+            modelBuilder.Entity("AskerTracker.Domain.Member", b =>
+                {
+                    b.Navigation("MembershipFees");
                 });
 #pragma warning restore 612, 618
         }

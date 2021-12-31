@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
@@ -42,7 +43,13 @@ namespace AskerTracker.Domain
         [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
         [EnumDataType(typeof(BloodType))]
         public BloodType BloodType { get; set; }
+        
+        public HashSet<Training> Trainings { get; set; } = new();
+        
+        public HashSet<TestingEvent> TestingEvents { get; set; } = new();
 
+        public HashSet<MembershipFee> MembershipFees { get; set; } = new();
+        
         public bool Active { get; set; }
 
         [Required]

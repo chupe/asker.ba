@@ -8,12 +8,7 @@ namespace AskerTracker.Domain.BaseModels
 {
     public class EventModel : EntityModel
     {
-        public EventModel()
-        {
-            Participants = new HashSet<Member>();
-        }
-
-        [ForeignKey("Location")] public Guid LocationId { get; set; }
+        [ForeignKey(nameof(Location))] public Guid LocationId { get; set; }
 
         [Required]
         [StringLength(50, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to50",
@@ -22,6 +17,6 @@ namespace AskerTracker.Domain.BaseModels
 
         [Required] [DataType(DataType.Date)] public DateTime DateHeld { get; set; }
 
-        [Required] public ICollection<Member> Participants { get; set; }
+        [Required] public HashSet<Member> Participants { get; set; } = new();
     }
 }
