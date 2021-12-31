@@ -60,7 +60,6 @@ namespace AskerTracker
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
                 });
 
             services.AddTransient<IRepository<Member>, MemberRepository>();
