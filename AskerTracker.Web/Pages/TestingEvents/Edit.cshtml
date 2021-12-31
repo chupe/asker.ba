@@ -8,7 +8,7 @@
 <h1>Edit</h1>
 
 <h4>TestingEvent</h4>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -20,12 +20,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="TestingEvent.DateHeld" class="control-label"></label>
-                <input asp-for="TestingEvent.DateHeld" class="form-control"/>
+                <input asp-for="TestingEvent.DateHeld" class="form-control" />
                 <span asp-validation-for="TestingEvent.DateHeld" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="TestingEvent.Id"/>
+            <input type="hidden" asp-for="TestingEvent.Id" />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -36,5 +36,5 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.TestingEvents
+namespace AskerTracker.Pages.ASquads
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace AskerTracker.Pages.TestingEvents
             _context = context;
         }
 
-        public TestingEvent TestingEvent { get; set; }
+        public ASquad ASquad { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,10 +28,9 @@ namespace AskerTracker.Pages.TestingEvents
                 return NotFound();
             }
 
-            TestingEvent = await _context.TestingEvents
-                .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
+            ASquad = await _context.ASquads.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (TestingEvent == null)
+            if (ASquad == null)
             {
                 return NotFound();
             }

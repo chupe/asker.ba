@@ -1,44 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Members
 {
     public class DeleteModel : PageModel
     {
-        private readonly IRepository<Member> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public DeleteModel(IRepository<Member> repository)
+        public DeleteModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
-        [BindProperty] public Member Member { get; set; }
+        [BindProperty]
+        public Member Member { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            Member = await _repository.Get(id.Value);
+            Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Member == null) return NotFound();
+            if (Member == null)
+            {
+                return NotFound();
+            }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            Member = await _repository.Get(id.Value);
+            Member = await _context.Members.FindAsync(id);
 
             if (Member != null)
             {
-                _repository.Remove(Member);
-                await _repository.SaveChangesAsync();
-                TempData["Message"] = $"{Member.FullName} deleted";
+                _context.Members.Remove(Member);
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

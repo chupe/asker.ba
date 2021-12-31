@@ -38,7 +38,7 @@ namespace AskerTracker.Infrastructure
         }
     }
 
-    public abstract class MemberTraining
+    public class MemberTraining
     {
         public Guid MemberId { get; set; }
         public Guid TrainingId { get; set; }

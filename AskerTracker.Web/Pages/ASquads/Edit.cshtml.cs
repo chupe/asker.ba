@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.Members
+namespace AskerTracker.Pages.ASquads
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace AskerTracker.Pages.Members
         }
 
         [BindProperty]
-        public Member Member { get; set; }
+        public ASquad ASquad { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -30,9 +30,9 @@ namespace AskerTracker.Pages.Members
                 return NotFound();
             }
 
-            Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
+            ASquad = await _context.ASquads.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Member == null)
+            if (ASquad == null)
             {
                 return NotFound();
             }
@@ -48,7 +48,7 @@ namespace AskerTracker.Pages.Members
                 return Page();
             }
 
-            _context.Attach(Member).State = EntityState.Modified;
+            _context.Attach(ASquad).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace AskerTracker.Pages.Members
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(Member.Id))
+                if (!ASquadExists(ASquad.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace AskerTracker.Pages.Members
             return RedirectToPage("./Index");
         }
 
-        private bool MemberExists(Guid id)
+        private bool ASquadExists(Guid id)
         {
-            return _context.Members.Any(e => e.Id == id);
+            return _context.ASquads.Any(e => e.Id == id);
         }
     }
 }

@@ -1,34 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Items
 {
     public class DetailsModel : PageModel
     {
-        private readonly IRepository<Item> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public DetailsModel(IRepository<Item> repository)
+        public DetailsModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
         public Item Item { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            Item = await _repository.Get<Item>(x => x.Id == id.Value, x => x.Lender);
-            var owner = (await _repository.Get<Item>(x => x.Id == id.Value, x => x.Owner)).Owner;
+            Item = await _context.Items
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
-            Item.IncludeMore(i => i.Owner, owner);
-
-            if (Item == null) return NotFound();
+            if (Item == null)
+            {
+                return NotFound();
+            }
             return Page();
         }
     }

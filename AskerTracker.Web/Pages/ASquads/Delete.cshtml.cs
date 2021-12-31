@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.Items
+namespace AskerTracker.Pages.ASquads
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace AskerTracker.Pages.Items
         }
 
         [BindProperty]
-        public Item Item { get; set; }
+        public ASquad ASquad { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,11 +29,9 @@ namespace AskerTracker.Pages.Items
                 return NotFound();
             }
 
-            Item = await _context.Items
-                .Include(i => i.Lender)
-                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            ASquad = await _context.ASquads.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Item == null)
+            if (ASquad == null)
             {
                 return NotFound();
             }
@@ -47,11 +45,11 @@ namespace AskerTracker.Pages.Items
                 return NotFound();
             }
 
-            Item = await _context.Items.FindAsync(id);
+            ASquad = await _context.ASquads.FindAsync(id);
 
-            if (Item != null)
+            if (ASquad != null)
             {
-                _context.Items.Remove(Item);
+                _context.ASquads.Remove(ASquad);
                 await _context.SaveChangesAsync();
             }
 

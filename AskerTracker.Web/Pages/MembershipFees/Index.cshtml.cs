@@ -1,43 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.MembershipFees
 {
     public class IndexModel : PageModel
     {
-        private readonly IRepository<MembershipFee> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public IndexModel(IRepository<MembershipFee> repository)
+        public IndexModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
-        public IList<MembershipFee> MembershipFee { get; set; }
-
-        [TempData] public string Message { get; set; }
-
-        public SelectList Members { get; set; }
-
-        [BindProperty(SupportsGet = true)] public string MemberName { get; set; }
+        public IList<MembershipFee> MembershipFee { get;set; }
 
         public async Task OnGetAsync()
         {
-            var fees = (await _repository.All<MembershipFee>(m => m.Member)).ToList();
-
-            if (!string.IsNullOrEmpty(MemberName))
-                fees = fees.Where(x => x.Member.FullName == MemberName).ToList();
-
-            var membersList = fees.OrderBy(m => m.Member.FullName).Select(n => n.Member.FullName);
-
-            Members = new SelectList(membersList.Distinct().ToList());
-
-            MembershipFee = fees;
+            MembershipFee = await _context.MembershipFees
+                .Include(m => m.Member).ToListAsync();
         }
     }
 }

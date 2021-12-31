@@ -8,7 +8,7 @@
 <h1>Edit</h1>
 
 <h4>TestingResult</h4>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -25,42 +25,42 @@
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.TotalScore" class="control-label"></label>
-                <input asp-for="TestingResult.TotalScore" class="form-control"/>
+                <input asp-for="TestingResult.TotalScore" class="form-control" />
                 <span asp-validation-for="TestingResult.TotalScore" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.MaximumDeadliftWeight" class="control-label"></label>
-                <input asp-for="TestingResult.MaximumDeadliftWeight" class="form-control"/>
+                <input asp-for="TestingResult.MaximumDeadliftWeight" class="form-control" />
                 <span asp-validation-for="TestingResult.MaximumDeadliftWeight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.StandingPowerThrow" class="control-label"></label>
-                <input asp-for="TestingResult.StandingPowerThrow" class="form-control"/>
+                <input asp-for="TestingResult.StandingPowerThrow" class="form-control" />
                 <span asp-validation-for="TestingResult.StandingPowerThrow" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.HandReleasePushup" class="control-label"></label>
-                <input asp-for="TestingResult.HandReleasePushup" class="form-control"/>
+                <input asp-for="TestingResult.HandReleasePushup" class="form-control" />
                 <span asp-validation-for="TestingResult.HandReleasePushup" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.SprintDragCarry" class="control-label"></label>
-                <input asp-for="TestingResult.SprintDragCarry" class="form-control"/>
+                <input asp-for="TestingResult.SprintDragCarry" class="form-control" />
                 <span asp-validation-for="TestingResult.SprintDragCarry" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.LegTuck" class="control-label"></label>
-                <input asp-for="TestingResult.LegTuck" class="form-control"/>
+                <input asp-for="TestingResult.LegTuck" class="form-control" />
                 <span asp-validation-for="TestingResult.LegTuck" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingResult.TwoMileRun" class="control-label"></label>
-                <input asp-for="TestingResult.TwoMileRun" class="form-control"/>
+                <input asp-for="TestingResult.TwoMileRun" class="form-control" />
                 <span asp-validation-for="TestingResult.TwoMileRun" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="TestingResult.Id"/>
+            <input type="hidden" asp-for="TestingResult.Id" />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary"/>
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -71,5 +71,5 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
