@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.ItemTransactions
+namespace AskerTracker.Pages.ASquads
 {
     public class CreateModel : PageModel
     {
@@ -21,15 +21,11 @@ namespace AskerTracker.Pages.ItemTransactions
 
         public IActionResult OnGet()
         {
-        ViewData["ItemId"] = new SelectList(_context.Items, "Id", "Name");
-        ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
-        ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
-        ViewData["PreviousId"] = new SelectList(_context.ItemTransactions, "Id", "Id");
             return Page();
         }
 
         [BindProperty]
-        public ItemTransaction ItemTransaction { get; set; }
+        public ASquad ASquad { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -39,7 +35,7 @@ namespace AskerTracker.Pages.ItemTransactions
                 return Page();
             }
 
-            _context.ItemTransactions.Add(ItemTransaction);
+            _context.ASquads.Add(ASquad);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

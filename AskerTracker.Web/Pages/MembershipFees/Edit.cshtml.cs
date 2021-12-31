@@ -1,70 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.MembershipFees
 {
     public class EditModel : PageModel
     {
-        private readonly IRepository<Member> _memberRepository;
-        private readonly IRepository<MembershipFee> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public EditModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
+        public EditModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
-            _memberRepository = memberRepository;
+            _context = context;
         }
 
-        [BindProperty] public MembershipFee MembershipFee { get; set; }
-
-        public IEnumerable<SelectListItem> MembersSelectList => Helper.GetMemberSelectList(_memberRepository).Result;
+        [BindProperty]
+        public MembershipFee MembershipFee { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            MembershipFee = await _repository.Get<MembershipFee>(x => x.Id == id.Value, m => m.Member);
+            MembershipFee = await _context.MembershipFees
+                .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (MembershipFee == null) return NotFound();
-
+            if (MembershipFee == null)
+            {
+                return NotFound();
+            }
+           ViewData["MemberId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
-        // To protect from over-posting attacks, enable the specific properties you want to bind to.
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            _repository.Update(MembershipFee);
+            _context.Attach(MembershipFee).State = EntityState.Modified;
 
             try
             {
-                await _repository.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await MembershipFeeExists(MembershipFee.Id))
+                if (!MembershipFeeExists(MembershipFee.Id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            MembershipFee = await _repository.Get<MembershipFee>(x => x.Id == MembershipFee.Id, m => m.Member);
-
-            TempData["Message"] = $"Saved membership fee for {MembershipFee.Member.FullName} successfully!";
             return RedirectToPage("./Index");
         }
 
-        private async Task<bool> MembershipFeeExists(Guid id)
+        private bool MembershipFeeExists(Guid id)
         {
-            return await _repository.Get(id) != null;
+            return _context.MembershipFees.Any(e => e.Id == id);
         }
     }
 }

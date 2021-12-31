@@ -10,39 +10,23 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-
-<form class="form-group row">
-    <div class="input-group w-50">
-        <select asp-for="MemberName" asp-items="Model.Members" class="form-control">
-            <option value="">All</option>
-        </select>
-        <button type="submit" class="btn btn-light">Filter</button>
-    </div>
-</form>
-
-@if (Model.Message != null)
-{
-    <partial name="Shared/_NotificationAlertPartial" model="Model.Message"/>
-}
-
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.MembershipFee)
-    {
+@foreach (var item in Model.MembershipFee) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionDate)
@@ -51,11 +35,14 @@
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Member.FullName)
+                @Html.DisplayFor(modelItem => item.Member.FirstName)
             </td>
-
-            <partial name="_EntryButtonsPartial" model="item"/>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
         </tr>
-    }
+}
     </tbody>
 </table>

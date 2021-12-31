@@ -1,35 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Trainings
 {
     public class EditModel : PageModel
     {
-        private readonly AskerTrackerDbContext _context;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public EditModel(AskerTrackerDbContext context)
+        public EditModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
             _context = context;
         }
 
-        [BindProperty] public Training Training { get; set; }
+        [BindProperty]
+        public Training Training { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             Training = await _context.Trainings
                 .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Training == null) return NotFound();
-            ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
+            if (Training == null)
+            {
+                return NotFound();
+            }
+           ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
             return Page();
         }
 
@@ -37,7 +45,10 @@ namespace AskerTracker.Pages.Trainings
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
             _context.Attach(Training).State = EntityState.Modified;
 
@@ -48,8 +59,13 @@ namespace AskerTracker.Pages.Trainings
             catch (DbUpdateConcurrencyException)
             {
                 if (!TrainingExists(Training.Id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return RedirectToPage("./Index");

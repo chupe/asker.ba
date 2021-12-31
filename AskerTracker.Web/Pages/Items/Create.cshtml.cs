@@ -1,45 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Items
 {
     public class CreateModel : PageModel
     {
-        private readonly IRepository<Member> _memberRepository;
-        private readonly IRepository<Item> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public CreateModel(IRepository<Item> repository,
-            IRepository<Member> memberRepository)
+        public CreateModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
-            _memberRepository = memberRepository;
+            _context = context;
         }
-
-        public IEnumerable<SelectListItem> MembersSelectList =>
-            Helper.GetMemberSelectList(_memberRepository).Result.AppendTeamPropertyItem();
-
-        [BindProperty] public Item Item { get; set; }
 
         public IActionResult OnGet()
         {
+        ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
+        ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
+
+        [BindProperty]
+        public Item Item { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            _repository.Add(Item);
-            await _repository.SaveChangesAsync();
-
-            TempData["Message"] = $"Added item {Item.Name} successfully!";
+            _context.Items.Add(Item);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

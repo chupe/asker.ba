@@ -1,51 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.MembershipFees
 {
     public class CreateModel : PageModel
     {
-        private readonly IRepository<Member> _memberRepository;
-        private readonly IRepository<MembershipFee> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public CreateModel(IRepository<MembershipFee> repository, IRepository<Member> memberRepository)
+        public CreateModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
-            _memberRepository = memberRepository;
+            _context = context;
         }
-
-        [BindProperty] public MembershipFee MembershipFee { get; set; }
-
-        public IEnumerable<SelectListItem> MembersSelectList => Helper.GetMemberSelectList(_memberRepository).Result;
 
         public IActionResult OnGet()
         {
+        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "FirstName");
             return Page();
         }
 
-        // To protect from over-posting attacks, see https://aka.ms/RazorPagesCRUD
+        [BindProperty]
+        public MembershipFee MembershipFee { get; set; }
+
+        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
-
-            try
+            if (!ModelState.IsValid)
             {
-                _repository.Add(MembershipFee);
-                await _repository.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                return NotFound();
+                return Page();
             }
 
-            TempData["Message"] = $"Added fee for {MembershipFee.Member.FullName} successfully!";
+            _context.MembershipFees.Add(MembershipFee);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

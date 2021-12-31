@@ -12,19 +12,18 @@
 </p>
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TestingEvent[0].Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TestingEvent[0].DateHeld)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestingEvent[0].Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestingEvent[0].DateHeld)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.TestingEvent)
-    {
+@foreach (var item in Model.TestingEvent) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Location.Location)
@@ -32,9 +31,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateHeld)
             </td>
-
-            <partial name="_EntryButtonsPartial" model="item"/>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
         </tr>
-    }
+}
     </tbody>
 </table>

@@ -4,8 +4,6 @@ using System.Text.Json.Serialization;
 using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
-using AskerTracker.Infrastructure.Interfaces;
-using AskerTracker.Infrastructure.Repositories;
 using AskerTracker.Services.Mail;
 using AskerTracker.Settings;
 using Microsoft.AspNetCore.Builder;
@@ -61,13 +59,6 @@ namespace AskerTracker
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 });
-
-            services.AddTransient<IRepository<Member>, MemberRepository>();
-            services.AddTransient<IRepository<EventLocation>, EventLocationRepository>();
-            services.AddTransient<IRepository<Item>, ItemRepository>();
-            services.AddTransient<IRepository<MembershipFee>, MembershipFeeRepository>();
-            services.AddTransient<IRepository<TestingEvent>, TestingEventRepository>();
-            services.AddTransient<IRepository<Training>, TrainingRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {

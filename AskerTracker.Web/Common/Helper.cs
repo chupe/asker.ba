@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Common
 {
     public static class Helper
     {
-        public static async Task<IEnumerable<SelectListItem>> GetMemberSelectList(IRepository<Member> repository,
+        public static async Task<IEnumerable<SelectListItem>> GetMemberSelectList(AskerTrackerDbContext context,
             string dataValueField = "Id", string dataTextField = "FullName", bool selectedValue = false)
         {
-            var list = (await repository.All()).ToList();
+            var list = await context.Members.ToListAsync();
 
             var membersList = list.OrderBy(m => m.FullName).GroupBy(x => x.FullName)
                 .Select(y => y.First()).ToList();

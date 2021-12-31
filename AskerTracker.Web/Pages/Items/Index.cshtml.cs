@@ -1,33 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Items
 {
     public class IndexModel : PageModel
     {
-        private readonly IRepository<Item> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public IndexModel(IRepository<Item> repository)
+        public IndexModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
-        public IList<Item> Item { get; set; }
-
-        [TempData] public string Message { get; set; }
+        public IList<Item> Item { get;set; }
 
         public async Task OnGetAsync()
         {
-            Item = (await _repository.All<Item>(x => x.Lender)).ToList();
-            var owners = (await _repository.All<Item>(x => x.Owner)).Select(y => y.Owner).ToList();
-
-            Item.IncludeMore(x => x.Owner, owners);
+            Item = await _context.Items
+                .Include(i => i.Lender)
+                .Include(i => i.Owner).ToListAsync();
         }
     }
 }

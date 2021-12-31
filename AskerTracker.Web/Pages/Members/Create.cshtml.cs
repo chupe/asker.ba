@@ -1,43 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Types;
-using AskerTracker.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 
 namespace AskerTracker.Pages.Members
 {
     public class CreateModel : PageModel
     {
-        private readonly IHtmlHelper _htmlHelper;
-        private readonly IRepository<Member> _repository;
+        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
 
-        public CreateModel(IRepository<Member> repository, IHtmlHelper htmlHelper)
+        public CreateModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
         {
-            _htmlHelper = htmlHelper;
-            _repository = repository;
+            _context = context;
         }
-
-        [BindProperty] public Member Member { get; set; }
-
-        public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
         public IActionResult OnGet()
         {
             return Page();
         }
 
+        [BindProperty]
+        public Member Member { get; set; }
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-            _repository.Add(Member);
-            await _repository.SaveChangesAsync();
+            _context.Members.Add(Member);
+            await _context.SaveChangesAsync();
 
-            TempData["Message"] = $"Added {Member.FullName} successfully!";
             return RedirectToPage("./Index");
         }
     }
