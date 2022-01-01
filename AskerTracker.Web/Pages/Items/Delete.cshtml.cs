@@ -41,6 +41,7 @@ public class DeleteModel : PageModel
         {
             _context.Items.Remove(Item);
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Removed {Item.Name} successfully!";
         }
 
         return RedirectToPage("./Index");

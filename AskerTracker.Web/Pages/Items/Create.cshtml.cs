@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +19,12 @@ public class CreateModel : PageModel
     }
 
     [BindProperty] public Item Item { get; set; }
-
+    
+    public IEnumerable<SelectListItem> MembersSelectList =>
+        Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
+    
     public IActionResult OnGet()
     {
-        ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
-        ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
         return Page();
     }
 
@@ -32,6 +35,7 @@ public class CreateModel : PageModel
 
         _context.Items.Add(Item);
         await _context.SaveChangesAsync();
+        TempData["Message"] = $"Created new item {Item.Name} successfully!";
 
         return RedirectToPage("./Index");
     }

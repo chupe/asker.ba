@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ public class IndexModel : PageModel
     }
 
     public IList<Item> Item { get; set; }
+    
+    [TempData] public string Message { get; set; }
 
     public async Task OnGetAsync()
     {

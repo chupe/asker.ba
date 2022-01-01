@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +23,8 @@ public class EditModel : PageModel
 
     [BindProperty] public Item Item { get; set; }
 
+    public IEnumerable<SelectListItem> MembersSelectList =>
+        Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
@@ -30,8 +34,7 @@ public class EditModel : PageModel
             .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
         if (Item == null) return NotFound();
-        ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
-        ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
+
         return Page();
     }
 
@@ -46,6 +49,7 @@ public class EditModel : PageModel
         try
         {
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Saved item {Item.Name} successfully!";
         }
         catch (DbUpdateConcurrencyException)
         {

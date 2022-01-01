@@ -10,6 +10,12 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+@if (Model.Message != null)
+{
+    <partial name="Shared/_NotificationAlertPartial" model="Model.Message"/>
+}
+
 <table class="table">
     <thead>
     <tr>
@@ -57,15 +63,13 @@
                 @Html.DisplayFor(modelItem => item.Value)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Lender.FirstName)
+                @Html.DisplayFor(modelItem => item.Lender.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Owner.FirstName)
+                @Html.DisplayFor(modelItem => item.Owner.FullName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <partial name="_EntryButtonsPartial" model="item"/>
             </td>
         </tr>
     }
