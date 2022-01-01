@@ -39,6 +39,7 @@ public class DeleteModel : PageModel
         {
             _context.Members.Remove(Member);
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"{Member.FullName} deleted";
         }
 
         return RedirectToPage("./Index");

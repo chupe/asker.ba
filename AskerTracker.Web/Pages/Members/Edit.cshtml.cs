@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Pages.Members;
@@ -12,13 +15,17 @@ namespace AskerTracker.Pages.Members;
 public class EditModel : PageModel
 {
     private readonly AskerTrackerDbContext _context;
+    private readonly IHtmlHelper _htmlHelper;
 
-    public EditModel(AskerTrackerDbContext context)
+    public EditModel(AskerTrackerDbContext context, IHtmlHelper htmlHelper)
     {
         _context = context;
+        _htmlHelper = htmlHelper;
     }
 
     [BindProperty] public Member Member { get; set; }
+
+    public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
@@ -41,6 +48,7 @@ public class EditModel : PageModel
         try
         {
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Saved {Member.FullName} successfully!";
         }
         catch (DbUpdateConcurrencyException)
         {
