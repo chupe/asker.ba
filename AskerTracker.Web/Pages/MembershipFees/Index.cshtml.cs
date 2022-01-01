@@ -27,14 +27,14 @@ public class IndexModel : PageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result;
     
-    [BindProperty(SupportsGet = true)] public string MemberName { get; set; }
+    [BindProperty(SupportsGet = true)] public string MemberFilter { get; set; }
     
     public async Task OnGetAsync()
     {
         var fees = await _context.MembershipFees.Include(m => m.Member).ToListAsync();
 
-        if (!string.IsNullOrEmpty(MemberName))
-            fees = fees.Where(x => x.Member.FullName == MemberName).ToList();
+        if (!string.IsNullOrEmpty(MemberFilter))
+            fees = fees.Where(x => x.Member.Id.ToString() == MemberFilter).ToList();
 
         MembershipFee = fees;
     }
