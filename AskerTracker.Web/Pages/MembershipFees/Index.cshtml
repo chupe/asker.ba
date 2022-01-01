@@ -12,21 +12,22 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Member)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MembershipFee) {
+    @foreach (var item in Model.MembershipFee)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionDate)
@@ -43,6 +44,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

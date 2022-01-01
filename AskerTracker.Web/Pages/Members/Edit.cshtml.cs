@@ -1,77 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Pages.Members
+namespace AskerTracker.Pages.Members;
+
+public class EditModel : PageModel
 {
-    public class EditModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public EditModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public EditModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
+    [BindProperty] public Member Member { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
+
+        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
+
+        if (Member == null) return NotFound();
+        return Page();
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more details, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid) return Page();
+
+        _context.Attach(Member).State = EntityState.Modified;
+
+        try
         {
-            _context = context;
+            await _context.SaveChangesAsync();
         }
-
-        [BindProperty]
-        public Member Member { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        catch (DbUpdateConcurrencyException)
         {
-            if (id == null)
-            {
+            if (!MemberExists(Member.Id))
                 return NotFound();
-            }
-
-            Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Member == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            throw;
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        return RedirectToPage("./Index");
+    }
 
-            _context.Attach(Member).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MemberExists(Member.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool MemberExists(Guid id)
-        {
-            return _context.Members.Any(e => e.Id == id);
-        }
+    private bool MemberExists(Guid id)
+    {
+        return _context.Members.Any(e => e.Id == id);
     }
 }

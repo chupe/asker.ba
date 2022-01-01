@@ -1,41 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.MembershipFees
+namespace AskerTracker.Pages.MembershipFees;
+
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public DetailsModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public DetailsModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
-        {
-            _context = context;
-        }
+    public MembershipFee MembershipFee { get; set; }
 
-        public MembershipFee MembershipFee { get; set; }
+    public async Task<IActionResult> OnGetAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        MembershipFee = await _context.MembershipFees
+            .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
 
-            MembershipFee = await _context.MembershipFees
-                .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (MembershipFee == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
+        if (MembershipFee == null) return NotFound();
+        return Page();
     }
 }

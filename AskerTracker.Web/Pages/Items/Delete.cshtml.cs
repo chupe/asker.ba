@@ -1,61 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.Items
+namespace AskerTracker.Pages.Items;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public DeleteModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
+    [BindProperty] public Item Item { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
+
+        Item = await _context.Items
+            .Include(i => i.Lender)
+            .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+
+        if (Item == null) return NotFound();
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
+
+        Item = await _context.Items.FindAsync(id);
+
+        if (Item != null)
         {
-            _context = context;
+            _context.Items.Remove(Item);
+            await _context.SaveChangesAsync();
         }
 
-        [BindProperty]
-        public Item Item { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Item = await _context.Items
-                .Include(i => i.Lender)
-                .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Item == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Item = await _context.Items.FindAsync(id);
-
-            if (Item != null)
-            {
-                _context.Items.Remove(Item);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }

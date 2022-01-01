@@ -1,48 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.ItemTransactions
+namespace AskerTracker.Pages.ItemTransactions;
+
+public class CreateModel : PageModel
 {
-    public class CreateModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public CreateModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public CreateModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
-        {
-            _context = context;
-        }
+    [BindProperty] public ItemTransaction ItemTransaction { get; set; }
 
-        public IActionResult OnGet()
-        {
+    public IActionResult OnGet()
+    {
         ViewData["ItemId"] = new SelectList(_context.Items, "Id", "Name");
         ViewData["LenderId"] = new SelectList(_context.Members, "Id", "FirstName");
         ViewData["OwnerId"] = new SelectList(_context.Members, "Id", "FirstName");
         ViewData["PreviousId"] = new SelectList(_context.ItemTransactions, "Id", "Id");
-            return Page();
-        }
+        return Page();
+    }
 
-        [BindProperty]
-        public ItemTransaction ItemTransaction { get; set; }
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid) return Page();
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        _context.ItemTransactions.Add(ItemTransaction);
+        await _context.SaveChangesAsync();
 
-            _context.ItemTransactions.Add(ItemTransaction);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }

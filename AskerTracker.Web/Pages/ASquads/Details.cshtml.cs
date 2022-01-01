@@ -1,40 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.ASquads
+namespace AskerTracker.Pages.ASquads;
+
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public DetailsModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public DetailsModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
-        {
-            _context = context;
-        }
+    public ASquad ASquad { get; set; }
 
-        public ASquad ASquad { get; set; }
+    public async Task<IActionResult> OnGetAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        ASquad = await _context.ASquads.FirstOrDefaultAsync(m => m.Id == id);
 
-            ASquad = await _context.ASquads.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (ASquad == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
+        if (ASquad == null) return NotFound();
+        return Page();
     }
 }

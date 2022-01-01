@@ -1,45 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.Trainings
+namespace AskerTracker.Pages.Trainings;
+
+public class CreateModel : PageModel
 {
-    public class CreateModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public CreateModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public CreateModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
-        {
-            _context = context;
-        }
+    [BindProperty] public Training Training { get; set; }
 
-        public IActionResult OnGet()
-        {
+    public IActionResult OnGet()
+    {
         ViewData["LocationId"] = new SelectList(_context.EventLocations, "Id", "Location");
-            return Page();
-        }
+        return Page();
+    }
 
-        [BindProperty]
-        public Training Training { get; set; }
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid) return Page();
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        _context.Trainings.Add(Training);
+        await _context.SaveChangesAsync();
 
-            _context.Trainings.Add(Training);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }

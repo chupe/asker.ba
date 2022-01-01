@@ -12,45 +12,46 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Nickname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].DateJoined)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].DateLeft)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].BloodType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].JMBG)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].DateJoined)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].DateLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].BloodType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member[0].JMBG)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Member) {
+    @foreach (var item in Model.Member)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -91,6 +92,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

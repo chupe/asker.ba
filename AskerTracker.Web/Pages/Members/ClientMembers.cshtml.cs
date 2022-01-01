@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AskerTracker.Pages.Members
+namespace AskerTracker.Pages.Members;
+
+public class ClientMembers : PageModel
 {
-    public class ClientMembers : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

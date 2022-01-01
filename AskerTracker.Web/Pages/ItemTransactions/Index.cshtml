@@ -12,36 +12,37 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Item)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].TransactionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Comment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].OwnershipChange)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Lender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Owner)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ItemTransaction[0].Previous)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].OwnershipChange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Lender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Owner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTransaction[0].Previous)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.ItemTransaction) {
+    @foreach (var item in Model.ItemTransaction)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Item.Name)
@@ -73,6 +74,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

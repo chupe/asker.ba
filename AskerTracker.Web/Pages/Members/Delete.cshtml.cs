@@ -1,59 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
+using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AskerTracker.Domain;
-using AskerTracker.Infrastructure;
 
-namespace AskerTracker.Pages.Members
+namespace AskerTracker.Pages.Members;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly AskerTrackerDbContext _context;
+
+    public DeleteModel(AskerTrackerDbContext context)
     {
-        private readonly AskerTracker.Infrastructure.AskerTrackerDbContext _context;
+        _context = context;
+    }
 
-        public DeleteModel(AskerTracker.Infrastructure.AskerTrackerDbContext context)
+    [BindProperty] public Member Member { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
+
+        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
+
+        if (Member == null) return NotFound();
+        return Page();
+    }
+
+    public async Task<IActionResult> OnPostAsync(Guid? id)
+    {
+        if (id == null) return NotFound();
+
+        Member = await _context.Members.FindAsync(id);
+
+        if (Member != null)
         {
-            _context = context;
+            _context.Members.Remove(Member);
+            await _context.SaveChangesAsync();
         }
 
-        [BindProperty]
-        public Member Member { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Member == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Member = await _context.Members.FindAsync(id);
-
-            if (Member != null)
-            {
-                _context.Members.Remove(Member);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
-        }
+        return RedirectToPage("./Index");
     }
 }
