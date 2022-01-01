@@ -44,12 +44,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\..\..\..\Downloads\asker_logo_background.png">
-            <Pack>True</Pack>
-        </None>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
         <ProjectReference Include="..\AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj" />
     </ItemGroup>
