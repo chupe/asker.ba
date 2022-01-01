@@ -40,6 +40,7 @@ public class DeleteModel : PageModel
         {
             _context.MembershipFees.Remove(MembershipFee);
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Deleted membership fee for {MembershipFee.Member.FullName} successfully!";
         }
 
         return RedirectToPage("./Index");

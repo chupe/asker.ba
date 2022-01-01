@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +20,10 @@ public class CreateModel : PageModel
 
     [BindProperty] public MembershipFee MembershipFee { get; set; }
 
+    public IEnumerable<SelectListItem> MembersSelectList => Helper.GetSelectList<Member>(_context, m => m.FullName).Result;
+
     public IActionResult OnGet()
     {
-        ViewData["MemberId"] = new SelectList(_context.Members, "Id", "FirstName");
         return Page();
     }
 
@@ -31,6 +34,7 @@ public class CreateModel : PageModel
 
         _context.MembershipFees.Add(MembershipFee);
         await _context.SaveChangesAsync();
+        TempData["Message"] = $"Added fee for {MembershipFee.Member.FullName} successfully!";
 
         return RedirectToPage("./Index");
     }
