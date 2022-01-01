@@ -36,7 +36,8 @@ namespace AskerTracker
             var connectionString = helpers.GetConnectionString();
 
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString)
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
