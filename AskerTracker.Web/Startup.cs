@@ -6,11 +6,13 @@ using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using AskerTracker.Services.Mail;
 using AskerTracker.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -57,12 +59,21 @@ namespace AskerTracker
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddRazorPages(
-                    options => options.Conventions.AuthorizeFolder("/")
+                    options =>
+                    {
+                        options.Conventions.AuthorizeFolder("/");
+                    }
                 )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            services.AddControllers()
+            services.AddControllers(options =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+                    options.Filters.Add(new AuthorizeFilter(policy));
+                })
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());

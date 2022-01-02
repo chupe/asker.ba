@@ -1,0 +1,72 @@
+﻿@page
+@model AskerTracker.Areas.Domain.Pages.TestingResults.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TestingResult</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TestingResult.EventId" class="control-label"></label>
+                <select asp-for="TestingResult.EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.MemberId" class="control-label"></label>
+                <select asp-for="TestingResult.MemberId" class="form-control" asp-items="ViewBag.MemberId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.TotalScore" class="control-label"></label>
+                <input asp-for="TestingResult.TotalScore" class="form-control"/>
+                <span asp-validation-for="TestingResult.TotalScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.MaximumDeadliftWeight" class="control-label"></label>
+                <input asp-for="TestingResult.MaximumDeadliftWeight" class="form-control"/>
+                <span asp-validation-for="TestingResult.MaximumDeadliftWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.StandingPowerThrow" class="control-label"></label>
+                <input asp-for="TestingResult.StandingPowerThrow" class="form-control"/>
+                <span asp-validation-for="TestingResult.StandingPowerThrow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.HandReleasePushup" class="control-label"></label>
+                <input asp-for="TestingResult.HandReleasePushup" class="form-control"/>
+                <span asp-validation-for="TestingResult.HandReleasePushup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.SprintDragCarry" class="control-label"></label>
+                <input asp-for="TestingResult.SprintDragCarry" class="form-control"/>
+                <span asp-validation-for="TestingResult.SprintDragCarry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.LegTuck" class="control-label"></label>
+                <input asp-for="TestingResult.LegTuck" class="form-control"/>
+                <span asp-validation-for="TestingResult.LegTuck" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TestingResult.TwoMileRun" class="control-label"></label>
+                <input asp-for="TestingResult.TwoMileRun" class="form-control"/>
+                <span asp-validation-for="TestingResult.TwoMileRun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

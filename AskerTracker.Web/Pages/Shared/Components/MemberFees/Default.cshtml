@@ -1,9 +1,9 @@
-﻿@model AskerTracker.Pages.MembershipFees.IndexModel
+﻿@model Areas.Domain.Pages.MembershipFees.IndexModel
 
 <h4>Member fees</h4>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="../MembershipFees/Create">Create New</a>
 </p>
 
 @if (Model.Message != null)
@@ -40,15 +40,15 @@
                 @Html.DisplayFor(modelItem => item.TransactionDate)
             </td>
             <td>
-                <a asp-page="../MembershipFees/Edit" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                <a asp-page="../MembershipFees/Edit" asp-route-id="@item.Id">
                     <svg bootstrap-icon="Pen" width="1em" height="1em"></svg>
                 </a>
                 <span> | </span>
-                <a asp-page="../MembershipFees/Details" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                <a asp-page="../MembershipFees/Details" asp-route-id="@item.Id">
                     <svg bootstrap-icon="ZoomIn" width="1em" height="1em"></svg>
                 </a>
                 <span> | </span>
-                <a asp-page="../MembershipFees/Delete" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                <a asp-page="../MembershipFees/Delete" asp-route-id="@item.Id">
                     <svg bootstrap-icon="Trash" width="1em" height="1em"></svg>
                 </a>
             </td>

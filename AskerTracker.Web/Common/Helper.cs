@@ -74,7 +74,7 @@ namespace AskerTracker.Common
             return ((MemberExpression) unaryExpression.Operand).Member.Name;
         }
 
-        private const string? ExpressionCannotBeNullMessage = "GetMemberName(): Expression cannot be null.";
+        private const string ExpressionCannotBeNullMessage = "GetMemberName(): Expression cannot be null.";
 
         private const string InvalidExpressionMessage = "GetMemberName(): Invalid expression.";
     }

@@ -1,0 +1,70 @@
+﻿@page "{searchString?}"
+@using System.Globalization
+@model AskerTracker.Areas.Domain.Pages.Members.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <div class="form-group">
+        <div class="input-group w-50">
+            <input class="form-control" type="text" asp-for="SearchString"/>
+            <button class="btn btn-light" type="submit">
+                <svg bootstrap-icon="Search" width="1em"></svg>
+            </button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Members[0].FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members[0].Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members[0].BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members[0].PhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Members)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                <partial name="_EntryButtonsPartial" model="item"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section footer {
+    <div>Hello! @CultureInfo.CurrentUICulture</div>
+}

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
-using AskerTracker.Pages.MembershipFees;
+using AskerTracker.Areas.Domain.Pages.MembershipFees;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +18,7 @@ namespace AskerTracker.ViewComponents
             _dbContext = dbContext;
         }
         
-        public async Task<IViewComponentResult> InvokeAsync(string memberId, string returnUrl)
+        public async Task<IViewComponentResult> InvokeAsync(string memberId)
         {
             var membershipFeeModel = new IndexModel(_dbContext)
             {

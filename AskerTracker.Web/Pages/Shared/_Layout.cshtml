@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
-<body class="bg-secondary">
+<body class="">
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
@@ -25,28 +25,28 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Members/Index">Members</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/Members/Index">Members</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MembershipFees/Index">Fees</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/MembershipFees/Index">Fees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Trainings/Index">Trainings</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/Trainings/Index">Trainings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TestingEvents/Index">Testing Events</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/TestingEvents/Index">Testing Events</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TestingResults/Index">Testing Results</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/TestingResults/Index">Testing Results</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Items/Index">Items</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/Items/Index">Items</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ItemTransactions/Index">Transactions</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/ItemTransactions/Index">Transactions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ASquads/Index">A Squad</a>
+                            <a class="nav-link text-dark" asp-area="Domain" asp-page="/ASquads/Index">A Squad</a>
                         </li>
                     }
                     <li class="nav-item">
@@ -62,6 +62,21 @@
     </nav>
 </header>
 <div class="container">
+
+    @{
+        try
+        {
+            if (Model?.Message != null)
+            {
+                <partial name="Shared/_NotificationAlertPartial" model="Model.Message"/>
+            }
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
     <main role="main" class="pb-3">
         @RenderBody()
     </main>

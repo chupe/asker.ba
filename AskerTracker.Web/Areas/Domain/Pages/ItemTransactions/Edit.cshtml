@@ -1,0 +1,70 @@
+﻿@page
+@model AskerTracker.Areas.Domain.Pages.ItemTransactions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ItemTransaction</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.ItemId" class="control-label"></label>
+                <select asp-for="ItemTransaction.ItemId" class="form-control" asp-items="ViewBag.ItemId"></select>
+                <span asp-validation-for="ItemTransaction.ItemId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.TransactionDate" class="control-label"></label>
+                <input asp-for="ItemTransaction.TransactionDate" class="form-control"/>
+                <span asp-validation-for="ItemTransaction.TransactionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.Amount" class="control-label"></label>
+                <input asp-for="ItemTransaction.Amount" class="form-control"/>
+                <span asp-validation-for="ItemTransaction.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.Comment" class="control-label"></label>
+                <textarea asp-for="ItemTransaction.Comment" class="form-control"></textarea>
+                <span asp-validation-for="ItemTransaction.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ItemTransaction.OwnershipChange"/> @Html.DisplayNameFor(model => model.ItemTransaction.OwnershipChange)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.LenderId" class="control-label"></label>
+                <select asp-for="ItemTransaction.LenderId" class="form-control" asp-items="ViewBag.LenderId"></select>
+                <span asp-validation-for="ItemTransaction.LenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.OwnerId" class="control-label"></label>
+                <select asp-for="ItemTransaction.OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+                <span asp-validation-for="ItemTransaction.OwnerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemTransaction.PreviousId" class="control-label"></label>
+                <select asp-for="ItemTransaction.PreviousId" class="form-control" asp-items="ViewBag.PreviousId"></select>
+                <span asp-validation-for="ItemTransaction.PreviousId" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ItemTransaction.Id"/>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
