@@ -34,10 +34,17 @@ namespace AskerTracker
         {
             var helpers = new DbHelpers(Configuration);
             var connectionString = helpers.GetConnectionString();
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString)
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
+                services.AddDbContext<AskerTrackerDbContext>(options =>
+                    options.UseInMemoryDatabase("Temp")
+                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            else
+                services.AddDbContext<AskerTrackerDbContext>(options =>
+                    options.UseSqlServer(connectionString)
+                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));

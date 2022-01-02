@@ -28,7 +28,7 @@ namespace AskerTracker.Common
 
             using var scope = host.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
-            await context.Database.MigrateAsync();
+            // await context.Database.MigrateAsync();
 
             if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
                 try
@@ -40,6 +40,9 @@ namespace AskerTracker.Common
                 {
                     _logger.LogError(ex, "An error occurred seeding the DB");
                 }
+            else
+                await context.Database.MigrateAsync();
+
         }
 
         public string GetConnectionString()
