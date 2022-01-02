@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" asp-route-returnurl="@Model.ReturnUrl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MembershipFee.TransactionDate" class="control-label"></label>
@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a href="@ViewData["Referer"]">Back</a>
 </div>
 
 @section Scripts {

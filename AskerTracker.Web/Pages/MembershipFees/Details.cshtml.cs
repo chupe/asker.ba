@@ -27,6 +27,9 @@ public class DetailsModel : PageModel
             .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
 
         if (MembershipFee == null) return NotFound();
+        
+        ViewData["Referer"] = Request.Headers["Referer"].ToString();
+
         return Page();
     }
 }

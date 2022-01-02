@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Common;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,8 @@ public class EditModel : PageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result;
     
+    public string ReturnUrl { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
@@ -35,13 +38,18 @@ public class EditModel : PageModel
 
         if (MembershipFee == null) return NotFound();
 
+        
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        
         return Page();
     }
 
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Attach(MembershipFee).State = EntityState.Modified;
@@ -59,7 +67,7 @@ public class EditModel : PageModel
             throw;
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 
     private bool MembershipFeeExists(Guid id)

@@ -1,0 +1,58 @@
+﻿@model AskerTracker.Pages.MembershipFees.IndexModel
+
+<h4>Member fees</h4>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@if (Model.Message != null)
+{
+    <partial name="Shared/_NotificationAlertPartial" model="Model.Message"/>
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Member.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFee[0].TransactionDate)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.MembershipFee)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                <a asp-page="../MembershipFees/Edit" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                    <svg bootstrap-icon="Pen" width="1em" height="1em"></svg>
+                </a>
+                <span> | </span>
+                <a asp-page="../MembershipFees/Details" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                    <svg bootstrap-icon="ZoomIn" width="1em" height="1em"></svg>
+                </a>
+                <span> | </span>
+                <a asp-page="../MembershipFees/Delete" asp-route-returnurl="@ViewData["Referer"]" asp-route-id="@item.Id">
+                    <svg bootstrap-icon="Trash" width="1em" height="1em"></svg>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

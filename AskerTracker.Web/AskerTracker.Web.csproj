@@ -59,4 +59,8 @@
         <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
         <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\MembershipFees\Partials" />
+    </ItemGroup>
 </Project>

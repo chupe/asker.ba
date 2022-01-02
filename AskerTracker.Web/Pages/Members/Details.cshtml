@@ -1,4 +1,5 @@
 ﻿@page
+@using AskerTracker.ViewComponents
 @model AskerTracker.Pages.Members.DetailsModel
 
 @{
@@ -83,3 +84,10 @@
     <a asp-page="./Edit" asp-route-id="@Model.Member.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+
+@await Component.InvokeAsync(typeof(MemberFeesViewComponent),
+    new
+    {
+        memberId = Model.Member.Id.ToString(),
+        returnUrl = Url.Content(".")
+    })
