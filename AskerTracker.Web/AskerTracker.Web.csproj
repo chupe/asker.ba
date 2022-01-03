@@ -146,5 +146,10 @@
         <_ContentIncludedByDefault Remove="Areas\Trainings\Details.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Trainings\Edit.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Trainings\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Index.cshtml" />
     </ItemGroup>
 </Project>

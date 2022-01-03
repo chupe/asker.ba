@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace AskerTracker.Infrastructure.Migrations
 {
     public partial class InitialCreate : Migration
@@ -200,8 +202,7 @@ namespace AskerTracker.Infrastructure.Migrations
                         name: "FK_Members_ASquads_ASquadId",
                         column: x => x.ASquadId,
                         principalTable: "ASquads",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -263,14 +264,12 @@ namespace AskerTracker.Infrastructure.Migrations
                         name: "FK_Items_Members_LenderId",
                         column: x => x.LenderId,
                         principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Items_Members_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -401,20 +400,17 @@ namespace AskerTracker.Infrastructure.Migrations
                         name: "FK_ItemTransactions_ItemTransactions_PreviousId",
                         column: x => x.PreviousId,
                         principalTable: "ItemTransactions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ItemTransactions_Members_LenderId",
                         column: x => x.LenderId,
                         principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ItemTransactions_Members_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Members",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
