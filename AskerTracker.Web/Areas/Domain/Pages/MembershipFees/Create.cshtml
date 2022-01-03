@@ -34,7 +34,7 @@ else
             </div>
             <div class="form-group" @hidden>
                 <label asp-for="MembershipFee.MemberId" class="control-label"></label>
-                <select asp-for="MembershipFee.MemberId" class="form-control" asp-items="Model.MembersSelectList.Where(m => m.Value == Model.PreselectedMember?.Id.ToString())"></select>
+                <select asp-for="MembershipFee.MemberId" class="form-control" asp-items="Model.MembersSelectList"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary"/>
