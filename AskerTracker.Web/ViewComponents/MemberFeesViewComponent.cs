@@ -26,7 +26,6 @@ namespace AskerTracker.ViewComponents
             };
 
             await membershipFeeModel.OnGetAsync();
-            ViewData["Referer"] = Request.Headers["Referer"].ToString().ToRelativePath();
             
             return View(membershipFeeModel);
         }
