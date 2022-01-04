@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
 
@@ -11,6 +12,7 @@ namespace AskerTracker.Infrastructure.Seed
             if (!context.Users.Any())
                 context.Users.Add(new IdentityUser
                 {
+                    Id = "77cab71a-cc5b-470d-b043-2e8533a184a2",
                     UserName = "test@mail.com",
                     NormalizedUserName = "test@mail.com".ToUpper(),
                     Email = "test@mail.com",
