@@ -37,8 +37,8 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
         <PackageReference Include="MimeKit" Version="2.15.0" />
@@ -151,14 +151,19 @@
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Details.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Edit.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Index.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Shared\Components\MemberFees\Default.cshtml" />
-        <_ContentIncludedByDefault Remove="Pages\Shared\Components\MembersCount\Default.cshtml" />
-        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\Shared\Components\Details\Default.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MemberFees\Default.cshtml" />
-      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MemberName\Default.cshtml" />
-      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MembersCount\Default.cshtml" />
+        <Folder Include="Pages\Shared\Components\MembersCount" />
+        <Folder Include="ViewComponents" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="Pages\Shared\Components\MembersCount\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="ViewComponents\MemberFeesViewComponent.cs" />
+        <Compile Remove="Areas\Domain\Pages\Members\Details.cshtml.cs" />
     </ItemGroup>
 </Project>
