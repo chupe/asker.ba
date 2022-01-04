@@ -22,12 +22,20 @@ public class TrainingsModel : AskerTrackerPageModel
 
     [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync(Guid? memberFilter)
     {
+        if (memberFilter == null) return NotFound();
+
+        var memberExists = await _context.Members.AnyAsync(m => m.Id == memberFilter);
+
+        if (!memberExists) return NotFound();
+        
         Trainings = await _context.Trainings.Where(e => e.Participants.Any(m => m.Id == MemberFilter))
             .OrderByDescending(y => y.DateHeld)
             .Include(t => t.Location)
             .Include(x => x.Participants.Where(m => m.Id == MemberFilter))
             .ToListAsync();
+
+        return Page();
     }
 }

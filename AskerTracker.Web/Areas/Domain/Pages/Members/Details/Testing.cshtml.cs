@@ -23,12 +23,20 @@ public class TestingsModel : AskerTrackerPageModel
 
     [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync(Guid? memberFilter)
     {
+        if (memberFilter == null) return NotFound();
+
+        var memberExists = await _context.Members.AnyAsync(m => m.Id == memberFilter);
+
+        if (!memberExists) return NotFound();
+        
         TestingEvents = await _context.TestingEvents.Where(e => e.Participants.Any(m => m.Id == MemberFilter))
             .OrderByDescending(y => y.DateHeld)
             .Include(x => x.Participants)
             .Include(t => t.Location)
             .ToListAsync();
+
+        return Page();
     }
 }

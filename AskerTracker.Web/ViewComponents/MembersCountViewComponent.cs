@@ -3,7 +3,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.ViewComponents;
+namespace AskerTracker.ViewComponents;
 
 public class MembersCountViewComponent : ViewComponent
 {
