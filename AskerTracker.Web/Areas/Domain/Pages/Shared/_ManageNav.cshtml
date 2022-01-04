@@ -2,28 +2,30 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var memberId = ViewData["MemberId"];
 }
 <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a>
+        <a class="nav-link @ManageNavPages.PersonalDetailsNavClass(ViewContext)" id="profile" asp-page="/Members/Details" asp-route-id="@memberId">Personal details</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a>
+        <a class="nav-link @ManageNavPages.FeesNavClass(ViewContext)" id="fees"
+           asp-page="../MembershipFees/Index"
+           asp-route-memberfilter="@memberId"
+           asp-route-layout="@ViewData["Layout"]">
+            Fees
+        </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a>
-    </li>
-    @if (hasExternalLogins)
-    {
-        <li id="external-logins" class="nav-item">
-            <a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a>
-        </li>
-    }
-    <li class="nav-item">
-        <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a>
+        <a class="nav-link @ManageNavPages.TrainingsNavClass(ViewContext)" id="trainings" asp-page="../Trainings/Index">Trainings</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a>
+        <a class="nav-link @ManageNavPages.TestingEventsNavClass(ViewContext)" id="testing-events" asp-page="../TestingEvents/Index">Testing events</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.ItemsNavClass(ViewContext)" id="items" asp-page="../Items/Index">Items</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.NotesNavClass(ViewContext)" id="notes" asp-page="/">Notes</a>
     </li>
 </ul>

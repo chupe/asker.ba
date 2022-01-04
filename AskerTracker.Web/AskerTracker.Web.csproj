@@ -151,5 +151,14 @@
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Details.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Edit.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\MemberFees\Default.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Shared\Components\MembersCount\Default.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\Shared\Components\Details\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MemberFees\Default.cshtml" />
+      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MemberName\Default.cshtml" />
+      <AdditionalFiles Include="Areas\Domain\Pages\Shared\Components\MembersCount\Default.cshtml" />
     </ItemGroup>
 </Project>

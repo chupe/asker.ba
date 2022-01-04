@@ -1,0 +1,45 @@
+﻿@page "{memberFilter:Guid}"
+@using AskerTracker.Areas.Domain.Pages
+@model AskerTracker.Areas.Domain.Pages.Members.Details.TestingsModel
+
+@{
+    ViewData["Title"] = "Member Details";
+    ViewData["MemberId"] = Model.MemberFilter;
+    ViewData["ActivePage"] = ManageNavPages.TestingEvents;
+    Layout = "Shared/_DetailsLayout";  
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingEvents[0].Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestingEvents[0].DateHeld)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.TestingEvents)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHeld)
+            </td>
+            <td>
+                <partial name="_EntryButtonsPartial" model="item"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
