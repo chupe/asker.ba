@@ -1,4 +1,5 @@
-﻿@{
+﻿@using AskerTracker.Areas.Domain.Pages.ViewComponents
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
     {
         Layout = (string) parentLayout;
@@ -9,7 +10,13 @@
     }
 }
 
-<h1>@ViewData["Information"] Information</h1>
+<h1>
+    @await Component.InvokeAsync(typeof(MemberNameViewComponent),
+        new
+        {
+            memberId = ViewData["MemberId"]
+        })
+    Information</h1>
 
 <div>
     <hr/>

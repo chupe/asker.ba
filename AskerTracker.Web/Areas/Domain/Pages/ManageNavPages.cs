@@ -6,60 +6,46 @@ namespace AskerTracker.Areas.Domain.Pages
 {
     public static class ManageNavPages
     {
-        public static string Index => "Index";
+        public static string PersonalDetails => "PersonalDetails";
 
-        public static string Email => "Email";
+        public static string Fees => "Fees";
 
-        public static string ChangePassword => "ChangePassword";
+        public static string Trainings => "Trainings";
 
-        public static string DownloadPersonalData => "DownloadPersonalData";
+        public static string TestingEvents => "TestingEvents";
 
-        public static string DeletePersonalData => "DeletePersonalData";
+        public static string Items => "Items";
 
-        public static string ExternalLogins => "ExternalLogins";
+        public static string Notes => "Notes";
 
-        public static string PersonalData => "PersonalData";
-
-        public static string TwoFactorAuthentication => "TwoFactorAuthentication";
-
-        public static string IndexNavClass(ViewContext viewContext)
+        public static string PersonalDetailsNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, Index);
+            return PageNavClass(viewContext, PersonalDetails);
         }
 
-        public static string EmailNavClass(ViewContext viewContext)
+        public static string FeesNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, Email);
+            return PageNavClass(viewContext, Fees);
         }
 
-        public static string ChangePasswordNavClass(ViewContext viewContext)
+        public static string TrainingsNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, ChangePassword);
+            return PageNavClass(viewContext, Trainings);
         }
 
-        public static string DownloadPersonalDataNavClass(ViewContext viewContext)
+        public static string TestingEventsNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, DownloadPersonalData);
+            return PageNavClass(viewContext, TestingEvents);
         }
 
-        public static string DeletePersonalDataNavClass(ViewContext viewContext)
+        public static string ItemsNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, DeletePersonalData);
+            return PageNavClass(viewContext, Items);
         }
 
-        public static string ExternalLoginsNavClass(ViewContext viewContext)
+        public static string NotesNavClass(ViewContext viewContext)
         {
-            return PageNavClass(viewContext, ExternalLogins);
-        }
-
-        public static string PersonalDataNavClass(ViewContext viewContext)
-        {
-            return PageNavClass(viewContext, PersonalData);
-        }
-
-        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext)
-        {
-            return PageNavClass(viewContext, TwoFactorAuthentication);
+            return PageNavClass(viewContext, Notes);
         }
 
         private static string PageNavClass(ViewContext viewContext, string page)

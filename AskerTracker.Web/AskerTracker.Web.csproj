@@ -152,4 +152,18 @@
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Edit.cshtml" />
         <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Index.cshtml" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\Shared\Components\MembersCount" />
+      <Folder Include="ViewComponents" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Pages\Shared\Components\MembersCount\Default.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ViewComponents\MemberFeesViewComponent.cs" />
+      <Compile Remove="Areas\Domain\Pages\Members\Details.cshtml.cs" />
+    </ItemGroup>
 </Project>

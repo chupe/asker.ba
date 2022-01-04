@@ -3,10 +3,9 @@ using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.Members;
+namespace AskerTracker.Areas.Domain.Pages.Members.Details;
 
 public class DetailsModel : AskerTrackerPageModel
 {
@@ -18,6 +17,8 @@ public class DetailsModel : AskerTrackerPageModel
     }
 
     public Member Member { get; set; }
+
+    [BindProperty(SupportsGet = true)] public Guid MemberFilter => Member.Id;
 
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
