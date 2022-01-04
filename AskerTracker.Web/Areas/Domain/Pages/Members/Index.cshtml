@@ -1,4 +1,4 @@
-﻿@page "{searchString?}"
+﻿@page
 @using System.Globalization
 @model AskerTracker.Areas.Domain.Pages.Members.IndexModel
 
@@ -58,7 +58,17 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                <partial name="_EntryButtonsPartial" model="item"/>
+                <a asp-page="./Edit" asp-route-id="@item.Id">
+                    <svg bootstrap-icon="Pen" width="1em" height="1em"></svg>
+                </a>
+                <span> | </span>
+                <a asp-page="./Details/Details" asp-route-memberfilter="@item.Id">
+                    <svg bootstrap-icon="ZoomIn" width="1em" height="1em"></svg>
+                </a>
+                <span> | </span>
+                <a asp-page="./Delete" asp-route-id="@item.Id">
+                    <svg bootstrap-icon="Trash" width="1em" height="1em"></svg>
+                </a>
             </td>
         </tr>
     }

@@ -23,11 +23,19 @@ public class FeesModel : AskerTrackerPageModel
 
     [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync(Guid? memberFilter)
     {
+        if (memberFilter == null) return NotFound();
+
+        var memberExists = await _context.Members.AnyAsync(m => m.Id == memberFilter);
+
+        if (!memberExists) return NotFound();
+        
         MembershipFees = await _context.MembershipFees.Where(x => x.MemberId == MemberFilter)
             .OrderByDescending(f => f.TransactionDate)
             .Include(m => m.Member)
             .ToListAsync();
+
+        return Page();
     }
 }

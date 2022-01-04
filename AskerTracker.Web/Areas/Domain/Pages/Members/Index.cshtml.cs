@@ -25,12 +25,12 @@ public class IndexModel : AskerTrackerPageModel
 
     public async Task OnGetAsync()
     {
-        var members = _context.Members.Select(m => m);
+        var members = await _context.Members.Select(m => m).ToListAsync();
 
         if (!string.IsNullOrEmpty(SearchString))
             members = members.Where(s =>
-                s.FullName.Contains(SearchString, StringComparison.CurrentCultureIgnoreCase));
+                s.FullName.Contains(SearchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
-        Members = await members.ToListAsync();
+        Members = members;
     }
 }
