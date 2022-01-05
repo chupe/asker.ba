@@ -34,7 +34,7 @@ public class CreateModel : AskerTrackerPageModel
         var queryString = new System.Uri(ReturnUrl).Query;
         var queryDictionary = System.Web.HttpUtility.ParseQueryString(queryString);
 
-        PreselectedMember = await _context.Members.FindAsync(queryDictionary["id"].ToGuid());
+        PreselectedMember = await _context.Members.FindAsync(queryDictionary["memberfilter"].ToGuid());
         if (PreselectedMember != null)
             MembersSelectList = new List<SelectListItem>
             {

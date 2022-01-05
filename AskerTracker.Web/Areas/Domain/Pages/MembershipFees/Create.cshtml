@@ -24,7 +24,7 @@ else
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MembershipFee.TransactionDate" class="control-label"></label>
-                <input asp-for="MembershipFee.TransactionDate" class="form-control"/>
+                <input asp-for="MembershipFee.TransactionDate" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
                 <span asp-validation-for="MembershipFee.TransactionDate" class="text-danger"></span>
             </div>
             <div class="form-group">

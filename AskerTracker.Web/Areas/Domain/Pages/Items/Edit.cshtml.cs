@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Common;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,14 @@ public class EditModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
+    
+    public string ReturnUrl { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
+        
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
 
         Item = await _context.Items
             .Include(i => i.Lender)
@@ -40,8 +46,10 @@ public class EditModel : AskerTrackerPageModel
 
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Attach(Item).State = EntityState.Modified;
@@ -58,7 +66,7 @@ public class EditModel : AskerTrackerPageModel
             throw;
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 
     private bool ItemExists(Guid id)

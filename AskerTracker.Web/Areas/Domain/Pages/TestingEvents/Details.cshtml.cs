@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,16 @@ public class DetailsModel : AskerTrackerPageModel
 
     public TestingEvent TestingEvent { get; set; }
 
+    public string ReturnUrl { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
 
         TestingEvent = await _context.TestingEvents
             .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
+
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
 
         if (TestingEvent == null) return NotFound();
         return Page();

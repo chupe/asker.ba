@@ -23,20 +23,26 @@ public class CreateModel : AskerTrackerPageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
     
+    public string ReturnUrl { get; set; }
+
     public IActionResult OnGet()
     {
+        ReturnUrl = Request.Headers["Referer"].ToString();
+
         return Page();
     }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(string returnUrl)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Items.Add(Item);
         await _context.SaveChangesAsync();
         TempData["Message"] = $"Created new item {Item.Name} successfully!";
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 }

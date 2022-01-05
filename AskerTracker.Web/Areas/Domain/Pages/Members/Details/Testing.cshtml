@@ -1,16 +1,19 @@
 @page
 @using AskerTracker.Areas.Domain.Pages
+@using AskerTracker.Areas.Domain.Pages.Members.Details
 @model AskerTracker.Areas.Domain.Pages.Members.Details.TestingsModel
 
 @{
     ViewData["Title"] = "Member Details";
     ViewData["ActivePage"] = ManageNavPages.TestingEvents;
+    ViewData["ParentFolder"] = NavigationInformation.TestingsFolder;
+    var createPage = $"{ViewData["ParentFolder"]}/Create";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="@createPage">Create New</a>
 </p>
 <table class="table">
     <thead>

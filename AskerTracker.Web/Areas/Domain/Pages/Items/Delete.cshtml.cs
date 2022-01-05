@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,8 @@ public class DeleteModel : AskerTrackerPageModel
 
     [BindProperty] public Item Item { get; set; }
 
+    public string ReturnUrl { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
@@ -28,11 +31,16 @@ public class DeleteModel : AskerTrackerPageModel
             .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
 
         if (Item == null) return NotFound();
+        
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid? id)
+    public async Task<IActionResult> OnPostAsync(Guid? id, string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (id == null) return NotFound();
 
         Item = await _context.Items.FindAsync(id);
@@ -44,6 +52,6 @@ public class DeleteModel : AskerTrackerPageModel
             TempData["Message"] = $"Removed {Item.Name} successfully!";
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 }

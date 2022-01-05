@@ -27,7 +27,7 @@ public class DetailsModel : AskerTrackerPageModel
         if (id == null) return NotFound();
 
         MembershipFee = await _context.MembershipFees
-            .Include(m => m.Member).FirstOrDefaultAsync(m => m.Id == id);
+            .Include(m => m.Member).FirstOrDefaultAsync(f => f.Id == id);
 
         if (MembershipFee == null) return NotFound();
         

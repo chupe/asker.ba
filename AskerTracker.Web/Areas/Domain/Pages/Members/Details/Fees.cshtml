@@ -1,16 +1,19 @@
 @page
 @using AskerTracker.Areas.Domain.Pages
+@using AskerTracker.Areas.Domain.Pages.Members.Details
 @model AskerTracker.Areas.Domain.Pages.Members.Details.FeesModel
 
 @{
     ViewData["Title"] = "Fees Details";
     ViewData["ActivePage"] = ManageNavPages.Fees;
+    ViewData["ParentFolder"] = NavigationInformation.FeesFolder;
+    var createPage = $"{ViewData["ParentFolder"]}/Create";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New Fee</a>
+    <a asp-page="@createPage" asp-route-memberfilter="@Model.MemberFilter">Create New Fee</a>
 </p>
 
 <table class="table">
