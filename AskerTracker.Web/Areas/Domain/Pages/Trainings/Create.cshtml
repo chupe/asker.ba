@@ -11,20 +11,20 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" asp-route-returnurl="@Model.ReturnUrl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Training.TrainingType" class="control-label"></label>
-                <select asp-for="Training.TrainingType" class="form-control"></select>
+                <select asp-for="Training.TrainingType" class="form-control" asp-items="Model.TrainingType"></select>
                 <span asp-validation-for="Training.TrainingType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Training.LocationId" class="control-label"></label>
-                <select asp-for="Training.LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
+                <select asp-for="Training.LocationId" class="form-control" asp-items="Model.EventLocationSelectList"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Training.DateHeld" class="control-label"></label>
-                <input asp-for="Training.DateHeld" class="form-control"/>
+                <input asp-for="Training.DateHeld" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
                 <span asp-validation-for="Training.DateHeld" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a href="@Model.ReturnUrl">Back</a>
 </div>
 
 @section Scripts {

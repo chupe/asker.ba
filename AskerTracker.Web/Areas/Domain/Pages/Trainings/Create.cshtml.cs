@@ -24,15 +24,16 @@ public class CreateModel : AskerTrackerPageModel
     }
 
     [BindProperty] public Training Training { get; set; }
-    
-    public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<TrainingType>();
 
     public IEnumerable<SelectListItem> EventLocationSelectList => Helper.GetSelectList<EventLocation>(_context, l => l.Location).Result;
+
+    public IEnumerable<SelectListItem> TrainingType => _htmlHelper.GetEnumSelectList<TrainingType>();
     
     public string ReturnUrl { get; set; }
 
     public IActionResult OnGet()
     {
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
         return Page();
     }
 
@@ -40,8 +41,6 @@ public class CreateModel : AskerTrackerPageModel
     public async Task<IActionResult> OnPostAsync(string returnUrl)
     {
         if (!ModelState.IsValid) return Page();
-
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
 
         _context.Trainings.Add(Training);
         await _context.SaveChangesAsync();

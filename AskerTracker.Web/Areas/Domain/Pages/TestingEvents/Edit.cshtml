@@ -11,16 +11,16 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" asp-route-returnurl="@Model.ReturnUrl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TestingEvent.LocationId" class="control-label"></label>
-                <select asp-for="TestingEvent.LocationId" class="form-control" asp-items="ViewBag.LocationId"></select>
+                <select asp-for="TestingEvent.LocationId" class="form-control" asp-items="Model.EventLocationSelectList"></select>
                 <span asp-validation-for="TestingEvent.LocationId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TestingEvent.DateHeld" class="control-label"></label>
-                <input asp-for="TestingEvent.DateHeld" class="form-control"/>
+                <input asp-for="TestingEvent.DateHeld" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
                 <span asp-validation-for="TestingEvent.DateHeld" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="TestingEvent.Id"/>
@@ -32,7 +32,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a href="@Model.ReturnUrl">Back</a>
 </div>
 
 @section Scripts {

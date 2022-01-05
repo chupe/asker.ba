@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
@@ -27,6 +28,8 @@ public class EditModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
+    public string ReturnUrl { get; set; }
+    
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
@@ -34,13 +37,19 @@ public class EditModel : AskerTrackerPageModel
         Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
 
         if (Member == null) return NotFound();
+        
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+
         return Page();
     }
 
+
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Attach(Member).State = EntityState.Modified;
@@ -57,7 +66,7 @@ public class EditModel : AskerTrackerPageModel
             throw;
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 
     private bool MemberExists(Guid id)
