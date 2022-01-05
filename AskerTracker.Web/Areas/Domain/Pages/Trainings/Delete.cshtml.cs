@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,8 @@ public class DeleteModel : AskerTrackerPageModel
 
     [BindProperty] public Training Training { get; set; }
 
+    public string ReturnUrl { get; set; }
+    
     public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
@@ -27,11 +30,17 @@ public class DeleteModel : AskerTrackerPageModel
             .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
         if (Training == null) return NotFound();
+        
+        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid? id)
+
+    public async Task<IActionResult> OnPostAsync(Guid? id, string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (id == null) return NotFound();
 
         Training = await _context.Trainings.FindAsync(id);
@@ -40,8 +49,9 @@ public class DeleteModel : AskerTrackerPageModel
         {
             _context.Trainings.Remove(Training);
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Removed training held on {Training.DateHeld} successfully!";
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 }
