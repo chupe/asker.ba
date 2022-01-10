@@ -4,7 +4,6 @@ using AskerTracker.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AskerTracker.Areas.Domain.Pages.Items;
@@ -23,7 +22,7 @@ public class CreateModel : AskerTrackerPageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
     
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
     public IActionResult OnGet()
     {

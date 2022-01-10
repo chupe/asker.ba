@@ -21,7 +21,7 @@ public class EditModel : AskerTrackerPageModel
 
     [BindProperty] public TestingResult TestingResult { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 

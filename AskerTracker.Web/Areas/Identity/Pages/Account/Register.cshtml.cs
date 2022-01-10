@@ -37,7 +37,7 @@ namespace AskerTracker.Areas.Identity.Pages.Account
 
         [BindProperty] public InputModel Input { get; set; }
 
-        public string ReturnUrl { get; set; }
+        [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 

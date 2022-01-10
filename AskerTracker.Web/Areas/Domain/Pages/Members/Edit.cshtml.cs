@@ -28,9 +28,9 @@ public class EditModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
     
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
@@ -38,7 +38,7 @@ public class EditModel : AskerTrackerPageModel
 
         if (Member == null) return NotFound();
         
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         return Page();
     }

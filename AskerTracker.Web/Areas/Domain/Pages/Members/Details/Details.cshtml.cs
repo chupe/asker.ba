@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +21,18 @@ public class DetailsModel : AskerTrackerPageModel
 
     [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? memberFilter)
-    {
-        if (memberFilter == null) return NotFound();
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == memberFilter);
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
+    {
+        if (id == null) return NotFound();
+
+        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
 
         if (Member == null) return NotFound();
         
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
+
         return Page();
     }
 }

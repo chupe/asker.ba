@@ -56,6 +56,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Item.Id">Edit</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.Item.Id" asp-route-returnurl="@Model.ReturnUrl">Edit</a> |
     <a href="@Model.ReturnUrl">Back</a>
 </div>

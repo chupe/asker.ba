@@ -20,16 +20,16 @@ public class DetailsModel : AskerTrackerPageModel
 
     public TestingEvent TestingEvent { get; set; }
 
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
         TestingEvent = await _context.TestingEvents
             .Include(t => t.Location).FirstOrDefaultAsync(m => m.Id == id);
 
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         if (TestingEvent == null) return NotFound();
         return Page();

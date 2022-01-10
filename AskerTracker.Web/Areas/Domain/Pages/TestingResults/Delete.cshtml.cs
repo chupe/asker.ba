@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ public class DeleteModel : AskerTrackerPageModel
 
     [BindProperty] public TestingResult TestingResult { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
@@ -31,18 +32,23 @@ public class DeleteModel : AskerTrackerPageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid? id)
+    public async Task<IActionResult> OnPostAsync(Guid? id, string returnUrl = null)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (id == null) return NotFound();
 
-        TestingResult = await _context.TestingResults.FindAsync(id);
+        TestingResult = await _context.TestingResults
+            .Include(r => r.Member)
+            .FirstOrDefaultAsync(r => r.Id == id);
 
         if (TestingResult != null)
         {
             _context.TestingResults.Remove(TestingResult);
             await _context.SaveChangesAsync();
+            TempData["Message"] = $"Removed testing result for {TestingResult.Member.FullName} successfully!";
         }
 
-        return RedirectToPage("./Index");
+        return LocalRedirect(returnUrl);
     }
 }

@@ -6,7 +6,6 @@ using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AskerTracker.Areas.Domain.Pages.TestingEvents;
@@ -26,13 +25,11 @@ public class CreateModel : AskerTrackerPageModel
     
     public IEnumerable<SelectListItem> EventLocationSelectList => Helper.GetSelectList<EventLocation>(_context, l => l.Location).Result;
 
-    public IEnumerable<SelectListItem> TrainingType => _htmlHelper.GetEnumSelectList<TrainingType>();
-
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
     public IActionResult OnGet()
     {
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         return Page();
     }

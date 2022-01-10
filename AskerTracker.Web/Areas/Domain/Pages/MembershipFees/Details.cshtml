@@ -27,11 +27,11 @@
             @Html.DisplayNameFor(model => model.MembershipFee.Member)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MembershipFee.Member.FirstName)
+            @Html.DisplayFor(model => model.MembershipFee.Member.FullName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.MembershipFee.Id">Edit</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.MembershipFee.Id" asp-route-returnurl="@Model.ReturnUrl">Edit</a> |
     <a href="@Model.ReturnUrl">Back</a>
 </div>

@@ -27,17 +27,18 @@ public class EditModel : AskerTrackerPageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result.AppendTeamPropertyItem();
     
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
-        
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         Item = await _context.Items
             .Include(i => i.Lender)
-            .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            .Include(i => i.Owner)
+            .FirstOrDefaultAsync(m => m.Id == id);
 
         if (Item == null) return NotFound();
 

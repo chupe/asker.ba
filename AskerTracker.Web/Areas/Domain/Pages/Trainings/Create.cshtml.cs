@@ -29,17 +29,19 @@ public class CreateModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> TrainingType => _htmlHelper.GetEnumSelectList<TrainingType>();
     
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
     public IActionResult OnGet()
     {
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
         return Page();
     }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync(string returnUrl)
     {
+        returnUrl ??= Url.Content("~/");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Trainings.Add(Training);

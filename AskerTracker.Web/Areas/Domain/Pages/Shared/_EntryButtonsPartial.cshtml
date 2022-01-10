@@ -1,7 +1,7 @@
 @model AskerTracker.Domain.BaseModels.EntityModel
 
 @{
-    var parentFolder = ViewData["ParentFolder"];
+    var parentFolder = ViewData["ParentFolder"] ?? ".";
     var editPage = parentFolder + "/Edit";
     var deletePage = parentFolder + "/Delete";
     var detailsPage = parentFolder + "/Details";

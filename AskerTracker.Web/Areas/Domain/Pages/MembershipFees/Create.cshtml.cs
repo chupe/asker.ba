@@ -23,7 +23,7 @@ public class CreateModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> MembersSelectList { get; set; }
 
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
     public Member PreselectedMember { get; set; }
 
     public async Task<IActionResult> OnGet()

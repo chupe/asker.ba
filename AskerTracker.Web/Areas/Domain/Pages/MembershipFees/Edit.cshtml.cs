@@ -27,9 +27,9 @@ public class EditModel : AskerTrackerPageModel
     public IEnumerable<SelectListItem> MembersSelectList =>
         Helper.GetSelectList<Member>(_context, m => m.FullName).Result;
     
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
@@ -39,7 +39,7 @@ public class EditModel : AskerTrackerPageModel
         if (MembershipFee == null) return NotFound();
 
         
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
         
         return Page();
     }

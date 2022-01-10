@@ -20,8 +20,8 @@ public class DetailsModel : AskerTrackerPageModel
 
     public TestingResult TestingResult { get; set; }
 
-    public string ReturnUrl { get; set; }
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
@@ -31,7 +31,7 @@ public class DetailsModel : AskerTrackerPageModel
 
         if (TestingResult == null) return NotFound();
 
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         return Page();
     }

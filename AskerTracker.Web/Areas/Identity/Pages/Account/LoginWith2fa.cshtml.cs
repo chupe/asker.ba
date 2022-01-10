@@ -25,7 +25,7 @@ namespace AskerTracker.Areas.Identity.Pages.Account
 
         public bool RememberMe { get; set; }
 
-        public string ReturnUrl { get; set; }
+        [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
         public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null)
         {

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +29,7 @@ public class FeesModel : AskerTrackerPageModel
         var memberExists = await _context.Members.AnyAsync(m => m.Id == memberFilter);
 
         if (!memberExists) return NotFound();
-        
+
         MembershipFees = await _context.MembershipFees.Where(x => x.MemberId == MemberFilter)
             .OrderByDescending(f => f.TransactionDate)
             .Include(m => m.Member)

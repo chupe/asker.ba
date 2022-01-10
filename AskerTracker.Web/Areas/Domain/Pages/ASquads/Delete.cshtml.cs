@@ -19,7 +19,7 @@ public class DeleteModel : AskerTrackerPageModel
 
     [BindProperty] public ASquad ASquad { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 

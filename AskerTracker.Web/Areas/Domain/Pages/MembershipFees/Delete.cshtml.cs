@@ -4,7 +4,6 @@ using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Areas.Domain.Pages.MembershipFees;
@@ -20,9 +19,9 @@ public class DeleteModel : AskerTrackerPageModel
 
     [BindProperty] public MembershipFee MembershipFee { get; set; }
 
-    public string ReturnUrl { get; set; }
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id)
+    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
     {
         if (id == null) return NotFound();
 
@@ -31,7 +30,7 @@ public class DeleteModel : AskerTrackerPageModel
 
         if (MembershipFee == null) return NotFound();
         
-        ReturnUrl = Request.Headers["Referer"].ToString().ToRelativePath();
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         return Page();
     }

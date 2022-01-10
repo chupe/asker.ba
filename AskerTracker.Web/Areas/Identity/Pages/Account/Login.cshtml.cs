@@ -31,7 +31,7 @@ namespace AskerTracker.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public string ReturnUrl { get; set; }
+        [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
         [TempData] public string ErrorMessage { get; set; }
 
