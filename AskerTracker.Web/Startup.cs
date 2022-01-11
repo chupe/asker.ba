@@ -59,10 +59,7 @@ namespace AskerTracker
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddRazorPages(
-                    options =>
-                    {
-                        options.Conventions.AuthorizeFolder("/");
-                    }
+                    options => { options.Conventions.AuthorizeFolder("/"); }
                 )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
@@ -143,15 +140,14 @@ namespace AskerTracker
             app.UseFileServer();
 
             // this will serve up node_modules
-            var provider = new PhysicalFileProvider(
-                Path.Combine(env.ContentRootPath, "node_modules")
-            );
             app.UseFileServer(new FileServerOptions
             {
                 RequestPath = "/node_modules",
                 StaticFileOptions =
                 {
-                    FileProvider = provider
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "node_modules")
+                    )
                 },
                 EnableDirectoryBrowsing = true
             });

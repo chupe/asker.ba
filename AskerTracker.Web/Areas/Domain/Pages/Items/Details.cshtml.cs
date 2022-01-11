@@ -28,10 +28,11 @@ public class DetailsModel : AskerTrackerPageModel
 
         Item = await _context.Items
             .Include(i => i.Lender)
-            .Include(i => i.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            .Include(i => i.Owner)
+            .FirstOrDefaultAsync(m => m.Id == id);
 
         if (Item == null) return NotFound();
-        
+
         ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
 
         return Page();
