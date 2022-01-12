@@ -2,11 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using AskerTracker.Domain.BaseModels;
 
-namespace AskerTracker.Domain
+namespace AskerTracker.Domain;
+
+public class TestingEvent : EventModel
 {
-    public class TestingEvent : EventModel
-    {
-        [Required]
-        public List<TestingResult> Results { get; set; }
-    }
+    [Required]
+    public List<TestingResult> Results { get; set; }
 }

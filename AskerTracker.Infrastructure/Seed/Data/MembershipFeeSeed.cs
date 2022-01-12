@@ -2,120 +2,119 @@
 using System.Collections.Generic;
 using AskerTracker.Domain;
 
-namespace AskerTracker.Infrastructure.Seed.Data
+namespace AskerTracker.Infrastructure.Seed.Data;
+
+public static class MembershipFeeSeed
 {
-    public static class MembershipFeeSeed
+    public static readonly List<MembershipFee> Entries = new()
     {
-        public static readonly List<MembershipFee> Entries = new()
+        new MembershipFee
         {
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 10, 2),
-                MemberId = MemberSeed.MemberIds[0],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 11, 2),
-                MemberId = MemberSeed.MemberIds[0],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 12, 2),
-                MemberId = MemberSeed.MemberIds[0],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2019, 1, 2),
-                MemberId = MemberSeed.MemberIds[0],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 10, 2),
-                MemberId = MemberSeed.MemberIds[1],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 11, 2),
-                MemberId = MemberSeed.MemberIds[1],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 12, 2),
-                MemberId = MemberSeed.MemberIds[1],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2019, 1, 2),
-                MemberId = MemberSeed.MemberIds[1],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2021, 4, 2),
-                MemberId = MemberSeed.MemberIds[2],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2021, 5, 2),
-                MemberId = MemberSeed.MemberIds[2],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2021, 6, 2),
-                MemberId = MemberSeed.MemberIds[2],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2021, 7, 2),
-                MemberId = MemberSeed.MemberIds[2],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2020, 10, 2),
-                MemberId = MemberSeed.MemberIds[3],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2020, 11, 2),
-                MemberId = MemberSeed.MemberIds[3],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2020, 12, 2),
-                MemberId = MemberSeed.MemberIds[3],
-                Amount = 10
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2021, 1, 2),
-                MemberId = MemberSeed.MemberIds[3],
-                Amount = 100
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 10, 2),
-                MemberId = MemberSeed.MemberIds[4],
-                Amount = 100
-            },
-            new MembershipFee
-            {
-                TransactionDate = new DateTime(2018, 10, 2),
-                MemberId = MemberSeed.MemberIds[4],
-                Amount = 200
-            }
-        };
-    }
+            TransactionDate = new DateTime(2018, 10, 2),
+            MemberId = MemberSeed.MemberIds[0],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 11, 2),
+            MemberId = MemberSeed.MemberIds[0],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 12, 2),
+            MemberId = MemberSeed.MemberIds[0],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2019, 1, 2),
+            MemberId = MemberSeed.MemberIds[0],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 10, 2),
+            MemberId = MemberSeed.MemberIds[1],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 11, 2),
+            MemberId = MemberSeed.MemberIds[1],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 12, 2),
+            MemberId = MemberSeed.MemberIds[1],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2019, 1, 2),
+            MemberId = MemberSeed.MemberIds[1],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2021, 4, 2),
+            MemberId = MemberSeed.MemberIds[2],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2021, 5, 2),
+            MemberId = MemberSeed.MemberIds[2],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2021, 6, 2),
+            MemberId = MemberSeed.MemberIds[2],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2021, 7, 2),
+            MemberId = MemberSeed.MemberIds[2],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2020, 10, 2),
+            MemberId = MemberSeed.MemberIds[3],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2020, 11, 2),
+            MemberId = MemberSeed.MemberIds[3],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2020, 12, 2),
+            MemberId = MemberSeed.MemberIds[3],
+            Amount = 10
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2021, 1, 2),
+            MemberId = MemberSeed.MemberIds[3],
+            Amount = 100
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 10, 2),
+            MemberId = MemberSeed.MemberIds[4],
+            Amount = 100
+        },
+        new MembershipFee
+        {
+            TransactionDate = new DateTime(2018, 10, 2),
+            MemberId = MemberSeed.MemberIds[4],
+            Amount = 200
+        }
+    };
 }

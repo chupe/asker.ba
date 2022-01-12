@@ -1,33 +1,32 @@
-﻿namespace AskerTracker.Domain.Types
+﻿namespace AskerTracker.Domain.Types;
+
+public enum TrainingType
 {
-    public enum TrainingType
-    {
-        // [Display(ResourceType = typeof(UILocalization), Name = "Internal")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Internal")]
 
-        Internal,
+    Internal,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Cooperation", Description = "training with other teams at home or away")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Cooperation", Description = "training with other teams at home or away")]
 
-        Cooperation,
+    Cooperation,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Match")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Match")]
 
-        Match,
+    Match,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Hiking")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Hiking")]
 
-        Hiking,
+    Hiking,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Camping")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Camping")]
 
-        Camping,
+    Camping,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Combat")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Combat")]
 
-        Combat,
+    Combat,
 
-        // [Display(ResourceType = typeof(UILocalization), Name = "Other")]
+    // [Display(ResourceType = typeof(UILocalization), Name = "Other")]
 
-        Other
-    }
+    Other
 }

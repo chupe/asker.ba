@@ -6,115 +6,114 @@ using System.Linq;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Scoring;
 
-namespace AskerTracker.Domain
+namespace AskerTracker.Domain;
+
+public class TestingResult : EntityModel
 {
-    public class TestingResult : EntityModel
+    [ScaffoldColumn(false)] private int? hrpPoints;
+
+    [ScaffoldColumn(false)] private int? ltkPoints;
+
+    [ScaffoldColumn(false)] private int? mdlPoints;
+
+    private Member member;
+
+    [ScaffoldColumn(false)] private int? sdcPoints;
+
+    [ScaffoldColumn(false)] private int? sptPoints;
+
+    [ScaffoldColumn(false)] private int? tmrPoints;
+
+    [ForeignKey("Event")] public Guid EventId { get; set; }
+
+    [Required] public TestingEvent Event { get; set; }
+
+    [ForeignKey("Member")] public Guid MemberId { get; set; }
+
+    [Required]
+    public Member Member
     {
-        [ScaffoldColumn(false)] private int? hrpPoints;
-
-        [ScaffoldColumn(false)] private int? ltkPoints;
-
-        [ScaffoldColumn(false)] private int? mdlPoints;
-
-        private Member member;
-
-        [ScaffoldColumn(false)] private int? sdcPoints;
-
-        [ScaffoldColumn(false)] private int? sptPoints;
-
-        [ScaffoldColumn(false)] private int? tmrPoints;
-
-        [ForeignKey("Event")] public Guid EventId { get; set; }
-
-        [Required] public TestingEvent Event { get; set; }
-
-        [ForeignKey("Member")] public Guid MemberId { get; set; }
-
-        [Required]
-        public Member Member
+        get => member;
+        set
         {
-            get => member;
-            set
-            {
-                if (!Event.Participants.Contains(value))
-                    throw new Exception("Member not found in the list of event participants");
-                member = value;
-            }
+            if (!Event.Participants.Contains(value))
+                throw new Exception("Member not found in the list of event participants");
+            member = value;
         }
+    }
 
-        public int TotalScore
-        {
-            get => CalculateTotal();
-            private set { }
-        }
+    public int TotalScore
+    {
+        get => CalculateTotal();
+        private set { }
+    }
 
-        [Required]
-        public int WeakestDisciplinePoints
+    [Required]
+    public int WeakestDisciplinePoints
+    {
+        get
         {
-            get
+            var disciplines = new List<int>
             {
-                var disciplines = new List<int>
-                {
-                    mdlPoints.GetValueOrDefault(),
-                    sptPoints.GetValueOrDefault(),
-                    hrpPoints.GetValueOrDefault(),
-                    sdcPoints.GetValueOrDefault(),
-                    ltkPoints.GetValueOrDefault(),
-                    tmrPoints.GetValueOrDefault()
-                };
-
-                return disciplines.Min();
-            }
-        }
-
-        [Required] public int MaximumDeadliftWeight { get; set; }
-
-        [Required] public double StandingPowerThrow { get; set; }
-
-        [Required] public int HandReleasePushup { get; set; }
-
-        [Required] public TimeSpan SprintDragCarry { get; set; }
-
-        [Required] public int LegTuck { get; set; }
-
-        [Required] public TimeSpan TwoMileRun { get; set; }
-
-        public List<int?> GetPoints()
-        {
-            return new List<int?>
-            {
-                mdlPoints,
-                sptPoints,
-                hrpPoints,
-                sdcPoints,
-                ltkPoints,
-                tmrPoints
+                mdlPoints.GetValueOrDefault(),
+                sptPoints.GetValueOrDefault(),
+                hrpPoints.GetValueOrDefault(),
+                sdcPoints.GetValueOrDefault(),
+                ltkPoints.GetValueOrDefault(),
+                tmrPoints.GetValueOrDefault()
             };
-        }
 
-        public int CalculateTotal()
+            return disciplines.Min();
+        }
+    }
+
+    [Required] public int MaximumDeadliftWeight { get; set; }
+
+    [Required] public double StandingPowerThrow { get; set; }
+
+    [Required] public int HandReleasePushup { get; set; }
+
+    [Required] public TimeSpan SprintDragCarry { get; set; }
+
+    [Required] public int LegTuck { get; set; }
+
+    [Required] public TimeSpan TwoMileRun { get; set; }
+
+    public List<int?> GetPoints()
+    {
+        return new List<int?>
         {
-            foreach (var pts in GetPoints())
-                if (!pts.HasValue)
-                {
-                    CalculatePoints();
-                    break;
-                }
+            mdlPoints,
+            sptPoints,
+            hrpPoints,
+            sdcPoints,
+            ltkPoints,
+            tmrPoints
+        };
+    }
 
-            var total = 0;
-            foreach (var pts in GetPoints()) total += pts.GetValueOrDefault();
+    public int CalculateTotal()
+    {
+        foreach (var pts in GetPoints())
+            if (!pts.HasValue)
+            {
+                CalculatePoints();
+                break;
+            }
 
-            return total;
-        }
+        var total = 0;
+        foreach (var pts in GetPoints()) total += pts.GetValueOrDefault();
 
-        public void CalculatePoints()
-        {
-            mdlPoints = MdlScoring.GetScore(MaximumDeadliftWeight);
-            sptPoints = SptScoring.GetScore(StandingPowerThrow);
-            hrpPoints = HrpScoring.GetScore(HandReleasePushup);
-            sdcPoints = SdcScoring.GetScore(SprintDragCarry);
-            ltkPoints = LtkScoring.GetScore(LegTuck);
-            tmrPoints = TmrScoring.GetScore(TwoMileRun);
-        }
+        return total;
+    }
+
+    public void CalculatePoints()
+    {
+        mdlPoints = MdlScoring.GetScore(MaximumDeadliftWeight);
+        sptPoints = SptScoring.GetScore(StandingPowerThrow);
+        hrpPoints = HrpScoring.GetScore(HandReleasePushup);
+        sdcPoints = SdcScoring.GetScore(SprintDragCarry);
+        ltkPoints = LtkScoring.GetScore(LegTuck);
+        tmrPoints = TmrScoring.GetScore(TwoMileRun);
     }
 }
