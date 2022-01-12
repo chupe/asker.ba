@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace AskerTracker.Services.Mail
+namespace AskerTracker.Web.Services.Mail
 {
     public class MailRequest
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AskerTracker.Areas.Identity.Pages.Account
+namespace AskerTracker.Web.Areas.Identity.Pages.Account
 {
     public class AccessDeniedModel : PageModel
     {

@@ -6,6 +6,6 @@ namespace AskerTracker.Domain
 {
     public class ASquad : EntityModel
     {
-        [Required] public ICollection<Member> Members { get; set; }
+        [Required] public ICollection<Member> Members { get; set; } = new List<Member>();
     }
 }

@@ -226,8 +226,8 @@
     <value>Maximum Deadlift Weight</value>
   </data>
     <data name="PhoneNumber" xml:space="preserve">
-    <value>PhoneNumber</value>
-  </data>
+      <value>Phone number</value>
+    </data>
     <data name="Internal" xml:space="preserve">
     <value>Internal</value>
   </data>

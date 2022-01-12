@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
 
@@ -12,25 +10,16 @@ namespace AskerTracker.Infrastructure.Seed
         public static void Initialize(AskerTrackerDbContext context)
         {
             if (!context.Users.Any())
-                context.Users.Add(new Member
+                context.Users.Add(new IdentityUser
                 {
-                    Id = new Guid("3F2504E0-4F89-11D3-1111-0305E82C3310"),
-                    SecurityStamp = new Guid("3F2504E0-4F89-11D3-1111-0305E82C3310").ToString(),
+                    Id = "77cab71a-cc5b-470d-b043-2e8533a184a2",
                     UserName = "test@mail.com",
                     NormalizedUserName = "test@mail.com".ToUpper(),
                     Email = "test@mail.com",
                     NormalizedEmail = "test@mail.com".ToUpper(),
                     EmailConfirmed = true,
                     PasswordHash =
-                        "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg==",
-                    FirstName = "Test",
-                    LastName = "Test",
-                    PhoneNumber = "+38761205350",
-                    JMBG = "2301990170070",
-                    BirthDate = new DateTime(1990, 1, 23),
-                    BloodType = BloodType.BPositive,
-                    DateJoined = new DateTime(2016, 10, 19),
-                    Active = true
+                        "AQAAAAEAACcQAAAAEOTEyyOUzF9naa3SZ/NuS96pbcFnLkwlulh0u9VZFcidVKP8fGPZKLkRt/ZFyFpzjg=="
                 });
 
             if (!context.Members.Any())

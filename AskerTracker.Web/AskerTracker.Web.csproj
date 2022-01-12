@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <UserSecretsId>aspnet-Asker-E0DEDCDC-BEF9-4367-9F66-6E5A19C56469</UserSecretsId>
         <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -14,7 +14,7 @@
         <PackageIcon>asker_logo_background.png</PackageIcon>
         <PackageIconUrl />
         <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
-        <RootNamespace>AskerTracker</RootNamespace>
+        <RootNamespace>AskerTracker.Web</RootNamespace>
     </PropertyGroup>
 
     <Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">
@@ -29,23 +29,19 @@
         <PackageReference Include="bootstrap" Version="5.1.2" />
         <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.7.2" />
         <PackageReference Include="MailKit" Version="2.15.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.13" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8" />
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
         <PackageReference Include="MimeKit" Version="2.15.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="..\..\..\..\Downloads\asker_logo_background.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -63,5 +59,101 @@
         <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
         <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
         <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+        <_ContentIncludedByDefault Remove="Pages\ASquads\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ASquads\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ASquads\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ASquads\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ASquads\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\EventLocations\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\EventLocations\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\EventLocations\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\EventLocations\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\EventLocations\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Items\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Items\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Items\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Items\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Items\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ItemTransactions\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ItemTransactions\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ItemTransactions\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ItemTransactions\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\ItemTransactions\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\ClientMembers.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Members\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\MembershipFees\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\MembershipFees\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\MembershipFees\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\MembershipFees\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\MembershipFees\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingEvents\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingEvents\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingEvents\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingEvents\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingEvents\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingResults\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingResults\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingResults\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingResults\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\TestingResults\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Trainings\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Trainings\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Trainings\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Trainings\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Pages\Trainings\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\EventLocations\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\EventLocations\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\EventLocations\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\EventLocations\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\EventLocations\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Items\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Items\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Items\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Items\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Items\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\ItemTransactions\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\ItemTransactions\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\ItemTransactions\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\ItemTransactions\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\ItemTransactions\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\ClientMembers.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Members\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\MembershipFees\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\MembershipFees\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\MembershipFees\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\MembershipFees\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\MembershipFees\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingEvents\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingEvents\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingEvents\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingEvents\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingEvents\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingResults\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingResults\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingResults\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingResults\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\TestingResults\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Trainings\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Trainings\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Trainings\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Trainings\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Trainings\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Details.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Domain\Pages\ItemTransactions\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="ViewComponents\MemberFeesViewComponent.cs" />
     </ItemGroup>
 </Project>

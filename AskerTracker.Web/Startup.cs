@@ -1,18 +1,17 @@
 using System;
 using System.IO;
 using System.Text.Json.Serialization;
-using AskerTracker.Common;
-using AskerTracker.Domain;
+using AskerTracker.Web.Common;
 using AskerTracker.Infrastructure;
-using AskerTracker.Infrastructure.Interfaces;
-using AskerTracker.Infrastructure.Repositories;
-using AskerTracker.Services.Mail;
-using AskerTracker.Settings;
+using AskerTracker.Web.Services.Mail;
+using AskerTracker.Web.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
-namespace AskerTracker
+namespace AskerTracker.Web
 {
     public class Startup
     {
@@ -36,9 +35,17 @@ namespace AskerTracker
         {
             var helpers = new DbHelpers(Configuration);
             var connectionString = helpers.GetConnectionString();
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
+                services.AddDbContext<AskerTrackerDbContext>(options =>
+                    options.UseInMemoryDatabase("Temp")
+                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            else
+                services.AddDbContext<AskerTrackerDbContext>(options =>
+                    options.UseSqlServer(connectionString)
+                        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
@@ -47,27 +54,26 @@ namespace AskerTracker
             services.AddIdentity<Member, Role>()
                 .AddEntityFrameworkStores<AskerTrackerDbContext>()
                 .AddDefaultTokenProviders();
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddRazorPages(
-                    options => options.Conventions.AuthorizeFolder("/")
+                    options => { options.Conventions.AuthorizeFolder("/"); }
                 )
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            services.AddControllers()
+            services.AddControllers(options =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+                    options.Filters.Add(new AuthorizeFilter(policy));
+                })
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                    options.JsonSerializerOptions.IgnoreNullValues = true;
                 });
-
-            services.AddTransient<IRepository<Member>, MemberRepository>();
-            services.AddTransient<IRepository<EventLocation>, EventLocationRepository>();
-            services.AddTransient<IRepository<Item>, ItemRepository>();
-            services.AddTransient<IRepository<MembershipFee>, MembershipFeeRepository>();
-            services.AddTransient<IRepository<TestingEvent>, TestingEventRepository>();
-            services.AddTransient<IRepository<Training>, TrainingRepository>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -133,15 +139,14 @@ namespace AskerTracker
             app.UseFileServer();
 
             // this will serve up node_modules
-            var provider = new PhysicalFileProvider(
-                Path.Combine(env.ContentRootPath, "node_modules")
-            );
             app.UseFileServer(new FileServerOptions
             {
                 RequestPath = "/node_modules",
                 StaticFileOptions =
                 {
-                    FileProvider = provider
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "node_modules")
+                    )
                 },
                 EnableDirectoryBrowsing = true
             });

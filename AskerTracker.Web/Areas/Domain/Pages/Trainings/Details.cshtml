@@ -1,0 +1,37 @@
+﻿@page
+@model AskerTracker.Web.Areas.Domain.Pages.Trainings.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Training</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Training.TrainingType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Training.TrainingType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Training.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Training.Location.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Training.DateHeld)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Training.DateHeld)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Training.Id" asp-route-returnurl="@Model.ReturnUrl">Edit</a> |
+    <a href="@Model.ReturnUrl">Back</a>
+</div>

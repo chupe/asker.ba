@@ -3,22 +3,21 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.ViewComponents
+namespace AskerTracker.Web.ViewComponents;
+
+public class MembersCountViewComponent : ViewComponent
 {
-    public class MembersCountViewComponent : ViewComponent
+    private readonly AskerTrackerDbContext _dbContext;
+
+    public MembersCountViewComponent(AskerTrackerDbContext dbContext)
     {
-        private readonly AskerTrackerDbContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        public MembersCountViewComponent(AskerTrackerDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+    public async Task<IViewComponentResult> InvokeAsync(string title)
+    {
+        var count = await _dbContext.Members.CountAsync();
 
-        public async Task<IViewComponentResult> InvokeAsync(string title)
-        {
-            var count = await _dbContext.Members.CountAsync();
-
-            return View(count + (title?.Length ?? 0));
-        }
+        return View(count + (title?.Length ?? 0));
     }
 }

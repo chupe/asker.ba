@@ -1,4 +1,4 @@
-﻿namespace AskerTracker.Settings
+﻿namespace AskerTracker.Web.Settings
 {
     public class MailSettings
     {

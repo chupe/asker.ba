@@ -1,0 +1,52 @@
+@page
+@using AskerTracker.Web.Areas.Domain.Pages
+@using AskerTracker.Web.Areas.Domain.Pages.Members.Details
+@model AskerTracker.Web.Areas.Domain.Pages.Members.Details.FeesModel
+
+@{
+    ViewData["Title"] = "Fees Details";
+    ViewData["ActivePage"] = ManageNavPages.Fees;
+    ViewData["ParentFolder"] = NavigationInformation.FeesFolder;
+    var createPage = $"{ViewData["ParentFolder"]}/Create";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="@createPage" asp-route-memberfilter="@Model.MemberFilter">Create New Fee</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFees[0].Member)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFees[0].Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MembershipFees[0].TransactionDate)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.MembershipFees)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                <partial name="_EntryButtonsPartial" model="item"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

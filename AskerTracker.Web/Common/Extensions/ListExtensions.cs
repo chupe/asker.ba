@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace AskerTracker.Common.Extensions
+namespace AskerTracker.Web.Common.Extensions
 {
     public static class ListExtensions
     {

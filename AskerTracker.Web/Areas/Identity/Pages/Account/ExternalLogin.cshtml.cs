@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace AskerTracker.Areas.Identity.Pages.Account
+namespace AskerTracker.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
@@ -38,7 +38,7 @@ namespace AskerTracker.Areas.Identity.Pages.Account
 
         public string ProviderDisplayName { get; set; }
 
-        public string ReturnUrl { get; set; }
+        [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
         [TempData] public string ErrorMessage { get; set; }
 

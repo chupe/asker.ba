@@ -1,0 +1,52 @@
+@page
+@using AskerTracker.Web.Areas.Domain.Pages
+@using AskerTracker.Web.Areas.Domain.Pages.Members.Details
+@model AskerTracker.Web.Areas.Domain.Pages.Members.Details.TrainingsModel
+
+@{
+    ViewData["Title"] = "Member Details";
+    ViewData["ActivePage"] = ManageNavPages.Trainings;
+    ViewData["ParentFolder"] = NavigationInformation.TrainingsFolder;
+    var createPage = $"{ViewData["ParentFolder"]}/Create";
+}
+    
+<h1>Index</h1>
+
+<p>
+    <a asp-page="@createPage">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainings[0].TrainingType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainings[0].Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainings[0].DateHeld)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Trainings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHeld)
+            </td>
+            <td>
+                <partial name="_EntryButtonsPartial" model="item"/>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

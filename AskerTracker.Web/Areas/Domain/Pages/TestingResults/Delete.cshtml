@@ -1,0 +1,76 @@
+﻿@page
+@model AskerTracker.Web.Areas.Domain.Pages.TestingResults.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TestingResult</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.Event)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.Event.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.Member)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.Member.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.TotalScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.TotalScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.MaximumDeadliftWeight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.MaximumDeadliftWeight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.StandingPowerThrow)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.StandingPowerThrow)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.HandReleasePushup)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.HandReleasePushup)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.SprintDragCarry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.SprintDragCarry)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.LegTuck)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.LegTuck)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestingResult.TwoMileRun)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestingResult.TwoMileRun)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="TestingResult.Id"/>
+        <input type="submit" value="Delete" class="btn btn-danger"/> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+﻿@using AskerTracker.Web.Areas.Domain.Pages.ViewComponents
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string) parentLayout;
+    }
+    else
+    {
+        Layout = "/Pages/Shared/_Layout.cshtml";
+    }
+}
+
+<h1>
+    @await Component.InvokeAsync(typeof(MemberNameViewComponent),
+        new
+        {
+            memberId = ViewData["MemberId"]
+        })
+    Information</h1>
+
+<div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav"/>
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section footer {
+    @await RenderSectionAsync("footer", false)
+}
+
+@section Scripts {
+    @await RenderSectionAsync("Scripts", false)
+}

@@ -1,0 +1,39 @@
+﻿@page
+@model AskerTracker.Web.Areas.Domain.Pages.MembershipFees.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MembershipFee</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MembershipFee.TransactionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MembershipFee.TransactionDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MembershipFee.Amount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MembershipFee.Amount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MembershipFee.Member)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MembershipFee.Member.FullName)
+        </dd>
+    </dl>
+
+    <form method="post" asp-route-returnurl="@Model.ReturnUrl" asp-route-id="@Model.MembershipFee.Id">
+        <input type="submit" value="Delete" class="btn btn-danger"/> |
+        <a href="@Model.ReturnUrl">Back</a>
+    </form>
+</div>

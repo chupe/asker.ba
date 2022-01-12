@@ -1,0 +1,50 @@
+﻿@using AskerTracker.Web.Areas.Domain.Pages
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    var memberId = ViewData["MemberId"];
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.PersonalDetailsNavClass(ViewContext)" id="profile"
+           asp-page="../Details/Details"
+           asp-route-memberfilter="@memberId">
+            Personal details
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.FeesNavClass(ViewContext)" id="fees"
+           asp-page="../Details/Fees"
+           asp-route-memberfilter="@memberId">
+            Fees
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.TrainingsNavClass(ViewContext)" id="trainings"
+           asp-page="../Details/Trainings"
+           asp-route-memberfilter="@memberId">
+            Trainings
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.TestingEventsNavClass(ViewContext)" id="testing-events"
+           asp-page="../Details/Testing"
+           asp-route-memberfilter="@memberId">
+            Testing events
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.ItemsNavClass(ViewContext)" id="items"
+           asp-page="../Details/Items"
+           asp-route-memberfilter="@memberId">
+            Items
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.NotesNavClass(ViewContext)" id="notes"
+           asp-page="../Details/Notes"
+           asp-route-memberfilter="@memberId">
+            Notes
+        </a>
+    </li>
+</ul>
