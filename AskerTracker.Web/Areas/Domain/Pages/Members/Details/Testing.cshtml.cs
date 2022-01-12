@@ -21,13 +21,13 @@ public class TestingsModel : AskerTrackerPageModel
 
     public IList<TestingEvent> TestingEvents { get; set; }
 
-    [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
+    [BindProperty(SupportsGet = true)] public Guid? MemberFilter { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? memberFilter)
+    public async Task<IActionResult> OnGetAsync()
     {
-        if (memberFilter == null) return NotFound();
+        if (MemberFilter == null) return NotFound();
 
-        var memberExists = await _context.Members.AnyAsync(m => m.Id == memberFilter);
+        var memberExists = await _context.Members.AnyAsync(m => m.Id == MemberFilter);
 
         if (!memberExists) return NotFound();
         

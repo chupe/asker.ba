@@ -19,15 +19,15 @@ public class DetailsModel : AskerTrackerPageModel
 
     public Member Member { get; set; }
 
-    [BindProperty(SupportsGet = true)] public Guid MemberFilter { get; set; }
+    [BindProperty(SupportsGet = true)] public Guid? MemberFilter { get; set; }
 
     [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
+    public async Task<IActionResult> OnGetAsync()
     {
-        if (id == null) return NotFound();
+        if (MemberFilter == null) return NotFound();
 
-        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == id);
+        Member = await _context.Members.FirstOrDefaultAsync(m => m.Id == MemberFilter);
 
         if (Member == null) return NotFound();
         
