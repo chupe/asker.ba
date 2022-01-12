@@ -1,41 +1,40 @@
 ﻿using System.Collections.Generic;
 using AskerTracker.Domain;
 
-namespace AskerTracker.Infrastructure.Seed.Data
+namespace AskerTracker.Infrastructure.Seed.Data;
+
+public static class ItemSeed
 {
-    public static class ItemSeed
+    public static readonly List<Item> Entries = new()
     {
-        public static readonly List<Item> Entries = new()
+        new Item
         {
-            new Item
-            {
-                Name = "Suunto MS2G",
-                Description = "Kompas",
-                Comment = "Za snalazenje u prirodi",
-                OwnerId = MemberSeed.Entries[0].Id,
-                LenderId = MemberSeed.Entries[1].Id,
-                Amount = 1,
-                Value = 100.5
-            },
-            new Item
-            {
-                Name = "Pentagon MSRP",
-                Description = "Rusak, 65l",
-                Comment = "U dobrom stanju",
-                LenderId = MemberSeed.Entries[2].Id,
-                Amount = 2,
-                Value = 399.99
-            },
-            new Item
-            {
-                Name = "WAS Recon plate carrier",
-                Description = "Prsluk",
-                Comment = "youtube.com",
-                OwnerId = MemberSeed.Entries[3].Id,
-                LenderId = MemberSeed.Entries[4].Id,
-                Amount = 1,
-                Value = 600.999
-            }
-        };
-    }
+            Name = "Suunto MS2G",
+            Description = "Kompas",
+            Comment = "Za snalazenje u prirodi",
+            OwnerId = MemberSeed.Entries[0].Id,
+            LenderId = MemberSeed.Entries[1].Id,
+            Amount = 1,
+            Value = 100.5
+        },
+        new Item
+        {
+            Name = "Pentagon MSRP",
+            Description = "Rusak, 65l",
+            Comment = "U dobrom stanju",
+            LenderId = MemberSeed.Entries[2].Id,
+            Amount = 2,
+            Value = 399.99
+        },
+        new Item
+        {
+            Name = "WAS Recon plate carrier",
+            Description = "Prsluk",
+            Comment = "youtube.com",
+            OwnerId = MemberSeed.Entries[3].Id,
+            LenderId = MemberSeed.Entries[4].Id,
+            Amount = 1,
+            Value = 600.999
+        }
+    };
 }

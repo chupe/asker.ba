@@ -7,54 +7,53 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace AskerTracker.Web.Services.Mail
+namespace AskerTracker.Web.Services.Mail;
+
+public class MailService : IEmailSender
 {
-    public class MailService : IEmailSender
+    private readonly MailSettings _mailSettings;
+
+    public MailService(IOptions<MailSettings> mailSettings)
     {
-        private readonly MailSettings _mailSettings;
+        _mailSettings = mailSettings.Value;
+    }
 
-        public MailService(IOptions<MailSettings> mailSettings)
+    public async Task SendEmailAsync(string eMail, string subject, string htmlMessage)
+    {
+        var mailRequest = new MailRequest
         {
-            _mailSettings = mailSettings.Value;
-        }
+            ToEmail = eMail,
+            Subject = subject,
+            Body = htmlMessage
+        };
 
-        public async Task SendEmailAsync(string eMail, string subject, string htmlMessage)
+        var email = new MimeMessage();
+        email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
+        email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
+        email.Subject = mailRequest.Subject;
+        var builder = new BodyBuilder();
+        if (mailRequest.Attachments != null)
         {
-            var mailRequest = new MailRequest
-            {
-                ToEmail = eMail,
-                Subject = subject,
-                Body = htmlMessage
-            };
-
-            var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
-            email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
-            email.Subject = mailRequest.Subject;
-            var builder = new BodyBuilder();
-            if (mailRequest.Attachments != null)
-            {
-                byte[] fileBytes;
-                foreach (var file in mailRequest.Attachments)
-                    if (file.Length > 0)
+            byte[] fileBytes;
+            foreach (var file in mailRequest.Attachments)
+                if (file.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
                     {
-                        using (var ms = new MemoryStream())
-                        {
-                            file.CopyTo(ms);
-                            fileBytes = ms.ToArray();
-                        }
-
-                        builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
+                        file.CopyTo(ms);
+                        fileBytes = ms.ToArray();
                     }
-            }
 
-            builder.HtmlBody = mailRequest.Body;
-            email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+                    builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
+                }
         }
+
+        builder.HtmlBody = mailRequest.Body;
+        email.Body = builder.ToMessageBody();
+        using var smtp = new SmtpClient();
+        smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+        smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+        await smtp.SendAsync(email);
+        smtp.Disconnect(true);
     }
 }

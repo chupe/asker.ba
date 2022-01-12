@@ -7,7 +7,6 @@ using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 

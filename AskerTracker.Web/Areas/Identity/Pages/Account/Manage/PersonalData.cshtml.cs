@@ -5,27 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace AskerTracker.Web.Areas.Identity.Pages.Account.Manage
+namespace AskerTracker.Web.Areas.Identity.Pages.Account.Manage;
+
+public class PersonalDataModel : PageModel
 {
-    public class PersonalDataModel : PageModel
+    private readonly ILogger<PersonalDataModel> _logger;
+    private readonly UserManager<Member> _userManager;
+
+    public PersonalDataModel(
+        UserManager<Member> userManager,
+        ILogger<PersonalDataModel> logger)
     {
-        private readonly ILogger<PersonalDataModel> _logger;
-        private readonly UserManager<Member> _userManager;
+        _userManager = userManager;
+        _logger = logger;
+    }
 
-        public PersonalDataModel(
-            UserManager<Member> userManager,
-            ILogger<PersonalDataModel> logger)
-        {
-            _userManager = userManager;
-            _logger = logger;
-        }
+    public async Task<IActionResult> OnGet()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null) return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
 
-        public async Task<IActionResult> OnGet()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null) return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-
-            return Page();
-        }
+        return Page();
     }
 }

@@ -1,32 +1,31 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using AskerTracker.Domain.Resources.Localization;
 
-namespace AskerTracker.Domain.Types
+namespace AskerTracker.Domain.Types;
+
+public enum BloodType
 {
-    public enum BloodType
-    {
-        [Display(ResourceType = typeof(UILocalization), Name = "OPositive")]
-        OPositive,
+    [Display(ResourceType = typeof(UILocalization), Name = "OPositive")]
+    OPositive,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "APositive")]
-        APositive,
+    [Display(ResourceType = typeof(UILocalization), Name = "APositive")]
+    APositive,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "BPositive")]
-        BPositive,
+    [Display(ResourceType = typeof(UILocalization), Name = "BPositive")]
+    BPositive,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "ABPositive")]
-        ABPositive,
+    [Display(ResourceType = typeof(UILocalization), Name = "ABPositive")]
+    ABPositive,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "ABNegative")]
-        ABNegative,
+    [Display(ResourceType = typeof(UILocalization), Name = "ABNegative")]
+    ABNegative,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "ANegative")]
-        ANegative,
+    [Display(ResourceType = typeof(UILocalization), Name = "ANegative")]
+    ANegative,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "BNegative")]
-        BNegative,
+    [Display(ResourceType = typeof(UILocalization), Name = "BNegative")]
+    BNegative,
 
-        [Display(ResourceType = typeof(UILocalization), Name = "ONegative")]
-        ONegative
-    }
+    [Display(ResourceType = typeof(UILocalization), Name = "ONegative")]
+    ONegative
 }
