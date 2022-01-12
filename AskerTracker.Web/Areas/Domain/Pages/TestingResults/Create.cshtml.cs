@@ -2,7 +2,6 @@
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AskerTracker.Web.Areas.Domain.Pages.TestingResults;

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AskerTracker.Web.Common.Extensions;
-using AskerTracker.Domain.Types;
 using AskerTracker.Web.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;

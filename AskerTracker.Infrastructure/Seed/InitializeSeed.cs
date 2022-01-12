@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AskerTracker.Infrastructure.Seed.Data;
 using Microsoft.AspNetCore.Identity;
 
