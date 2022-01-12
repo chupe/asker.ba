@@ -14,7 +14,7 @@
         <PackageIcon>asker_logo_background.png</PackageIcon>
         <PackageIconUrl />
         <RepositoryUrl>https://dev.azure.com/chupe0714/_git/Asker%20Tracker</RepositoryUrl>
-        <RootNamespace>AskerTracker</RootNamespace>
+        <RootNamespace>AskerTracker.Web</RootNamespace>
     </PropertyGroup>
 
     <Target Name="PostBuild" AfterTargets="ComputeFilesToPublish">

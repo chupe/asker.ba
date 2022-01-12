@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
+using AskerTracker.Web.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.Members;
+namespace AskerTracker.Web.Areas.Domain.Pages.Members;
 
 public class EditModel : AskerTrackerPageModel
 {

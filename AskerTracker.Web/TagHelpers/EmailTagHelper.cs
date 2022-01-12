@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AskerTracker.TagHelpers;
+namespace AskerTracker.Web.TagHelpers;
 
 public class EmailTagHelper : TagHelper
 {

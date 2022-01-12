@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace AskerTracker.Common.Extensions
+namespace AskerTracker.Web.Common.Extensions
 {
     public static class ModelExtension
     {

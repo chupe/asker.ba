@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AskerTracker.Common;
+using AskerTracker.Web.Common;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AskerTracker.Areas.Domain.Pages.Items;
+namespace AskerTracker.Web.Areas.Domain.Pages.Items;
 
 public class CreateModel : AskerTrackerPageModel
 {

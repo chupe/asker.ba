@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AskerTracker.Areas.Domain.Pages.TestingResults;
+namespace AskerTracker.Web.Areas.Domain.Pages.TestingResults;
 
 public class CreateModel : AskerTrackerPageModel
 {

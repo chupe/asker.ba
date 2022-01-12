@@ -1,5 +1,5 @@
-﻿@using AskerTracker.Areas.Domain.Pages.ViewComponents
-@using AskerTracker.ViewComponents
+﻿@using AskerTracker.Web.Areas.Domain.Pages.ViewComponents
+@using AskerTracker.Web.ViewComponents
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,6 +85,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
+        <span>Hello</span>
         <email content="Contact us" address="test@mail.com"></email>
         @await Component.InvokeAsync(typeof(MembersCountViewComponent), new {title = ViewData["Title"]})
         &copy; 2021 - Asker - <a asp-area="" asp-page="/Privacy">Privacy</a>

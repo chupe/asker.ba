@@ -4,7 +4,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AskerTracker.Areas.Domain.Pages.ASquads;
+namespace AskerTracker.Web.Areas.Domain.Pages.ASquads;
 
 public class CreateModel : AskerTrackerPageModel
 {

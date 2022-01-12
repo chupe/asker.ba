@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.EventLocations;
+namespace AskerTracker.Web.Areas.Domain.Pages.EventLocations;
 
 public class DeleteModel : AskerTrackerPageModel
 {

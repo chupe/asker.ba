@@ -5,7 +5,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.EventLocations;
+namespace AskerTracker.Web.Areas.Domain.Pages.EventLocations;
 
 public class IndexModel : AskerTrackerPageModel
 {

@@ -7,7 +7,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.Members.Details;
+namespace AskerTracker.Web.Areas.Domain.Pages.Members.Details;
 
 public class TrainingsModel : AskerTrackerPageModel
 {

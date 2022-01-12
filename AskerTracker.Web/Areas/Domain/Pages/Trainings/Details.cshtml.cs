@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
+using AskerTracker.Web.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.Trainings;
+namespace AskerTracker.Web.Areas.Domain.Pages.Trainings;
 
 public class DetailsModel : AskerTrackerPageModel
 {

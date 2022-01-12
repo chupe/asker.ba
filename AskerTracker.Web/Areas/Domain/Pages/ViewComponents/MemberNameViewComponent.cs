@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AskerTracker.Areas.Domain.Pages.ViewComponents;
+namespace AskerTracker.Web.Areas.Domain.Pages.ViewComponents;
 
 public class MemberNameViewComponent : ViewComponent
 {

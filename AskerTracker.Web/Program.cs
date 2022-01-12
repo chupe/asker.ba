@@ -1,10 +1,10 @@
-using AskerTracker.Common;
+using AskerTracker.Web.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace AskerTracker
+namespace AskerTracker.Web
 {
     public class Program
     {

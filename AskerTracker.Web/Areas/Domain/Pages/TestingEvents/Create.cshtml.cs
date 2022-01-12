@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AskerTracker.Common;
-using AskerTracker.Common.Extensions;
-using AskerTracker.Domain;
+using AskerTracker.Web.Common.Extensions;
 using AskerTracker.Domain.Types;
+using AskerTracker.Web.Common;
+using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AskerTracker.Areas.Domain.Pages.TestingEvents;
+namespace AskerTracker.Web.Areas.Domain.Pages.TestingEvents;
 
 public class CreateModel : AskerTrackerPageModel
 {

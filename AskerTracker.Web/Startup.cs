@@ -1,11 +1,10 @@
 using System;
 using System.IO;
 using System.Text.Json.Serialization;
-using AskerTracker.Common;
-using AskerTracker.Domain;
+using AskerTracker.Web.Common;
 using AskerTracker.Infrastructure;
-using AskerTracker.Services.Mail;
-using AskerTracker.Settings;
+using AskerTracker.Web.Services.Mail;
+using AskerTracker.Web.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
-namespace AskerTracker
+namespace AskerTracker.Web
 {
     public class Startup
     {

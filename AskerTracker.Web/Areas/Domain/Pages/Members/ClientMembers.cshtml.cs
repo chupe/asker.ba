@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AskerTracker.Areas.Domain.Pages.Members;
+namespace AskerTracker.Web.Areas.Domain.Pages.Members;
 
 public class ClientMembers : AskerTrackerPageModel
 {

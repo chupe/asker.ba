@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using AskerTracker.Settings;
+using AskerTracker.Web.Settings;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace AskerTracker.Services.Mail
+namespace AskerTracker.Web.Services.Mail
 {
     public class MailService : IEmailSender
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.Members;
+namespace AskerTracker.Web.Areas.Domain.Pages.Members;
 
 public class IndexModel : AskerTrackerPageModel
 {

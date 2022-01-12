@@ -7,7 +7,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Common
+namespace AskerTracker.Web.Common
 {
     public static class Helper
     {

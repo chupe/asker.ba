@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AskerTracker.Areas.Identity.Pages.Account.Manage
+namespace AskerTracker.Web.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

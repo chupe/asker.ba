@@ -1,4 +1,4 @@
-namespace AskerTracker.Areas.Domain.Pages.Members.Details;
+namespace AskerTracker.Web.Areas.Domain.Pages.Members.Details;
 
 public static class NavigationInformation
 {

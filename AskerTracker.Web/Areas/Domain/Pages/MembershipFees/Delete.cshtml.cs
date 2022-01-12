@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AskerTracker.Common.Extensions;
 using AskerTracker.Domain;
 using AskerTracker.Infrastructure;
+using AskerTracker.Web.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.MembershipFees;
+namespace AskerTracker.Web.Areas.Domain.Pages.MembershipFees;
 
 public class DeleteModel : AskerTrackerPageModel
 {

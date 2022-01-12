@@ -7,7 +7,7 @@ using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Api
+namespace AskerTracker.Web.Api
 {
     [Route("api/[controller]")]
     [ApiController]

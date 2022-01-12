@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Areas.Domain.Pages.TestingResults;
+namespace AskerTracker.Web.Areas.Domain.Pages.TestingResults;
 
 public class EditModel : AskerTrackerPageModel
 {
