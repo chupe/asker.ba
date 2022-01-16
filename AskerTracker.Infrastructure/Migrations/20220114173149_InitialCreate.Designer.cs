@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AskerTracker.Infrastructure.Migrations
 {
     [DbContext(typeof(AskerTrackerDbContext))]
-    [Migration("20220112203921_InitialCreate")]
+    [Migration("20220114173149_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AskerTracker.Web;
 
@@ -40,13 +41,10 @@ public class Startup
 
         if (!string.Equals(env, "development", StringComparison.OrdinalIgnoreCase))
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseInMemoryDatabase("Temp")
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-                    .EnableSensitiveDataLogging());
+                options.UseInMemoryDatabase("Temp"));
         else
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString)
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                options.UseSqlServer(connectionString));
 
         services.AddDatabaseDeveloperPageExceptionFilter();
 

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
+using AskerTracker.Web.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -23,14 +24,20 @@ public class CreateModel : AskerTrackerPageModel
 
     public IEnumerable<SelectListItem> BloodType => _htmlHelper.GetEnumSelectList<BloodType>();
 
+    [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
+
     public IActionResult OnGet()
     {
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
+
         return Page();
     }
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
+        ReturnUrl ??= Url.Content("Index");
+
         if (!ModelState.IsValid) return Page();
 
         _context.Members.Add(Member);

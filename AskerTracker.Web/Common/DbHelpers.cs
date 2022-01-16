@@ -28,7 +28,7 @@ public class DbHelpers
 
         using var scope = host.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
-        // await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
 
         if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
             try
