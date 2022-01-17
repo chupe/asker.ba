@@ -47,7 +47,9 @@ public class EditModel : AskerTrackerPageModel
     // For more details, see https://aka.ms/RazorPagesCRUD.
     public async Task<IActionResult> OnPostAsync()
     {
-        ReturnUrl ??= Url.Content("Index");
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
+
+        ReturnUrl ??= Url.Content("~/Domain/Members/Index");
 
         if (!ModelState.IsValid) return Page();
 

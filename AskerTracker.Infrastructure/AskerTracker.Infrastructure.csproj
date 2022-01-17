@@ -20,4 +20,8 @@
         <Folder Include="Migrations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Seed\BogusConfiguration.cs" />
+    </ItemGroup>
+
 </Project>

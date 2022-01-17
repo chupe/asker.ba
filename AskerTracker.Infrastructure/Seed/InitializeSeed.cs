@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
@@ -34,38 +35,38 @@ public static class InitializeSeed
                 PhoneNumberConfirmed = true
             });
 
-        var fakeMembers = MemberSeed.FakeMembers();
-
-        var fakeFees = MembershipFeeSeed.FakeFees(fakeMembers);
-        var fakeItems = ItemSeed.FakeItems(fakeMembers);
-        var fakeLocations = EventLocationSeed.FakeLocations();
-        var fakeTestingEvents = TestingEventSeed.FakeTestingEvent(fakeMembers, fakeLocations);
-        var fakeTrainings = TrainingSeed.FakeTrainings(fakeMembers, fakeLocations);
-        var fakeTestingResults = TestingResultSeed.FakeResults(fakeTestingEvents);
 
         if (!context.Members.Any())
         {
+            var fakeMembers = MemberSeed.FakeMembers();
+            var fakeFees = MembershipFeeSeed.FakeFees(fakeMembers);
+            var fakeItems = ItemSeed.FakeItems(fakeMembers);
+            var fakeLocations = EventLocationSeed.FakeLocations();
+            var fakeTestingEvents = TestingEventSeed.FakeTestingEvent(fakeMembers, fakeLocations);
+            var fakeTrainings = TrainingSeed.FakeTrainings(fakeMembers, fakeLocations);
+            var fakeTestingResults = TestingResultSeed.FakeResults(fakeTestingEvents);
+
             async Task Action(Member m) => await userManager.CreateAsync(m, "123qwE!");
             fakeMembers.ForEach(m => Action(m).Wait());
+
+            if (!context.EventLocations.Any())
+                context.EventLocations.AddRange(fakeLocations);
+
+            if (!context.MembershipFees.Any())
+                context.MembershipFees.AddRange(fakeFees);
+
+            if (!context.Items.Any())
+                context.Items.AddRange(fakeItems);
+
+            if (!context.Trainings.Any())
+                context.Trainings.AddRange(fakeTrainings);
+
+            if (!context.TestingEvents.Any())
+                context.TestingEvents.AddRange(fakeTestingEvents);
+
+            if (!context.TestingResults.Any())
+                context.TestingResults.AddRange(fakeTestingResults);
         }
-
-        if (!context.EventLocations.Any())
-            context.EventLocations.AddRange(fakeLocations);
-
-        if (!context.MembershipFees.Any())
-            context.MembershipFees.AddRange(fakeFees);
-
-        if (!context.Items.Any())
-            context.Items.AddRange(fakeItems);
-
-        if (!context.Trainings.Any())
-            context.Trainings.AddRange(fakeTrainings);
-
-        if (!context.TestingEvents.Any())
-            context.TestingEvents.AddRange(fakeTestingEvents);
-
-        if (!context.TestingResults.Any())
-            context.TestingResults.AddRange(fakeTestingResults);
 
         await context.SaveChangesAsync();
     }

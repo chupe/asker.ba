@@ -14,7 +14,7 @@ public static class MembershipFeeSeed
             .RuleFor(fee => fee.Id, new Guid())
             .RuleFor(fee => fee.Amount, x => x.Finance.Random.Number(1, 1000))
             .RuleFor(fee => fee.TransactionDate,
-                x => x.Date.Between(BogusConfiguration.MinDate, BogusConfiguration.MaxDate))
+                x => x.Date.Past(5))
             .RuleFor(fee => fee.Member, x => x.PickRandom(fakeMembers));
 
         return membershipFeesFaker.Generate(1000);
