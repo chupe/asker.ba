@@ -36,7 +36,7 @@ public class DeleteModel : AskerTrackerPageModel
 
     public async Task<IActionResult> OnPostAsync(Guid? id)
     {
-        ReturnUrl ??= Url.Content("~/");
+        ReturnUrl ??= Url.Content("~/Domain/Members/Index");
 
         if (id == null) return NotFound();
 

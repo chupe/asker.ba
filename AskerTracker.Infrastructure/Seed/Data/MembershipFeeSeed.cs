@@ -1,120 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AskerTracker.Domain;
+using Bogus;
 
 namespace AskerTracker.Infrastructure.Seed.Data;
 
 public static class MembershipFeeSeed
 {
-    public static readonly List<MembershipFee> Entries = new()
+    public static List<MembershipFee> FakeFees(List<Member> fakeMembers)
     {
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 10, 2),
-            MemberId = MemberSeed.MemberIds[0],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 11, 2),
-            MemberId = MemberSeed.MemberIds[0],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 12, 2),
-            MemberId = MemberSeed.MemberIds[0],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2019, 1, 2),
-            MemberId = MemberSeed.MemberIds[0],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 10, 2),
-            MemberId = MemberSeed.MemberIds[1],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 11, 2),
-            MemberId = MemberSeed.MemberIds[1],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 12, 2),
-            MemberId = MemberSeed.MemberIds[1],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2019, 1, 2),
-            MemberId = MemberSeed.MemberIds[1],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2021, 4, 2),
-            MemberId = MemberSeed.MemberIds[2],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2021, 5, 2),
-            MemberId = MemberSeed.MemberIds[2],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2021, 6, 2),
-            MemberId = MemberSeed.MemberIds[2],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2021, 7, 2),
-            MemberId = MemberSeed.MemberIds[2],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2020, 10, 2),
-            MemberId = MemberSeed.MemberIds[3],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2020, 11, 2),
-            MemberId = MemberSeed.MemberIds[3],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2020, 12, 2),
-            MemberId = MemberSeed.MemberIds[3],
-            Amount = 10
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2021, 1, 2),
-            MemberId = MemberSeed.MemberIds[3],
-            Amount = 100
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 10, 2),
-            MemberId = MemberSeed.MemberIds[4],
-            Amount = 100
-        },
-        new MembershipFee
-        {
-            TransactionDate = new DateTime(2018, 10, 2),
-            MemberId = MemberSeed.MemberIds[4],
-            Amount = 200
-        }
-    };
+        var membershipFeesFaker = new Faker<MembershipFee>()
+            .RuleFor(fee => fee.Id, new Guid())
+            .RuleFor(fee => fee.Amount, x => x.Finance.Random.Number(1, 1000))
+            .RuleFor(fee => fee.TransactionDate,
+                x => x.Date.Between(BogusConfiguration.MinDate, BogusConfiguration.MaxDate))
+            .RuleFor(fee => fee.Member, x => x.PickRandom(fakeMembers));
+
+        return membershipFeesFaker.Generate(1000);
+    }
 }

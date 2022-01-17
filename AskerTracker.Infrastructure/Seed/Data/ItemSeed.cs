@@ -1,40 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AskerTracker.Domain;
+using Bogus;
 
 namespace AskerTracker.Infrastructure.Seed.Data;
 
 public static class ItemSeed
 {
-    public static readonly List<Item> Entries = new()
+    public static List<Item> FakeItems(List<Member> fakeMembers)
     {
-        new Item
-        {
-            Name = "Suunto MS2G",
-            Description = "Kompas",
-            Comment = "Za snalazenje u prirodi",
-            OwnerId = MemberSeed.Entries[0].Id,
-            LenderId = MemberSeed.Entries[1].Id,
-            Amount = 1,
-            Value = 100.5
-        },
-        new Item
-        {
-            Name = "Pentagon MSRP",
-            Description = "Rusak, 65l",
-            Comment = "U dobrom stanju",
-            LenderId = MemberSeed.Entries[2].Id,
-            Amount = 2,
-            Value = 399.99
-        },
-        new Item
-        {
-            Name = "WAS Recon plate carrier",
-            Description = "Prsluk",
-            Comment = "youtube.com",
-            OwnerId = MemberSeed.Entries[3].Id,
-            LenderId = MemberSeed.Entries[4].Id,
-            Amount = 1,
-            Value = 600.999
-        }
-    };
+
+        var itemsFaker = new Faker<Item>()
+            .RuleFor(item => item.Id, new Guid())
+            .RuleFor(item => item.Amount, f => f.Random.Int(0, 10))
+            .RuleFor(item => item.Comment, f => f.Lorem.Sentence())
+            .RuleFor(item => item.Description, f => f.Lorem.Sentence())
+            .RuleFor(item => item.Lender, f => f.PickRandom(fakeMembers))
+            .RuleFor(item => item.Owner, f => f.PickRandom(fakeMembers))
+            .RuleFor(item => item.Name, f => f.Commerce.Product())
+            .RuleFor(item => item.Value, f => f.Finance.Random.Float(0, 1000F));
+
+        return itemsFaker.Generate(100);
+    }
 }

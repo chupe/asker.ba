@@ -86,7 +86,7 @@ public class LoginModel : PageModel
 
     public class InputModel
     {
-        [Required] [EmailAddress] public string Email { get; set; }
+        [Required] public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

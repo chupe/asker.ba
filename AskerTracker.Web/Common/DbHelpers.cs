@@ -33,7 +33,7 @@ public class DbHelpers
         if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
             try
             {
-                InitializeSeed.Initialize(context, scope.ServiceProvider);
+                await InitializeSeed.Initialize(context, scope.ServiceProvider);
                 _logger.LogInformation("Finished seeding database");
             }
             catch (Exception ex)

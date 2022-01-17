@@ -1,69 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AskerTracker.Domain;
+using Bogus;
 
 namespace AskerTracker.Infrastructure.Seed.Data;
 
 public static class TestingEventSeed
 {
-    public static List<Guid> TestingIds { get; set; } = new()
+    public static List<TestingEvent> FakeTestingEvent(List<Member> fakeMembers, List<EventLocation> eventLocations)
     {
-        new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3304"),
-        new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3305"),
-        new Guid("3F2504E0-4F89-11D3-9A0C-0305E82C3306")
-    };
+        var testingEventFaker = new Faker<TestingEvent>()
+            .RuleFor(test => test.Id, new Guid())
+            .RuleFor(test => test.Location, f => f.PickRandom(eventLocations))
+            .RuleFor(test => test.Participants, f => f.PickRandom(fakeMembers, 15).ToHashSet())
+            .RuleFor(test => test.CreatedDate, f => f.Date.Past(5))
+            .RuleFor(test => test.DateHeld, f => f.Date.Past(4));
 
-    public static List<TestingEvent> Entries()
-    {
-        return new List<TestingEvent>
-        {
-            new()
-            {
-                Id = TestingIds[0],
-                DateHeld = new DateTime(2018, 10, 2),
-                Location = EventLocationSeed.Entries[0],
-                Participants = new HashSet<Member>
-                {
-                    MemberSeed.Entries[3],
-                    MemberSeed.Entries[4],
-                    MemberSeed.Entries[5],
-                    MemberSeed.Entries[6],
-                    MemberSeed.Entries[7],
-                    MemberSeed.Entries[8]
-                }
-            },
-            new()
-            {
-                Id = TestingIds[1],
-                DateHeld = new DateTime(2019, 1, 26),
-                Location = EventLocationSeed.Entries[1],
-                Participants = new HashSet<Member>
-                {
-                    MemberSeed.Entries[1],
-                    MemberSeed.Entries[2],
-                    MemberSeed.Entries[3],
-                    MemberSeed.Entries[4]
-                }
-            },
-            new()
-            {
-                Id = TestingIds[2],
-                DateHeld = new DateTime(2020, 12, 2),
-                Location = EventLocationSeed.Entries[2],
-                Participants = new HashSet<Member>
-                {
-                    MemberSeed.Entries[0],
-                    MemberSeed.Entries[1],
-                    MemberSeed.Entries[2],
-                    MemberSeed.Entries[3],
-                    MemberSeed.Entries[4],
-                    MemberSeed.Entries[5],
-                    MemberSeed.Entries[6],
-                    MemberSeed.Entries[7],
-                    MemberSeed.Entries[8],
-                    MemberSeed.Entries[9]
-                }
-            }
-        };
+        return testingEventFaker.Generate(20);
     }
 }
