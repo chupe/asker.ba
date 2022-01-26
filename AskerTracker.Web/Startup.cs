@@ -58,7 +58,7 @@ public class Startup
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
         services.AddRazorPages(
-                options => { options.Conventions.AuthorizeFolder("/"); }
+                options => options.Conventions.AuthorizeFolder("/")
             )
             .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
             .AddDataAnnotationsLocalization();
@@ -83,7 +83,7 @@ public class Startup
             options.Password.RequiredUniqueChars = 1;
 
             // Lockout settings.
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.AllowedForNewUsers = true;
 
