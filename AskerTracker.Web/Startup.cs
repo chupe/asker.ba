@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text.Json.Serialization;
+using AskerTracker.Domain;
 using AskerTracker.Web.Common;
 using AskerTracker.Infrastructure;
 using AskerTracker.Web.Services.Mail;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace AskerTracker.Web;
 
@@ -37,28 +39,26 @@ public class Startup
         var connectionString = helpers.GetConnectionString();
         var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(env, "development", StringComparison.OrdinalIgnoreCase))
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseInMemoryDatabase("Temp")
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                options.UseInMemoryDatabase("Temp"));
         else
             services.AddDbContext<AskerTrackerDbContext>(options =>
-                options.UseSqlServer(connectionString)
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                options.UseSqlServer(connectionString));
 
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
         services.AddTransient<IEmailSender, MailService>();
 
-        services.AddIdentity<IdentityUser, IdentityRole>()
+        services.AddIdentity<Member, Role>()
             .AddEntityFrameworkStores<AskerTrackerDbContext>()
             .AddDefaultTokenProviders();
 
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
         services.AddRazorPages(
-                options => { options.Conventions.AuthorizeFolder("/"); }
+                options => options.Conventions.AuthorizeFolder("/")
             )
             .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
             .AddDataAnnotationsLocalization();
@@ -79,20 +79,17 @@ public class Startup
         {
             // Password settings.
             options.Password.RequireDigit = true;
-            options.Password.RequireLowercase = true;
-            options.Password.RequireNonAlphanumeric = true;
-            options.Password.RequireUppercase = true;
             options.Password.RequiredLength = 6;
             options.Password.RequiredUniqueChars = 1;
 
             // Lockout settings.
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.AllowedForNewUsers = true;
 
             // User settings.
             options.User.AllowedUserNameCharacters =
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ šđžčćŠĐŽČĆ";
             options.User.RequireUniqueEmail = true;
         });
 

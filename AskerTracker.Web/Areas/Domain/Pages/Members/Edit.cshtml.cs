@@ -29,7 +29,7 @@ public class EditModel : AskerTrackerPageModel
 
     [BindProperty(SupportsGet = true)] public string ReturnUrl { get; set; }
     
-    public async Task<IActionResult> OnGetAsync(Guid? id, string returnUrl = null)
+    public async Task<IActionResult> OnGetAsync(Guid? id)
     {
         if (id == null) return NotFound();
 
@@ -45,13 +45,17 @@ public class EditModel : AskerTrackerPageModel
 
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see https://aka.ms/RazorPagesCRUD.
-    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+    public async Task<IActionResult> OnPostAsync()
     {
-        returnUrl ??= Url.Content("~/");
+        ReturnUrl ??= Request.Headers["Referer"].ToString().ToRelativePath();
+
+        ReturnUrl ??= Url.Content("~/Domain/Members/Index");
 
         if (!ModelState.IsValid) return Page();
 
-        _context.Attach(Member).State = EntityState.Modified;
+        var user = await _context.Members.FindAsync(Member.Id);
+
+        Member.CopyPropertiesTo(user);
 
         try
         {
@@ -65,7 +69,7 @@ public class EditModel : AskerTrackerPageModel
             throw;
         }
 
-        return LocalRedirect(returnUrl);
+        return LocalRedirect(ReturnUrl);
     }
 
     private bool MemberExists(Guid id)

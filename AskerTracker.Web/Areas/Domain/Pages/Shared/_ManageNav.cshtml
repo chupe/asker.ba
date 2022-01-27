@@ -1,7 +1,7 @@
-﻿@using AskerTracker.Web.Areas.Domain.Pages
+﻿@using AskerTracker.Domain
 @using AskerTracker.Web.Areas.Domain.Pages.Members
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<Member> SignInManager
 @{
     var memberId = ViewData["MemberId"];
 }

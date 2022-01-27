@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Bogus" Version="34.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
@@ -16,8 +17,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Interfaces\" />
         <Folder Include="Migrations" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Seed\BogusConfiguration.cs" />
     </ItemGroup>
 
 </Project>

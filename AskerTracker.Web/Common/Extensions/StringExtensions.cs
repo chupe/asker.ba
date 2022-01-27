@@ -10,9 +10,16 @@ public static class StringExtensions
         absolutePath = $"/{string.Join("/", absolutePath.Split("/").Skip(skip))}";
         return absolutePath;
     }
-    
-    public static Guid ToGuid(this string input)
+
+    public static Guid? ToGuid(this string input)
     {
-        return new Guid(input);
+        try
+        {
+            return new Guid(input);
+        }
+        catch
+        {
+            return null;
+        }
     }
 }

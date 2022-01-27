@@ -1,11 +1,12 @@
 ﻿using System;
 using AskerTracker.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AskerTracker.Infrastructure;
 
-public class AskerTrackerDbContext : IdentityDbContext
+public class AskerTrackerDbContext : IdentityDbContext<Member, Role, Guid>
 {
     public AskerTrackerDbContext(DbContextOptions<AskerTrackerDbContext> options)
         : base(options)
@@ -25,7 +26,7 @@ public class AskerTrackerDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-                
+
         builder.Entity<Member>()
             .HasMany(m => m.Trainings)
             .WithMany(t => t.Participants)

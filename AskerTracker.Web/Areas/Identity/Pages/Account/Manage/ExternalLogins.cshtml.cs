@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AskerTracker.Domain;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,12 @@ namespace AskerTracker.Web.Areas.Identity.Pages.Account.Manage;
 
 public class ExternalLoginsModel : PageModel
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<Member> _signInManager;
+    private readonly UserManager<Member> _userManager;
 
     public ExternalLoginsModel(
-        UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager)
+        UserManager<Member> userManager,
+        SignInManager<Member> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -78,7 +79,7 @@ public class ExternalLoginsModel : PageModel
         var user = await _userManager.GetUserAsync(User);
         if (user == null) return NotFound("Unable to load user with ID 'user.Id'.");
 
-        var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
+        var info = await _signInManager.GetExternalLoginInfoAsync(user.Id.ToString());
         if (info == null)
             throw new InvalidOperationException(
                 $"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");

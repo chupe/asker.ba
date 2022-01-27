@@ -28,12 +28,12 @@ public class DbHelpers
 
         using var scope = host.Services.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AskerTrackerDbContext>();
-        // await context.Database.MigrateAsync();
+        await context.Database.MigrateAsync();
 
         if (!string.Equals(env, "production", StringComparison.OrdinalIgnoreCase))
             try
             {
-                InitializeSeed.Initialize(context);
+                await InitializeSeed.Initialize(context, scope.ServiceProvider);
                 _logger.LogInformation("Finished seeding database");
             }
             catch (Exception ex)

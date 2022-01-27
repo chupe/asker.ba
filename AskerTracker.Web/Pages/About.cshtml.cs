@@ -1,8 +1,10 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AskerTracker.Web.Pages;
 
+[AllowAnonymous]
 public class AboutModel : PageModel
 {
     public string Message { get; set; }
