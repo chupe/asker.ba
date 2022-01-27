@@ -2,11 +2,11 @@
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace AskerTracker.Web.Areas.Domain.Pages;
+namespace AskerTracker.Web.Areas.Domain.Pages.TeamOverview;
 
 public static class ManageNavPages
 {
-    public static string PersonalDetails => "PersonalDetails";
+    public static string TeamOverview => "TeamOverview";
 
     public static string Fees => "Fees";
 
@@ -20,7 +20,7 @@ public static class ManageNavPages
 
     public static string PersonalDetailsNavClass(ViewContext viewContext)
     {
-        return PageNavClass(viewContext, PersonalDetails);
+        return PageNavClass(viewContext, TeamOverview);
     }
 
     public static string FeesNavClass(ViewContext viewContext)

@@ -1,17 +1,16 @@
 ﻿@page
-@using AskerTracker.Web.Areas.Domain.Pages
-@using AskerTracker.Web.Areas.Domain.Pages.Members
-@model AskerTracker.Web.Areas.Domain.Pages.Members.Details.DetailsModel
+@using AskerTracker.Web.Areas.Domain.Pages.TeamOverview
+@model AskerTracker.Web.Areas.Domain.Pages.TeamOverview.IndexModel
 
 @{
-    ViewData["Title"] = "Member Details";
-    ViewData["ActivePage"] = ManageNavPages.PersonalDetails;
+    ViewData["Title"] = "Team Overview";
+    ViewData["ActivePage"] = ManageNavPages.TeamOverview;
 }
 
-<h2>Details</h2>
+<h2>Overview</h2>
 
 <div>
-    <h3>Personal Information</h3>
+    <h3>Team Information</h3>
     <hr/>
     <dl class="row">
         <dt class="col-sm-2">

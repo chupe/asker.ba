@@ -16,5 +16,9 @@ public class EntityModel
     [Required]
     [ScaffoldColumn(false)]
     [DataType(DataType.DateTime)]
-    private DateTime CreatedDate { get; }
+    private DateTime CreatedDate { get; set; }
+    private DateTime ModifiedDate { get; set; }
+
+    public string CreatedBy { get; set; }
+    public string LastModifiedBy { get; set; }
 }
