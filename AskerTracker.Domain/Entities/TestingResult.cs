@@ -6,7 +6,7 @@ using System.Linq;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Scoring;
 
-namespace AskerTracker.Domain;
+namespace AskerTracker.Domain.Entities;
 
 public class TestingResult : EntityModel
 {

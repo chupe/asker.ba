@@ -2,7 +2,7 @@
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
 
-namespace AskerTracker.Domain;
+namespace AskerTracker.Domain.Entities;
 
 public class EventLocation : EntityModel
 {

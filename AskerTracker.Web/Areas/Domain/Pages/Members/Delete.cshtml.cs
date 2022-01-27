@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Infrastructure;
 using AskerTracker.Web.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -34,13 +35,11 @@ public class DeleteModel : AskerTrackerPageModel
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid? id)
+    public async Task<IActionResult> OnPostAsync()
     {
         ReturnUrl ??= Url.Content("~/Domain/Members/Index");
 
-        if (id == null) return NotFound();
-
-        Member = await _context.Members.FindAsync(id);
+        Member = await _context.Members.FindAsync(Member.Id);
 
         if (Member != null)
         {

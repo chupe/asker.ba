@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

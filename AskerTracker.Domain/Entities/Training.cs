@@ -2,7 +2,7 @@
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Domain;
+namespace AskerTracker.Domain.Entities;
 
 public class Training : EventModel
 {

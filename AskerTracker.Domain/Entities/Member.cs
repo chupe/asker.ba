@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
 using AskerTracker.Domain.Types;
+using Microsoft.AspNetCore.Identity;
 
-namespace AskerTracker.Domain;
+namespace AskerTracker.Domain.Entities;
 
-public class Member : EntityModel
+public class Member : IdentityUser<Guid>
 {
     private string jmbg;
 
@@ -46,12 +47,12 @@ public class Member : EntityModel
     [StringLength(50, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to50",
         MinimumLength = 3)]
     [Display(ResourceType = typeof(UILocalization), Name = nameof(Email))]
-    public string Email { get; set; }
+    public override string Email { get; set; }
 
     [DataType(DataType.PhoneNumber)]
     [Required]
     [Display(ResourceType = typeof(UILocalization), Name = nameof(PhoneNumber))]
-    public string PhoneNumber { get; set; }
+    public override string PhoneNumber { get; set; }
 
     [Display(ResourceType = typeof(UILocalization), Name = nameof(BloodType))]
     [EnumDataType(typeof(BloodType))]
@@ -80,4 +81,9 @@ public class Member : EntityModel
     }
 
     [ScaffoldColumn(false)] public string FullName => $"{FirstName} {LastName}";
+    
+    [Required]
+    [ScaffoldColumn(false)]
+    [DataType(DataType.DateTime)]
+    public DateTime CreatedDate { get; }
 }

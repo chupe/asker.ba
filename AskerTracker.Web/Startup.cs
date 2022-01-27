@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text.Json.Serialization;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Web.Common;
 using AskerTracker.Infrastructure;
 using AskerTracker.Web.Services.Mail;

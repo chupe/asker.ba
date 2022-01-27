@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

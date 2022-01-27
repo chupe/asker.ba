@@ -17,4 +17,7 @@ public class EntityModel
     [ScaffoldColumn(false)]
     [DataType(DataType.DateTime)]
     public DateTime CreatedDate { get; }
+    public string CreatedBy { get; set; }
+    public string LastModifiedBy { get; set; }
+    public DateTime? LastModifiedDate { get; set; }
 }

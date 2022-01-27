@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AskerTracker.Web.Common.Extensions;
 using AskerTracker.Web.Common;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;

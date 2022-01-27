@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using Bogus;
 
 namespace AskerTracker.Infrastructure.Seed.Data;

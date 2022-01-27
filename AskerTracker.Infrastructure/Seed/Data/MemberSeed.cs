@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AskerTracker.Domain;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure.Extensions;
 using Bogus;
