@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail
+namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail;
+
+public class GetTrainingDetailQuery : IRequest<TrainingDetailVm>
 {
-    public class GetTrainingDetailQuery: IRequest<TrainingDetailVm>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

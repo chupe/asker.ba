@@ -7,8 +7,8 @@ namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingsList;
 
 public class GetTrainingsListQueryHandler : IRequestHandler<GetTrainingsListQuery, List<TrainingListVm>>
 {
-    private readonly IAsyncRepository<Training> _trainingRepository;
     private readonly IMapper _mapper;
+    private readonly IAsyncRepository<Training> _trainingRepository;
 
     public GetTrainingsListQueryHandler(IMapper mapper, IAsyncRepository<Training> trainingRepository)
     {

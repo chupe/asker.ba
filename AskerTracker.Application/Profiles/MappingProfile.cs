@@ -1,4 +1,3 @@
-using AskerTracker.Application.Features.Trainings;
 using AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail;
 using AskerTracker.Application.Features.Trainings.Queries.GetTrainingsList;
 using AskerTracker.Domain.Entities;

@@ -1,19 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AskerTracker.Application.Exceptions
+namespace AskerTracker.Application.Exceptions;
+
+public class ValidationException : ApplicationException
 {
-    public class ValidationException : ApplicationException
+    public ValidationException(ValidationResult validationResult)
     {
-        public List<string> ValdationErrors { get; set; }
+        ValdationErrors = new List<string>();
 
-        public ValidationException(ValidationResult validationResult)
-        {
-            ValdationErrors = new List<string>();
-
-            // foreach (var validationError in validationResult.Errors)
-            // {
-            //     ValdationErrors.Add(validationError.ErrorMessage);
-            // }
-        }
+        // foreach (var validationError in validationResult.Errors)
+        // {
+        //     ValdationErrors.Add(validationError.ErrorMessage);
+        // }
     }
+
+    public List<string> ValdationErrors { get; set; }
 }

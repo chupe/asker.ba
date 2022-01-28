@@ -1,10 +1,8 @@
-﻿namespace AskerTracker.Application.Exceptions
-{
-    public class BadRequestException: ApplicationException
-    {
-        public BadRequestException(string message): base(message)
-        {
+﻿namespace AskerTracker.Application.Exceptions;
 
-        }
+public class BadRequestException : ApplicationException
+{
+    public BadRequestException(string message) : base(message)
+    {
     }
 }

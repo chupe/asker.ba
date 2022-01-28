@@ -18,5 +18,19 @@ public class Event : BaseEntity
 
     [Required] [DataType(DataType.Date)] public DateTime DateHeld { get; set; }
 
-    [Required] public HashSet<Member> Participants { get; set; } = new();
+    private HashSet<Member> participants = new ();
+    [Required] public HashSet<Member> Participants
+    {
+        get => participants;
+        set
+        {
+            participants = value;
+            foreach (var participant in participants)
+            {
+                ParticipantsIds.Add(participant.Id);
+            }
+        }
+    }
+
+    [Required] public HashSet<Guid> ParticipantsIds { get; set; }
 }

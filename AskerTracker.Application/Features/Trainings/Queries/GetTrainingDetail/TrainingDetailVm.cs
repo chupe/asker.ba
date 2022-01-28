@@ -1,16 +1,15 @@
 ﻿using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail
+namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail;
+
+public class TrainingDetailVm
 {
-    public class TrainingDetailVm
-    {
-        public Guid Id { get; set; }
-        public DateTime DateHeld { get; set; }
-        public Guid LocationId { get; set; }
-        public EventLocation? Location { get; set; }
-        public HashSet<Member>? Participants { get; set; }
-        public TrainingType TrainingType { get; set; }
-        public EventLocationDto? EventLocation { get; set; }
-    }
+    public Guid Id { get; set; }
+    public DateTime DateHeld { get; set; }
+    public Guid LocationId { get; set; }
+    public EventLocation? Location { get; set; }
+    public List<MemberDto>? Participants { get; set; }
+    public TrainingType TrainingType { get; set; }
+    public EventLocationDto? EventLocation { get; set; }
 }
