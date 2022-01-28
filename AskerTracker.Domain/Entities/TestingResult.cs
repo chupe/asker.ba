@@ -8,7 +8,7 @@ using AskerTracker.Domain.Scoring;
 
 namespace AskerTracker.Domain.Entities;
 
-public class TestingResult : EntityModel
+public class TestingResult : BaseEntity
 {
     [ScaffoldColumn(false)] private int? hrpPoints;
 

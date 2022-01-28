@@ -4,7 +4,7 @@ using AskerTracker.Domain.Types;
 
 namespace AskerTracker.Domain.Entities;
 
-public class Training : EventModel
+public class Training : Event
 {
     [Required]
     [EnumDataType(typeof(TrainingType))]

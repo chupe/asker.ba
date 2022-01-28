@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AskerTracker.Domain.BaseModels;
 
-public class EntityModel
+public class BaseEntity
 {
-    public EntityModel()
+    public BaseEntity()
     {
         Id = Guid.NewGuid();
         CreatedDate = DateTime.Now;
@@ -18,6 +18,6 @@ public class EntityModel
     [DataType(DataType.DateTime)]
     public DateTime CreatedDate { get; }
     public string CreatedBy { get; set; }
-    public string LastModifiedBy { get; set; }
     public DateTime? LastModifiedDate { get; set; }
+    public string LastModifiedBy { get; set; }
 }

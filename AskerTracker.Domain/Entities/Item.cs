@@ -7,7 +7,7 @@ using AskerTracker.Domain.Resources.Localization;
 
 namespace AskerTracker.Domain.Entities;
 
-public class Item : EntityModel
+public class Item : BaseEntity
 {
     [Required]
     [StringLength(40, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to40",

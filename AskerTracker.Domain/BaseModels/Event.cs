@@ -7,7 +7,7 @@ using AskerTracker.Domain.Resources.Localization;
 
 namespace AskerTracker.Domain.BaseModels;
 
-public class EventModel : EntityModel
+public class Event : BaseEntity
 {
     [ForeignKey(nameof(Location))] public Guid LocationId { get; set; }
 

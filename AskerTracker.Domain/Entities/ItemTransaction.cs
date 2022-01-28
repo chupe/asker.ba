@@ -6,7 +6,7 @@ using AskerTracker.Domain.Resources.Localization;
 
 namespace AskerTracker.Domain.Entities;
 
-public class ItemTransaction : EntityModel
+public class ItemTransaction : BaseEntity
 {
     [ForeignKey(nameof(Item))]
     [Required]

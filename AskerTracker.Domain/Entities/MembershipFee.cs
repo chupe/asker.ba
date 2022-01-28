@@ -6,7 +6,7 @@ using AskerTracker.Domain.Resources.Localization;
 
 namespace AskerTracker.Domain.Entities;
 
-public class MembershipFee : EntityModel
+public class MembershipFee : BaseEntity
 {
     [Required] [DataType(DataType.Date)] public DateTime TransactionDate { get; set; }
 

@@ -4,7 +4,7 @@ using AskerTracker.Domain.BaseModels;
 
 namespace AskerTracker.Domain.Entities;
 
-public class ASquad : EntityModel
+public class ASquad : BaseEntity
 {
     [Required] public ICollection<Member> Members { get; set; } = new List<Member>();
 }

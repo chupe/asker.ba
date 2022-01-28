@@ -4,7 +4,7 @@ using AskerTracker.Domain.BaseModels;
 
 namespace AskerTracker.Domain.Entities;
 
-public class TestingEvent : EventModel
+public class TestingEvent : Event
 {
     [Required]
     public List<TestingResult> Results { get; set; }
