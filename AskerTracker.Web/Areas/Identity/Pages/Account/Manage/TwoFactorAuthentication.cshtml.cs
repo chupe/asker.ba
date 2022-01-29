@@ -30,7 +30,7 @@ public class TwoFactorAuthenticationModel : PageModel
 
     public int RecoveryCodesLeft { get; set; }
 
-    [BindProperty] public bool Is2faEnabled { get; set; }
+    [BindProperty] public bool Is2FaEnabled { get; set; }
 
     public bool IsMachineRemembered { get; set; }
 
@@ -42,7 +42,7 @@ public class TwoFactorAuthenticationModel : PageModel
         if (user == null) return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
 
         HasAuthenticator = await _userManager.GetAuthenticatorKeyAsync(user) != null;
-        Is2faEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
+        Is2FaEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
         IsMachineRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user);
         RecoveryCodesLeft = await _userManager.CountRecoveryCodesAsync(user);
 

@@ -39,9 +39,9 @@ public class GetMemberDetailQueryHandler : IRequestHandler<GetMemberDetailQuery,
         //     throw new NotFoundException(nameof(Fee), request.Id);
         // }
 
-        memberDetailDto.Trainings = _mapper.Map<List<TrainingDto>>(trainings);
-        memberDetailDto.TestingResults = _mapper.Map<List<TestingResultDto>>(trainings);
-        memberDetailDto.Fees = _mapper.Map<List<FeeDto>>(trainings);
+        memberDetailDto.Trainings = _mapper.Map<ICollection<TrainingDto>>(trainings);
+        memberDetailDto.TestingResults = _mapper.Map<ICollection<TestingResultDto>>(trainings);
+        memberDetailDto.Fees = _mapper.Map<ICollection<FeeDto>>(trainings);
 
         return memberDetailDto;
     }

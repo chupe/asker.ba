@@ -63,7 +63,7 @@ public class RegisterModel : PageModel
                 FirstName = Input.FirstName,
                 LastName = Input.LastName,
                 PhoneNumber = Input.PhoneNumber,
-                JMBG = Input.JMBG
+                Jmbg = Input.Jmbg
             };
             var result = await _userManager.CreateAsync(user, Input.Password);
             if (result.Succeeded)
@@ -136,7 +136,7 @@ public class RegisterModel : PageModel
         [Required]
         [StringLength(13, ErrorMessageResourceType = typeof(UILocalization),
             ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
-        public string JMBG
+        public string Jmbg
         {
             get => jmbg;
             set

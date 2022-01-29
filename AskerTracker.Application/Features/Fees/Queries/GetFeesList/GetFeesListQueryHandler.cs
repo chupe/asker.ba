@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AskerTracker.Application.Features.Fees.Queries.GetFeesList;
 
-public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, List<FeesListVm>>
+public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, ICollection<FeesListVm>>
 {
     private readonly IAsyncRepository<MembershipFee> _feesRepository;
     private readonly IMapper _mapper;
@@ -16,9 +16,9 @@ public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, List<Fe
         _feesRepository = feesRepository;
     }
 
-    public async Task<List<FeesListVm>> Handle(GetFeesListQuery request, CancellationToken cancellationToken)
+    public async Task<ICollection<FeesListVm>> Handle(GetFeesListQuery request, CancellationToken cancellationToken)
     {
         var allFees = (await _feesRepository.ListAllAsync()).OrderBy(x => x.TransactionDate);
-        return _mapper.Map<List<FeesListVm>>(allFees);
+        return _mapper.Map<ICollection<FeesListVm>>(allFees);
     }
 }

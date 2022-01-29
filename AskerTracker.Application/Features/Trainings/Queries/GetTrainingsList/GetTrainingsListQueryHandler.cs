@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingsList;
 
-public class GetTrainingsListQueryHandler : IRequestHandler<GetTrainingsListQuery, List<TrainingListVm>>
+public class GetTrainingsListQueryHandler : IRequestHandler<GetTrainingsListQuery, ICollection<TrainingListVm>>
 {
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Training> _trainingRepository;
@@ -16,9 +16,9 @@ public class GetTrainingsListQueryHandler : IRequestHandler<GetTrainingsListQuer
         _trainingRepository = trainingRepository;
     }
 
-    public async Task<List<TrainingListVm>> Handle(GetTrainingsListQuery request, CancellationToken cancellationToken)
+    public async Task<ICollection<TrainingListVm>> Handle(GetTrainingsListQuery request, CancellationToken cancellationToken)
     {
         var allTrainings = (await _trainingRepository.ListAllAsync()).OrderBy(x => x.DateHeld);
-        return _mapper.Map<List<TrainingListVm>>(allTrainings);
+        return _mapper.Map<ICollection<TrainingListVm>>(allTrainings);
     }
 }

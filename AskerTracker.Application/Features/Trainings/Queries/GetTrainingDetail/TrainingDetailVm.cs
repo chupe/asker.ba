@@ -9,7 +9,7 @@ public class TrainingDetailVm
     public DateTime DateHeld { get; set; }
     public Guid LocationId { get; set; }
     public EventLocation? Location { get; set; }
-    public List<MemberDto>? Participants { get; set; }
+    public ICollection<MemberDto>? Participants { get; set; }
     public TrainingType TrainingType { get; set; }
     public EventLocationDto? EventLocation { get; set; }
 }

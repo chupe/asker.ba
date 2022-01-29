@@ -58,7 +58,7 @@ public class Member : IdentityUser<Guid>
     [EnumDataType(typeof(BloodType))]
     public BloodType BloodType { get; set; }
 
-    public HashSet<Training> Trainings { get; set; } = new();
+    public HashSet<Training> Trainings { get; set; }
 
     public HashSet<TestingEvent> TestingEvents { get; set; } = new();
 
@@ -69,7 +69,7 @@ public class Member : IdentityUser<Guid>
     [Required]
     [StringLength(13, ErrorMessageResourceType = typeof(UILocalization),
         ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
-    public string JMBG
+    public string Jmbg
     {
         get => jmbg;
         set

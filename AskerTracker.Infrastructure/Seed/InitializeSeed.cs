@@ -24,7 +24,7 @@ public static class InitializeSeed
                 ConcurrencyStamp = "6f0e6778-37bd-47c5-8b32-2eeba9130e87",
                 Email = "admin@mail.com",
                 FirstName = "Admin",
-                JMBG = "9876543210321",
+                Jmbg = "9876543210321",
                 LastName = "Admin",
                 NormalizedEmail = "ADMIN@MAIL.COM",
                 NormalizedUserName = "ADMIN@MAIL.COM",

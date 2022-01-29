@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AskerTracker.Application.Features.Members.Queries.GetMembersList;
 
-public class GetMembersListQueryHandler : IRequestHandler<GetMembersListQuery, List<MembersListVm>>
+public class GetMembersListQueryHandler : IRequestHandler<GetMembersListQuery, ICollection<MembersListVm>>
 {
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Member> _membersRepository;
@@ -16,9 +16,9 @@ public class GetMembersListQueryHandler : IRequestHandler<GetMembersListQuery, L
         _membersRepository = membersRepository;
     }
 
-    public async Task<List<MembersListVm>> Handle(GetMembersListQuery request, CancellationToken cancellationToken)
+    public async Task<ICollection<MembersListVm>> Handle(GetMembersListQuery request, CancellationToken cancellationToken)
     {
         var allMembers = (await _membersRepository.ListAllAsync()).OrderBy(x => x.FullName);
-        return _mapper.Map<List<MembersListVm>>(allMembers);
+        return _mapper.Map<ICollection<MembersListVm>>(allMembers);
     }
 }

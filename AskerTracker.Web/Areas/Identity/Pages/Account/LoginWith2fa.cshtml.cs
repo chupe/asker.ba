@@ -12,12 +12,12 @@ using Microsoft.Extensions.Logging;
 namespace AskerTracker.Web.Areas.Identity.Pages.Account;
 
 [AllowAnonymous]
-public class LoginWith2faModel : PageModel
+public class LoginWith2FaModel : PageModel
 {
-    private readonly ILogger<LoginWith2faModel> _logger;
+    private readonly ILogger<LoginWith2FaModel> _logger;
     private readonly SignInManager<Member> _signInManager;
 
-    public LoginWith2faModel(SignInManager<Member> signInManager, ILogger<LoginWith2faModel> logger)
+    public LoginWith2FaModel(SignInManager<Member> signInManager, ILogger<LoginWith2FaModel> logger)
     {
         _signInManager = signInManager;
         _logger = logger;

@@ -7,28 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj"/>
+        <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="11.0.0"/>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
+        <PackageReference Include="AutoMapper" Version="11.0.0" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Features\Fees\Commands\CreateFees"/>
-        <Folder Include="Features\Fees\Commands\DeleteFees"/>
-        <Folder Include="Features\Fees\Commands\UpdateFees"/>
-        <Folder Include="Features\Items\Commands\CreateItem"/>
-        <Folder Include="Features\Items\Commands\DeleteItem"/>
-        <Folder Include="Features\Items\Commands\UpdateItem"/>
-        <Folder Include="Features\Members\Commands\CreateMember"/>
-        <Folder Include="Features\Members\Commands\DeleteMember"/>
-        <Folder Include="Features\Members\Commands\UpdateMember"/>
-        <Folder Include="Features\Trainings\Commands\CreateTraining"/>
-        <Folder Include="Features\Trainings\Commands\DeleteTraining"/>
-        <Folder Include="Features\Trainings\Commands\UpdateTraining"/>
+        <Folder Include="Features\Fees\Commands\CreateFees" />
+        <Folder Include="Features\Fees\Commands\DeleteFees" />
+        <Folder Include="Features\Fees\Commands\UpdateFees" />
+        <Folder Include="Features\Items\Commands\CreateItem" />
+        <Folder Include="Features\Items\Commands\DeleteItem" />
+        <Folder Include="Features\Items\Commands\UpdateItem" />
+        <Folder Include="Features\Members\Commands\CreateMember" />
+        <Folder Include="Features\Members\Commands\DeleteMember" />
+        <Folder Include="Features\Members\Commands\UpdateMember" />
+        <Folder Include="Features\Trainings\Commands\CreateTraining" />
+        <Folder Include="Features\Trainings\Commands\DeleteTraining" />
+        <Folder Include="Features\Trainings\Commands\UpdateTraining" />
     </ItemGroup>
 
 </Project>

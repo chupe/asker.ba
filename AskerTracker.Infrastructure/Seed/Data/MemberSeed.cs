@@ -25,7 +25,7 @@ public static class MemberSeed
             .RuleFor(member => member.LastName, f => f.Person.LastName)
             .RuleFor(member => member.UserName, f => $"{f.Person.FirstName} {f.Person.LastName}")
             .RuleFor(member => member.PhoneNumber, f => f.Person.Phone)
-            .RuleFor(member => member.JMBG,
+            .RuleFor(member => member.Jmbg,
                 f => f.Random.Double(1000000000000, 9999999999999).ToString("0000000000000"))
             .RuleFor(member => member.BloodType, f => f.PickRandom<BloodType>())
             .RuleFor(member => member.EmailConfirmed, f => f.Random.Bool())

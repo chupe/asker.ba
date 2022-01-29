@@ -37,7 +37,7 @@ public class GetTrainingDetailQueryHandler : IRequestHandler<GetTrainingDetailQu
         // }
 
         trainingDetailDto.EventLocation = _mapper.Map<EventLocationDto>(location);
-        trainingDetailDto.Participants = _mapper.Map<List<MemberDto>>(participants);
+        trainingDetailDto.Participants = _mapper.Map<ICollection<MemberDto>>(participants);
 
         return trainingDetailDto;
     }

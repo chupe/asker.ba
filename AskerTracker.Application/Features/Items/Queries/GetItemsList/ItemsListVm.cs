@@ -5,6 +5,6 @@ public class ItemsListVm
     public Guid LenderId;
     public Guid OwnerId;
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public float Amount { get; set; }
 }

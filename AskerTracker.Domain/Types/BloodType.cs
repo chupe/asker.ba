@@ -15,10 +15,10 @@ public enum BloodType
     BPositive,
 
     [Display(ResourceType = typeof(UILocalization), Name = "ABPositive")]
-    ABPositive,
+    AbPositive,
 
     [Display(ResourceType = typeof(UILocalization), Name = "ABNegative")]
-    ABNegative,
+    AbNegative,
 
     [Display(ResourceType = typeof(UILocalization), Name = "ANegative")]
     ANegative,

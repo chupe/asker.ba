@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AskerTracker.Application.Features.Items.Queries.GetItemsList;
 
-public class GetItemsListQueryHandler : IRequestHandler<GetItemsListQuery, List<ItemsListVm>>
+public class GetItemsListQueryHandler : IRequestHandler<GetItemsListQuery, ICollection<ItemsListVm>>
 {
     private readonly IAsyncRepository<Item> _itemsRepository;
     private readonly IMapper _mapper;
@@ -16,9 +16,9 @@ public class GetItemsListQueryHandler : IRequestHandler<GetItemsListQuery, List<
         _itemsRepository = itemsRepository;
     }
 
-    public async Task<List<ItemsListVm>> Handle(GetItemsListQuery request, CancellationToken cancellationToken)
+    public async Task<ICollection<ItemsListVm>> Handle(GetItemsListQuery request, CancellationToken cancellationToken)
     {
         var allFees = (await _itemsRepository.ListAllAsync()).OrderBy(x => x.Name);
-        return _mapper.Map<List<ItemsListVm>>(allFees);
+        return _mapper.Map<ICollection<ItemsListVm>>(allFees);
     }
 }
