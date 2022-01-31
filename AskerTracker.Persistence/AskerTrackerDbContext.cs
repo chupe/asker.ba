@@ -26,16 +26,35 @@ public class AskerTrackerDbContext : IdentityDbContext<Member, Role, Guid>
     {
         base.OnModelCreating(builder);
 
+        builder.ApplyConfigurationsFromAssembly(typeof(AskerTrackerDbContext).Assembly);
+
         builder.Entity<Member>()
-            .HasMany(m => m.Trainings)
-            .WithMany(t => t.Participants)
+            .HasMany(member => member.Trainings)
+            .WithMany(training => training.Participants)
             .UsingEntity<MemberTraining>(
                 mt => mt.HasOne<Training>().WithMany(),
                 mt => mt.HasOne<Member>().WithMany()
             )
-            .Property(mt => mt.WasLate)
+            .Property(memberTraining => memberTraining.WasLate)
             .HasDefaultValue(false);
     }
+    
+    // public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    // {
+    //     foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+    //     {
+    //         switch (entry.State)
+    //         {
+    //             case EntityState.Added:
+    //                 entry.Entity.CreatedDate = DateTime.Now;
+    //                 break;
+    //             case EntityState.Modified:
+    //                 entry.Entity.LastModifiedDate = DateTime.Now;
+    //                 break;
+    //         }
+    //     }
+    //     return base.SaveChangesAsync(cancellationToken);
+    // }
 }
 
 public class MemberTraining

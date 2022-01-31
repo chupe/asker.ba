@@ -16,7 +16,7 @@ public class BaseEntity
     [Required]
     [ScaffoldColumn(false)]
     [DataType(DataType.DateTime)]
-    public DateTime CreatedDate { get; }
+    public DateTime CreatedDate { get; set; }
     public string CreatedBy { get; set; }
     public DateTime? LastModifiedDate { get; set; }
     public string LastModifiedBy { get; set; }

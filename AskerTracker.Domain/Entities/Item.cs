@@ -22,7 +22,7 @@ public class Item : BaseEntity
     [Required]
     [Range(1, 10000, ErrorMessageResourceType = typeof(UILocalization),
         ErrorMessageResourceName = "AmountOutOfRange")]
-    public double Amount { get; set; }
+    public int Amount { get; set; }
 
     [StringLength(1000, ErrorMessageResourceType = typeof(UILocalization),
         ErrorMessageResourceName = "Length3to1000", MinimumLength = 3)]
