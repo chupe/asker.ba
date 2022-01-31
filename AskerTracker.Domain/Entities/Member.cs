@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Resources.Localization;
 using AskerTracker.Domain.Types;
 using Microsoft.AspNetCore.Identity;

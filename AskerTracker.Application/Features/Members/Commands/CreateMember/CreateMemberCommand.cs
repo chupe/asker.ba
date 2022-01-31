@@ -1,4 +1,3 @@
-using AskerTracker.Application.Features.Members.Queries.GetMemberDetail;
 using AskerTracker.Domain.Types;
 using MediatR;
 

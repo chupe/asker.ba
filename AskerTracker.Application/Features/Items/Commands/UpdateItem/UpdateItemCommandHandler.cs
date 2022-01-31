@@ -9,19 +9,23 @@ public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand>
 {
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Item> _itemRepository;
+    private readonly IMemberRepository _memberRepository;
 
-    public UpdateItemCommandHandler(IMapper mapper, IAsyncRepository<Item> itemRepository)
+    public UpdateItemCommandHandler(IMapper mapper, IAsyncRepository<Item> itemRepository,
+        IMemberRepository memberRepository)
     {
         _mapper = mapper;
         _itemRepository = itemRepository;
+        _memberRepository = memberRepository;
     }
     public async Task<Unit> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
     {
-        // TODO: validation
-
         var itemToUpdate = await _itemRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, itemToUpdate, typeof(UpdateItemCommand), typeof(Item));
+
+        var validator = new UpdateItemCommandValidator(_memberRepository);
+        var validationResult = await validator.ValidateAsync(itemToUpdate, cancellationToken);
 
         await _itemRepository.UpdateAsync(itemToUpdate);
 

@@ -1,5 +1,4 @@
 using AskerTracker.Application.Contracts.Persistence;
-using AskerTracker.Application.Features.Trainings.Queries.GetTrainingsList;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;

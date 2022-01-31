@@ -1,4 +1,5 @@
 ﻿using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
@@ -25,13 +26,13 @@ public class GetItemDetailQueryHandler : IRequestHandler<GetItemDetailQuery, Ite
         var item = await _itemRepository.GetByIdAsync(request.Id);
         var itemDetailDto = _mapper.Map<ItemDetailVm>(item);
 
-        var owner = item.OwnerId.HasValue ? await _memberRepository.GetByIdAsync(item.OwnerId.Value) : null;
-        var lender = item.LenderId.HasValue ? await _memberRepository.GetByIdAsync(item.LenderId.Value) : null;
+        var owner = item.OwnerId != Guid.Empty ? await _memberRepository.GetByIdAsync(item.OwnerId) : null;
+        var lender = item.LenderId != Guid.Empty ? await _memberRepository.GetByIdAsync(item.LenderId) : null;
 
-        // if (member == null)
-        // {
-        //     throw new NotFoundException(nameof(Fee), request.Id);
-        // }
+        if (item == null)
+        {
+            throw new NotFoundException(nameof(MembershipFee), request.Id);
+        }
 
         itemDetailDto.Owner = _mapper.Map<MemberDto>(owner);
         itemDetailDto.Lender = _mapper.Map<MemberDto>(lender);

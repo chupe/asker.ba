@@ -10,15 +10,18 @@ public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Guid>
 {
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Item> _itemRepository;
+    private readonly IMemberRepository _memberRepository;
 
-    public CreateItemCommandHandler(IMapper mapper, IAsyncRepository<Item> itemRepository)
+    public CreateItemCommandHandler(IMapper mapper, IAsyncRepository<Item> itemRepository,
+        IMemberRepository memberRepository)
     {
         _mapper = mapper;
         _itemRepository = itemRepository;
+        _memberRepository = memberRepository;
     }
     public async Task<Guid> Handle(CreateItemCommand request, CancellationToken cancellationToken)
     {
-        var validator = new CreateItemCommandValidator();
+        var validator = new CreateItemCommandValidator(_memberRepository);
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (validationResult.Errors.Any())

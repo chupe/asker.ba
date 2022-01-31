@@ -1,5 +1,4 @@
 using AskerTracker.Application.Contracts.Persistence;
-using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
 

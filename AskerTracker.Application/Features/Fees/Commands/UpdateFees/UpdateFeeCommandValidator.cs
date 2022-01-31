@@ -1,11 +1,12 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Domain.Entities;
 using FluentValidation;
 
-namespace AskerTracker.Application.Features.Fees.Commands.CreateFees;
+namespace AskerTracker.Application.Features.Fees.Commands.UpdateFees;
 
-public class CreateFeeCommandValidator : AbstractFeeCommandValidator<CreateFeeCommand>
+public class UpdateFeeCommandValidator : AbstractFeeCommandValidator<MembershipFee>
 {
-    public CreateFeeCommandValidator(IMemberRepository memberRepository) : base(memberRepository)
+    public UpdateFeeCommandValidator(IMemberRepository memberRepository) : base(memberRepository)
     {
         RuleFor(f => f.Amount)
             .NotEmpty().WithMessage("{PropertyName} is required.")

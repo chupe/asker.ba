@@ -34,13 +34,15 @@ public class Item : BaseEntity
     [DataType(DataType.Currency)]
     public double Value { get; set; }
 
-    [ForeignKey(nameof(Lender))] public Guid? LenderId { get; set; }
+    [ForeignKey(nameof(Lender))] public Guid LenderId { get; set; }
 
     public Member Lender { get; set; }
 
-    [ForeignKey(nameof(Owner))] public Guid? OwnerId { get; set; }
+    [ForeignKey(nameof(Owner))] public Guid OwnerId { get; set; }
 
     public Member Owner { get; set; }
+
+    public DateTime LastTransactionDate { get; set; }
 
     public bool IsTeamProperty => Owner == null;
         

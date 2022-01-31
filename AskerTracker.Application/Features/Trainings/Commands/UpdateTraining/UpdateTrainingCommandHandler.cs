@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -17,12 +18,16 @@ public class UpdateTrainingCommandHandler : IRequestHandler<UpdateTrainingComman
     }
     public async Task<Unit> Handle(UpdateTrainingCommand request, CancellationToken cancellationToken)
     {
-        // TODO: validation
-
         var trainingToUpdate = await _trainingRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, trainingToUpdate, typeof(UpdateTrainingCommand), typeof(Training));
 
+        var validator = new UpdateTrainingCommandValidator();
+        var validationResult = await validator.ValidateAsync(trainingToUpdate, cancellationToken);
+
+        if (validationResult.Errors.Any())
+            throw new ValidationException(validationResult);
+        
         await _trainingRepository.UpdateAsync(trainingToUpdate);
 
         return Unit.Value;

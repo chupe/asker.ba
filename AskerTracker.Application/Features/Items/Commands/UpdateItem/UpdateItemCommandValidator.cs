@@ -1,11 +1,12 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Domain.Entities;
 using FluentValidation;
 
-namespace AskerTracker.Application.Features.Items.Commands.CreateItem;
+namespace AskerTracker.Application.Features.Items.Commands.UpdateItem;
 
-public class CreateItemCommandValidator : AbstractItemCommandValidator<CreateItemCommand>
+public class UpdateItemCommandValidator : AbstractItemCommandValidator<Item>
 {
-    public CreateItemCommandValidator(IMemberRepository memberRepository) : base(memberRepository)
+    public UpdateItemCommandValidator(IMemberRepository memberRepository) : base(memberRepository)
     {
         RuleFor(i => i.Name)
             .NotEmpty().WithMessage("{PropertyName} is required.")
