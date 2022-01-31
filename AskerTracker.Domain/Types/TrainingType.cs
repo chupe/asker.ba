@@ -12,7 +12,7 @@ public enum TrainingType
 
     // [Display(ResourceType = typeof(UILocalization), Name = "Match")]
 
-    Match,
+    Competition,
 
     // [Display(ResourceType = typeof(UILocalization), Name = "Hiking")]
 
