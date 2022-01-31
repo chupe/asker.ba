@@ -1,5 +1,4 @@
-﻿@using AskerTracker.Domain
-@using AskerTracker.Domain.Entities
+﻿@using AskerTracker.Domain.Entities
 @inject SignInManager<Member> _signInManager
 @{
     var hasExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).Any();

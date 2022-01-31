@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Entities;
-using AskerTracker.Infrastructure.Seed.Data;
+﻿using AskerTracker.Domain.Entities;
+using AskerTracker.Persistence.Seed.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AskerTracker.Infrastructure.Seed;
+namespace AskerTracker.Persistence.Seed;
 
 public static class InitializeSeed
 {

@@ -47,6 +47,7 @@
     <ItemGroup>
         <ProjectReference Include="..\AskerTracker.Domain\AskerTracker.Domain.csproj" />
         <ProjectReference Include="..\AskerTracker.Infrastructure\AskerTracker.Infrastructure.csproj" />
+        <ProjectReference Include="..\AskerTracker.Persistence\AskerTracker.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>

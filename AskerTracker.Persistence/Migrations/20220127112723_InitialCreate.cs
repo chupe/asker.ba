@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AskerTracker.Infrastructure.Migrations
+namespace AskerTracker.Persistence.Migrations
 {
     public partial class InitialCreate : Migration
     {

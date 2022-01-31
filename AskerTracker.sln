@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4AC7DEEE-1401-4F5A-BA18-2A98F75F965B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskerTracker.Persistance", "AskerTracker.Persistence\AskerTracker.Persistence.csproj", "{DEDFC16D-AD89-4138-8DCB-7C479893AF34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0090E145-C2B4-4A31-B0ED-F9012A45053B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0090E145-C2B4-4A31-B0ED-F9012A45053B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0090E145-C2B4-4A31-B0ED-F9012A45053B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEDFC16D-AD89-4138-8DCB-7C479893AF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEDFC16D-AD89-4138-8DCB-7C479893AF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEDFC16D-AD89-4138-8DCB-7C479893AF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEDFC16D-AD89-4138-8DCB-7C479893AF34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{0F4B9223-0DAD-4B2F-86C9-525342C9E6CF} = {F270FDEE-9A08-44DC-A803-58E7DCFFEA70}
 		{FE1752D6-2A6E-4211-A9CC-2199CF0E2F2B} = {7C0F3F3A-DF91-415B-BA89-9EE8E7B200FE}
 		{87C68B62-51EF-4463-BD26-BC05A8B3DF66} = {4AC7DEEE-1401-4F5A-BA18-2A98F75F965B}
+		{DEDFC16D-AD89-4138-8DCB-7C479893AF34} = {7C0F3F3A-DF91-415B-BA89-9EE8E7B200FE}
 	EndGlobalSection
 EndGlobal

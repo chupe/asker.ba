@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using AskerTracker.Infrastructure;
-using AskerTracker.Infrastructure.Seed;
+using AskerTracker.Persistence;
+using AskerTracker.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

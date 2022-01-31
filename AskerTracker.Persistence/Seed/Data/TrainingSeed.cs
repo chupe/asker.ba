@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Entities;
+﻿using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 using Bogus;
 
-namespace AskerTracker.Infrastructure.Seed.Data;
+namespace AskerTracker.Persistence.Seed.Data;
 
 public static class TrainingSeed
 {

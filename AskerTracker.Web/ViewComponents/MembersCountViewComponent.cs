@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using AskerTracker.Infrastructure;
+using AskerTracker.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

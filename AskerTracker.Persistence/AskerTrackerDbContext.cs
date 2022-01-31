@@ -1,11 +1,9 @@
-﻿using System;
-using AskerTracker.Domain;
+﻿using AskerTracker.Domain;
 using AskerTracker.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AskerTracker.Infrastructure;
+namespace AskerTracker.Persistence;
 
 public class AskerTrackerDbContext : IdentityDbContext<Member, Role, Guid>
 {

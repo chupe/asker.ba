@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
+using AskerTracker.Persistence;
 using AskerTracker.Web.Areas.Domain.Pages.MembershipFees;
-using AskerTracker.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AskerTracker.Web.Areas.Domain.Pages.ViewComponents;

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Entities;
+﻿using AskerTracker.Domain.Entities;
 using Bogus;
 
-namespace AskerTracker.Infrastructure.Seed.Data;
+namespace AskerTracker.Persistence.Seed.Data;
 
 public static class ItemSeed
 {

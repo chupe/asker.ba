@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
 using AskerTracker.Domain.Entities;
-using AskerTracker.Infrastructure;
+using AskerTracker.Persistence;
 using AskerTracker.Web.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

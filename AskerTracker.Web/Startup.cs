@@ -3,8 +3,8 @@ using System.IO;
 using System.Text.Json.Serialization;
 using AskerTracker.Domain;
 using AskerTracker.Domain.Entities;
+using AskerTracker.Persistence;
 using AskerTracker.Web.Common;
-using AskerTracker.Infrastructure;
 using AskerTracker.Web.Services.Mail;
 using AskerTracker.Web.Settings;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +20,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace AskerTracker.Web;
 

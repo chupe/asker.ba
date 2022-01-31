@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
 using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
-using AskerTracker.Infrastructure;
+using AskerTracker.Persistence;
 using AskerTracker.Web.Common.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using AskerTracker.Domain;
-using AskerTracker.Domain.Entities;
+﻿using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 using AskerTracker.Infrastructure.Extensions;
 using Bogus;
 
-namespace AskerTracker.Infrastructure.Seed.Data;
+namespace AskerTracker.Persistence.Seed.Data;
 
 public static class MemberSeed
 {
@@ -30,6 +27,7 @@ public static class MemberSeed
             .RuleFor(member => member.BloodType, f => f.PickRandom<BloodType>())
             .RuleFor(member => member.EmailConfirmed, f => f.Random.Bool())
             .RuleFor(member => member.PhoneNumberConfirmed, f => f.Random.Bool());
+
         return membersFaker.Generate(100);
     }
 }

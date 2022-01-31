@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using AskerTracker.Infrastructure;
+using AskerTracker.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AskerTracker.Web.Areas.Domain.Pages.ViewComponents;

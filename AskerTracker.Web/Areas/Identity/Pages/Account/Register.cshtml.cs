@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using AskerTracker.Domain;
 using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Resources.Localization;
 using Microsoft.AspNetCore.Authentication;
