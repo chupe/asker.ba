@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -17,6 +18,12 @@ public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Guid>
     }
     public async Task<Guid> Handle(CreateItemCommand request, CancellationToken cancellationToken)
     {
+        var validator = new CreateItemCommandValidator();
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+        if (validationResult.Errors.Any())
+            throw new ValidationException(validationResult);
+        
         var item = _mapper.Map<Item>(request);
 
         item = await _itemRepository.AddAsync(item);

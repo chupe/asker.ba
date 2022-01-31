@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -21,7 +22,7 @@ public class CreateMemberCommandHandler : IRequestHandler<CreateMemberCommand, G
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (validationResult.Errors.Any())
-            throw new Exceptions.ValidationException(validationResult);
+            throw new ValidationException(validationResult);
         
         var member = _mapper.Map<Member>(request);
 
