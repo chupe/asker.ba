@@ -6,4 +6,5 @@ public interface IFeesRepository : IAsyncRepository<MembershipFee>
 {
     Task<List<MembershipFee>> GetPagedFeesForMonth(DateTime date, int page, int size);
     Task<int> GetTotalCountOfFeesForMonth(DateTime date);
+    Task<IReadOnlyList<MembershipFee>> ListAllAsync(bool requestIncludeInactive);
 }

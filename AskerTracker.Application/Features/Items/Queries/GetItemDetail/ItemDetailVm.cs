@@ -1,4 +1,6 @@
-﻿namespace AskerTracker.Application.Features.Items.Queries.GetItemDetail;
+﻿using AskerTracker.Application.Features.SharedDtos;
+
+namespace AskerTracker.Application.Features.Items.Queries.GetItemDetail;
 
 public class ItemDetailVm
 {

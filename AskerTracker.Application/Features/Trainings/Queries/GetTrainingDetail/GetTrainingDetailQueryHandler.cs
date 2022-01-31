@@ -1,4 +1,5 @@
 ﻿using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Entities;
 using AutoMapper;

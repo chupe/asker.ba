@@ -26,7 +26,6 @@
         <Folder Include="Features\Members\Commands\CreateMember" />
         <Folder Include="Features\Members\Commands\DeleteMember" />
         <Folder Include="Features\Members\Commands\UpdateMember" />
-        <Folder Include="Features\Trainings\Commands\CreateTraining" />
         <Folder Include="Features\Trainings\Commands\DeleteTraining" />
         <Folder Include="Features\Trainings\Commands\UpdateTraining" />
     </ItemGroup>

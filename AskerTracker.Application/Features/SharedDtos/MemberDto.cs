@@ -1,4 +1,4 @@
-﻿namespace AskerTracker.Application.Features.Items.Queries.GetItemDetail;
+﻿namespace AskerTracker.Application.Features.SharedDtos;
 
 public class MemberDto
 {

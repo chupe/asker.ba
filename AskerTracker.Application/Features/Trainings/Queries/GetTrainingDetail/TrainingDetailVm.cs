@@ -1,4 +1,5 @@
-﻿using AskerTracker.Domain.Entities;
+﻿using AskerTracker.Application.Features.SharedDtos;
+using AskerTracker.Domain.Entities;
 using AskerTracker.Domain.Types;
 
 namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingDetail;

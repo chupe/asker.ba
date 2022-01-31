@@ -7,10 +7,10 @@ namespace AskerTracker.Application.Features.Fees.Queries.GetFeesList;
 
 public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, ICollection<FeesListVm>>
 {
-    private readonly IAsyncRepository<MembershipFee> _feesRepository;
+    private readonly IFeesRepository _feesRepository;
     private readonly IMapper _mapper;
 
-    public GetFeesListQueryHandler(IMapper mapper, IAsyncRepository<MembershipFee> feesRepository)
+    public GetFeesListQueryHandler(IMapper mapper, IFeesRepository feesRepository)
     {
         _mapper = mapper;
         _feesRepository = feesRepository;
@@ -18,7 +18,10 @@ public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, ICollec
 
     public async Task<ICollection<FeesListVm>> Handle(GetFeesListQuery request, CancellationToken cancellationToken)
     {
-        var allFees = (await _feesRepository.ListAllAsync()).OrderBy(x => x.TransactionDate);
-        return _mapper.Map<ICollection<FeesListVm>>(allFees);
+        var fees = request.IncludeInactive
+            ? (await _feesRepository.ListAllAsync()).OrderBy(x => x.TransactionDate)
+            : (await _feesRepository.ListAllAsync(request.IncludeInactive)).OrderBy(x => x.TransactionDate);
+
+        return _mapper.Map<ICollection<FeesListVm>>(fees);
     }
 }

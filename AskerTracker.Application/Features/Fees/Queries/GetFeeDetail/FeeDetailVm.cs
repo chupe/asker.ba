@@ -1,4 +1,6 @@
-﻿namespace AskerTracker.Application.Features.Fees.Queries.GetFeeDetail;
+﻿using AskerTracker.Application.Features.SharedDtos;
+
+namespace AskerTracker.Application.Features.Fees.Queries.GetFeeDetail;
 
 public class FeeDetailVm
 {

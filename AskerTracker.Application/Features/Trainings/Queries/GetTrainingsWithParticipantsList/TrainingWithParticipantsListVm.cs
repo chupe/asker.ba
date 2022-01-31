@@ -1,3 +1,4 @@
+using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.Types;
 
 namespace AskerTracker.Application.Features.Trainings.Queries.GetTrainingsWithParticipantsList;
