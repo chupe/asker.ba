@@ -1,4 +1,4 @@
-﻿namespace AskerTracker.Application.Features.Members.Queries.GetMemberDetail;
+﻿namespace AskerTracker.Application.Features.SharedDtos;
 
 public class FeeDto
 {

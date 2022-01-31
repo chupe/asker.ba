@@ -1,4 +1,5 @@
-﻿using AskerTracker.Domain.Types;
+﻿using AskerTracker.Application.Features.SharedDtos;
+using AskerTracker.Domain.Types;
 
 namespace AskerTracker.Application.Features.Members.Queries.GetMemberDetail;
 

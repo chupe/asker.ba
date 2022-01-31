@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AskerTracker.Application.Features.Trainings.Commands.CreateTraining;
 
-public class CreateTrainingCommand : IRequest<Guid>
+public class CreateTrainingCommand : IRequest<CreateTrainingCommandResponse>
 {
     public List<Guid>? ParticipantIds { get; set; }
     public Guid LocationId { get; set; }

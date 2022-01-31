@@ -1,8 +1,8 @@
 ﻿using AskerTracker.Domain.Types;
 
-namespace AskerTracker.Application.Features.Members.Queries.GetMemberDetail;
+namespace AskerTracker.Application.Features.SharedDtos;
 
-public class TestingResultDto
+public class TrainingDto
 {
     public Guid Id { get; set; }
     public DateTime DateHeld { get; set; }
