@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation.Results;
 
 namespace AskerTracker.Application.Exceptions;
 
 public class ValidationException : ApplicationException
 {
+    public List<string> ValidationErrors { get; set; }
+    
     public ValidationException(ValidationResult validationResult)
     {
-        ValdationErrors = new List<string>();
+        ValidationErrors = new List<string>();
 
-        // foreach (var validationError in validationResult.Errors)
-        // {
-        //     ValdationErrors.Add(validationError.ErrorMessage);
-        // }
+        foreach (var validationError in validationResult.Errors)
+        {
+            ValidationErrors.Add(validationError.ErrorMessage);
+        }
     }
-
-    public List<string> ValdationErrors { get; set; }
 }

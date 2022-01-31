@@ -10,8 +10,6 @@ namespace AskerTracker.Domain.Entities;
 
 public class Member : IdentityUser<Guid>
 {
-    private string jmbg;
-
     [Required]
     [StringLength(20, ErrorMessageResourceType = typeof(UILocalization), ErrorMessageResourceName = "Length3to20",
         MinimumLength = 3)]
@@ -69,16 +67,7 @@ public class Member : IdentityUser<Guid>
     [Required]
     [StringLength(13, ErrorMessageResourceType = typeof(UILocalization),
         ErrorMessageResourceName = "PersonalIdMinLengthIs13", MinimumLength = 13)]
-    public string Jmbg
-    {
-        get => jmbg;
-        set
-        {
-            if (value.Length != 13)
-                throw new Exception("Unique identifier (JMBG) needs to have 13 digit value");
-            jmbg = value;
-        }
-    }
+    public string Jmbg { get; set; }
 
     [ScaffoldColumn(false)] public string FullName => $"{FirstName} {LastName}";
     
