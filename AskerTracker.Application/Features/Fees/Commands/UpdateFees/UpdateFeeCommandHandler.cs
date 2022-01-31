@@ -17,6 +17,8 @@ public class UpdateFeeCommandHandler : IRequestHandler<UpdateFeeCommand>
     }
     public async Task<Unit> Handle(UpdateFeeCommand request, CancellationToken cancellationToken)
     {
+        // TODO: validation
+
         var feeToUpdate = await _feeRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, feeToUpdate, typeof(UpdateFeeCommand), typeof(MembershipFee));

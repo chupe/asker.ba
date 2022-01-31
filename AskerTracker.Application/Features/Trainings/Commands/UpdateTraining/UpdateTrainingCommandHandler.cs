@@ -17,6 +17,8 @@ public class UpdateTrainingCommandHandler : IRequestHandler<UpdateTrainingComman
     }
     public async Task<Unit> Handle(UpdateTrainingCommand request, CancellationToken cancellationToken)
     {
+        // TODO: validation
+
         var trainingToUpdate = await _trainingRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, trainingToUpdate, typeof(UpdateTrainingCommand), typeof(Training));

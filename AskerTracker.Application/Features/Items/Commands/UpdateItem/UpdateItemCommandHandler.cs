@@ -17,6 +17,8 @@ public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand>
     }
     public async Task<Unit> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
     {
+        // TODO: validation
+
         var itemToUpdate = await _itemRepository.GetByIdAsync(request.Id);
 
         _mapper.Map(request, itemToUpdate, typeof(UpdateItemCommand), typeof(Item));
