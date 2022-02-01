@@ -1,4 +1,6 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
+using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
 
@@ -17,9 +19,7 @@ public class GetFeesListQueryHandler : IRequestHandler<GetFeesListQuery, ICollec
 
     public async Task<ICollection<FeesListVm>> Handle(GetFeesListQuery request, CancellationToken cancellationToken)
     {
-        var fees = request.IncludeInactive
-            ? (await _feesRepository.ListAllAsync()).OrderBy(x => x.TransactionDate)
-            : (await _feesRepository.ListAllAsync(request.IncludeInactive)).OrderBy(x => x.TransactionDate);
+        var fees = (await _feesRepository.ListAllAsync()).OrderBy(x => x.TransactionDate);
 
         return _mapper.Map<ICollection<FeesListVm>>(fees);
     }
