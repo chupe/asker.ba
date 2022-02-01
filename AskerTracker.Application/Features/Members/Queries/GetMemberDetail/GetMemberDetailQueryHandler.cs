@@ -1,4 +1,5 @@
 ﻿using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
@@ -28,6 +29,10 @@ public class GetMemberDetailQueryHandler : IRequestHandler<GetMemberDetailQuery,
     public async Task<MemberDetailVm> Handle(GetMemberDetailQuery request, CancellationToken cancellationToken)
     {
         var member = await _memberRepository.GetByIdAsync(request.Id);
+        
+        if (member == null)
+            throw new NotFoundException(nameof(Member), request.Id);
+        
         var memberDetailDto = _mapper.Map<MemberDetailVm>(member);
 
         var trainings =
@@ -35,14 +40,9 @@ public class GetMemberDetailQueryHandler : IRequestHandler<GetMemberDetailQuery,
         var testingResults = (await _testingResultsRepository.ListAllAsync()).Where(t => t.MemberId == member.Id);
         var fees = (await _feeRepository.ListAllAsync()).Where(f => f.MemberId == member.Id);
 
-        // if (training == null)
-        // {
-        //     throw new NotFoundException(nameof(Fee), request.Id);
-        // }
-
         memberDetailDto.Trainings = _mapper.Map<ICollection<TrainingDto>>(trainings);
-        memberDetailDto.TestingResults = _mapper.Map<ICollection<TestingResultDto>>(trainings);
-        memberDetailDto.Fees = _mapper.Map<ICollection<FeeDto>>(trainings);
+        memberDetailDto.TestingResults = _mapper.Map<ICollection<TestingResultDto>>(testingResults);
+        memberDetailDto.Fees = _mapper.Map<ICollection<FeeDto>>(fees);
 
         return memberDetailDto;
     }

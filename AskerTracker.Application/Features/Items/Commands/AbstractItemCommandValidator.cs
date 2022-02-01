@@ -14,6 +14,6 @@ public abstract class AbstractItemCommandValidator<T> : AbstractValidator<T>
 
     protected async Task<bool> MemberExits(Guid id, CancellationToken token)
     {
-        return (await _memberRepository.ListAllAsync()).Any(m => m.Id == id);
+        return await _memberRepository.GetByIdAsync(id) != null;
     }
 }

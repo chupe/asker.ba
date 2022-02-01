@@ -20,6 +20,9 @@ public class UpdateMemberCommandHandler : IRequestHandler<UpdateMemberCommand>
     {
         var memberToUpdate = await _memberRepository.GetByIdAsync(request.Id);
 
+        if (memberToUpdate == null)
+            throw new NotFoundException(nameof(Member), request.Id);
+        
         _mapper.Map(request, memberToUpdate, typeof(UpdateMemberCommand), typeof(Member));
 
         var validator = new UpdateMemberCommandValidator();

@@ -1,4 +1,5 @@
 ﻿using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
@@ -23,14 +24,16 @@ public class GetFeeDetailQueryHandler : IRequestHandler<GetFeeDetailQuery, FeeDe
     public async Task<FeeDetailVm> Handle(GetFeeDetailQuery request, CancellationToken cancellationToken)
     {
         var fee = await _feeRepository.GetByIdAsync(request.Id);
+        
+        if (fee == null)
+            throw new NotFoundException(nameof(MembershipFee), request.Id);
+        
         var feeDetailDto = _mapper.Map<FeeDetailVm>(fee);
 
         var member = await _memberRepository.GetByIdAsync(fee.MemberId);
 
-        // if (member == null)
-        // {
-        //     throw new NotFoundException(nameof(Fee), request.Id);
-        // }
+        if (member == null)
+            throw new NotFoundException(nameof(Member), request.Id);
 
         feeDetailDto.Member = _mapper.Map<MemberDto>(member);
 

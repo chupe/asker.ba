@@ -22,6 +22,9 @@ public class UpdateFeeCommandHandler : IRequestHandler<UpdateFeeCommand>
     public async Task<Unit> Handle(UpdateFeeCommand request, CancellationToken cancellationToken)
     {
         var feeToUpdate = await _feeRepository.GetByIdAsync(request.Id);
+        
+        if (feeToUpdate == null)
+            throw new NotFoundException(nameof(MembershipFee), request.Id);
 
         _mapper.Map(request, feeToUpdate, typeof(UpdateFeeCommand), typeof(MembershipFee));
 

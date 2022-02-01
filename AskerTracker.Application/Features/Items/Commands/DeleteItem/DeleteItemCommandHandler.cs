@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -20,6 +21,9 @@ public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand>
     {
         var itemToDelete = await _itemRepository.GetByIdAsync(request.Id);
 
+        if (itemToDelete == null)
+            throw new NotFoundException(nameof(Item), request.Id);
+        
         await _itemRepository.DeleteAsync(itemToDelete);
 
         return Unit.Value;

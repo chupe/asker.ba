@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -19,6 +20,9 @@ public class DeleteMemberCommandHandler : IRequestHandler<DeleteMemberCommand>
     public async Task<Unit> Handle(DeleteMemberCommand request, CancellationToken cancellationToken)
     {
         var memberToDelete = await _memberRepository.GetByIdAsync(request.Id);
+
+        if (memberToDelete == null)
+            throw new NotFoundException(nameof(Member), request.Id);
 
         await _memberRepository.DeleteAsync(memberToDelete);
 

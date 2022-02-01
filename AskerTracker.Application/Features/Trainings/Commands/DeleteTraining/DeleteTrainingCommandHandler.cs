@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -20,6 +21,9 @@ public class DeleteTrainingCommandHandler : IRequestHandler<DeleteTrainingComman
     {
         var trainingToDelete = await _trainingRepository.GetByIdAsync(request.Id);
 
+        if (trainingToDelete == null)
+            throw new NotFoundException(nameof(Training), request.Id);
+        
         await _trainingRepository.DeleteAsync(trainingToDelete);
         
         return Unit.Value;

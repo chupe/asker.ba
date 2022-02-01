@@ -1,4 +1,5 @@
 ﻿using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Application.Features.SharedDtos;
 using AskerTracker.Domain.BaseModels;
 using AskerTracker.Domain.Entities;
@@ -26,16 +27,16 @@ public class GetTrainingDetailQueryHandler : IRequestHandler<GetTrainingDetailQu
     public async Task<TrainingDetailVm> Handle(GetTrainingDetailQuery request, CancellationToken cancellationToken)
     {
         var training = await _trainingRepository.GetByIdAsync(request.Id);
+        
+        if (training == null)
+            throw new NotFoundException(nameof(Training), request.Id);
+        
         var trainingDetailDto = _mapper.Map<TrainingDetailVm>(training);
 
         var location = await _locationRepository.GetByIdAsync(training.LocationId);
+
         var participants =
             (await _memberRepository.ListAllAsync()).Where(p => training.ParticipantsIds.Contains(p.Id));
-
-        // if (location == null)
-        // {
-        //     throw new NotFoundException(nameof(Training), request.Id);
-        // }
 
         trainingDetailDto.EventLocation = _mapper.Map<EventLocationDto>(location);
         trainingDetailDto.Participants = _mapper.Map<ICollection<MemberDto>>(participants);

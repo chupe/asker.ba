@@ -1,4 +1,5 @@
 using AskerTracker.Application.Contracts.Persistence;
+using AskerTracker.Application.Exceptions;
 using AskerTracker.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -21,11 +22,17 @@ public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand>
     public async Task<Unit> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
     {
         var itemToUpdate = await _itemRepository.GetByIdAsync(request.Id);
-
+        
+        if (itemToUpdate == null)
+            throw new NotFoundException(nameof(Item), request.Id);
+        
         _mapper.Map(request, itemToUpdate, typeof(UpdateItemCommand), typeof(Item));
 
         var validator = new UpdateItemCommandValidator(_memberRepository);
         var validationResult = await validator.ValidateAsync(itemToUpdate, cancellationToken);
+
+        if (validationResult.Errors.Any())
+            throw new ValidationException(validationResult);
 
         await _itemRepository.UpdateAsync(itemToUpdate);
 

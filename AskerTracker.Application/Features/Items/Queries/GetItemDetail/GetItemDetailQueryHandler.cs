@@ -24,15 +24,17 @@ public class GetItemDetailQueryHandler : IRequestHandler<GetItemDetailQuery, Ite
     public async Task<ItemDetailVm> Handle(GetItemDetailQuery request, CancellationToken cancellationToken)
     {
         var item = await _itemRepository.GetByIdAsync(request.Id);
+        
+        if (item == null)
+            throw new NotFoundException(nameof(Item), request.Id);
+
         var itemDetailDto = _mapper.Map<ItemDetailVm>(item);
 
         var owner = item.OwnerId != Guid.Empty ? await _memberRepository.GetByIdAsync(item.OwnerId) : null;
         var lender = item.LenderId != Guid.Empty ? await _memberRepository.GetByIdAsync(item.LenderId) : null;
 
         if (item == null)
-        {
             throw new NotFoundException(nameof(MembershipFee), request.Id);
-        }
 
         itemDetailDto.Owner = _mapper.Map<MemberDto>(owner);
         itemDetailDto.Lender = _mapper.Map<MemberDto>(lender);
